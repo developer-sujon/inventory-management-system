@@ -3,7 +3,7 @@ const UsersModel = require("../../model/Users/UsersModel");
 const SelectAllUserService = require("../../services/Admin/SelectAllUserService");
 const SelectUserService = require("../../services/Admin/SelectUserService");
 const BlockUserService = require("../../services/Admin/BlockUserService");
-const UnblockUserService = require("../../services/Admin/UnBlockUserService");
+const UnblockUserService = require("../../services/Admin/UnblockUserService");
 
 /**
  * @desc Select All User

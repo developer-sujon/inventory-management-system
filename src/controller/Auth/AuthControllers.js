@@ -6,7 +6,7 @@ const LoginService = require("../../services/Auth/LoginService");
 /**
  * @desc Register User
  * @access public
- * @route /api/v1/auth/RegisterUser
+ * @route /api/v1/Auth/RegisterUser
  * @methud POST
  */
 
@@ -22,7 +22,7 @@ const RegisterUser = async (req, res, next) => {
 /**
  * @desc Login User
  * @access public
- * @route /api/v1/auth/LoginUser
+ * @route /api/v1/Auth/LoginUser
  * @methud POST
  */
 

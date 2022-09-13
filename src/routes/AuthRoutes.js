@@ -2,7 +2,7 @@
 const AuthRoutes = require("express").Router();
 
 //Internal Import
-const AuthControllers = require("../controller/auth/AuthControllers");
+const AuthControllers = require("../controller/Auth/AuthControllers");
 
 //Register User
 AuthRoutes.post("/RegisterUser", AuthControllers.RegisterUser);

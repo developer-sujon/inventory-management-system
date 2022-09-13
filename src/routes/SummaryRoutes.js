@@ -4,10 +4,18 @@ const SummaryControllers = require("../controller/Summary/SummaryControllers");
 const { UserAuth } = require("../middleware/CheckAuthLogin");
 
 //Expenses Summary
-SummaryRoutes.get("/ExpensesSummary", UserAuth, SummaryControllers.ExpensesSummary);
+SummaryRoutes.get(
+  "/ExpensesSummary",
+  UserAuth,
+  SummaryControllers.ExpensesSummary,
+);
 
 //Purchase Summary
-SummaryRoutes.get("/PurchaseSummary", UserAuth, SummaryControllers.PurchaseSummary);
+SummaryRoutes.get(
+  "/PurchaseSummary",
+  UserAuth,
+  SummaryControllers.PurchaseSummary,
+);
 
 //Sales Summary
 SummaryRoutes.get("/SalesSummary", UserAuth, SummaryControllers.SalesSummary);

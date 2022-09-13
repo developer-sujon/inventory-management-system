@@ -27,7 +27,7 @@ routes.use("/Auth", AuthRoutes);
 routes.use("/User", UserRoutes);
 
 //User Routes
-routes.use("/admin", AdminRoutes);
+routes.use("/Admin", AdminRoutes);
 
 //Brand Routes
 routes.use("/Brand", BrandRoutes);

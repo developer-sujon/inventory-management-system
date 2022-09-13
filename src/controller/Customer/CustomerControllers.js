@@ -8,11 +8,11 @@ const ProductsModel = require("../../model/Products/ProductsModel");
 const ReturnsSummaryModel = require("../../model/SalesReturn/SalesReturnsSummaryModel");
 const SalesSummaryModel = require("../../model/Sales/SalesSummaryModel");
 const CheckAssociateService = require("../../services/Common/CheckAssociateService");
-const CreateService = require("../../services/common/CreateService");
+const CreateService = require("../../services/Common/CreateService");
 const DeleteService = require("../../services/Common/DeleteService");
-const DropDownService = require("../../services/common/DropDownService");
-const ListService = require("../../services/common/ListService");
-const UpdateService = require("../../services/common/UpdateService");
+const DropDownService = require("../../services/Common/DropDownService");
+const ListService = require("../../services/Common/ListService");
+const UpdateService = require("../../services/Common/UpdateService");
 const DetailsService = require("../../services/Common/DetailsService");
 
 /**

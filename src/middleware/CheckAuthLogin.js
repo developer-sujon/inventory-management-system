@@ -8,7 +8,7 @@ const DecodedToken = require("../utility/DecodedToken");
 /**
  * @desc Check User Auth
  * @access public
- * @route /api/v1/auth/login
+ * @route /api/v1/Auth/login
  * @methud POST
  */
 
@@ -54,7 +54,7 @@ const UserAuth = async (req, res, next) => {
 /**
  * @desc Check Admin Auth
  * @access public
- * @route /api/v1/auth/login
+ * @route /api/v1/Auth/login
  * @methud POST
  */
 const AdminAuth = async (req, res, next) => {

@@ -7,10 +7,10 @@ const ProductsModel = require("../../model/Products/ProductsModel");
 const { CreateError } = require("../../helper/ErrorHandler");
 
 const CheckAssociateService = require("../../services/Common/CheckAssociateService");
-const CreateService = require("../../services/common/CreateService");
-const DropDownService = require("../../services/common/DropDownService");
-const ListService = require("../../services/common/ListService");
-const UpdateService = require("../../services/common/UpdateService");
+const CreateService = require("../../services/Common/CreateService");
+const DropDownService = require("../../services/Common/DropDownService");
+const ListService = require("../../services/Common/ListService");
+const UpdateService = require("../../services/Common/UpdateService");
 const DeleteService = require("../../services/Common/DeleteService");
 const DetailsService = require("../../services/Common/DetailsService");
 

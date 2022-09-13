@@ -26,3 +26,8 @@ a {
   font-size: 10px;
   font-family: 'Poppins', sans-serif !important;
 }
+
+.side-nav-logo{
+  width: 60px;
+  margin-top: 10px;
+}

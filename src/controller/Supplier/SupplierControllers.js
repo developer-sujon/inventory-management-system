@@ -6,12 +6,12 @@ const { CreateError } = require("../../helper/ErrorHandler");
 const PurchaseSummaryModel = require("../../model/Purchase/PurchaseSummaryModel");
 const SuppliersModel = require("../../model/Suppliers/SuppliersModel");
 const CheckAssociateService = require("../../services/Common/CheckAssociateService");
-const CreateService = require("../../services/common/CreateService");
+const CreateService = require("../../services/Common/CreateService");
 const DeleteService = require("../../services/Common/DeleteService");
 const DetailsService = require("../../services/Common/DetailsService");
-const DropDownService = require("../../services/common/DropDownService");
-const ListService = require("../../services/common/ListService");
-const UpdateService = require("../../services/common/UpdateService");
+const DropDownService = require("../../services/Common/DropDownService");
+const ListService = require("../../services/Common/ListService");
+const UpdateService = require("../../services/Common/UpdateService");
 
 /**
  * @desc Supplier Create

@@ -2,7 +2,7 @@
 const AdminRoutes = require("express").Router();
 
 //Internal Import
-const { UserAuth, AdminAuth } = require("../middleware/checkAuthLogin");
+const { UserAuth, AdminAuth } = require("../middleware/CheckAuthLogin");
 const AdminControllers = require("../controller/Admin/AdminControllers");
 
 //Select All User

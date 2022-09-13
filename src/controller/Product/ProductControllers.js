@@ -7,10 +7,10 @@ const ProductModel = require("../../model/Products/ProductsModel");
 const ReturnsModel = require("../../model/SalesReturn/SalesReturnsModel");
 const SalesModel = require("../../model/Sales/SalesModel");
 const CheckAssociateService = require("../../services/Common/CheckAssociateService");
-const CreateService = require("../../services/common/CreateService");
+const CreateService = require("../../services/Common/CreateService");
 const DeleteService = require("../../services/Common/DeleteService");
 const ListTwoJoinService = require("../../services/Common/ListTwoJoinService");
-const UpdateService = require("../../services/common/UpdateService");
+const UpdateService = require("../../services/Common/UpdateService");
 const DetailsService = require("../../services/Common/DetailsService");
 
 /**

@@ -60,8 +60,8 @@ function Navigation({ openMenu, setOpenMenu, title = "Home" }) {
       <Navbar
         className={
           openMenu
-            ? "fixed-top px-0 shadow-sm top-navbar"
-            : "fixed-top px-0 shadow-sm top-navbar top-navbar-expand"
+            ? "fixed-top px-0 shadow-sm top-nav-open "
+            : "fixed-top px-0 shadow-sm top-nav-close"
         }
       >
         <Container fluid={true}>

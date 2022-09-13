@@ -2,7 +2,7 @@
 const UserRoutes = require("express").Router();
 
 //Internal Import
-const { UserAuth } = require("../middleware/checkAuthLogin");
+const { UserAuth } = require("../middleware/CheckAuthLogin");
 const UserControllers = require("../controller/User/UserControllers");
 
 //User Profile
