@@ -9,21 +9,23 @@ import {
 } from "react-icons/ai";
 import { BsArrowsFullscreen } from "react-icons/bs";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import AuthRequest from "../../APIRequest/AuthRequest";
+import UserRequest from "../../APIRequest/UserRequest";
+import ToastMessage from "../../helper/ToastMessage";
 
 //Internal Lib Import
-import logo from "../../assets/images/logo.svg";
-import SessionHelper from "../../helper/SessionHelper";
+import { SetLogout } from "../../redux/slices/AuthSlice";
+import store from "../../redux/store/store";
 
 function Navigation({ openMenu, setOpenMenu, title = "Home" }) {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(false);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    UserRequest.UserDetails();
+  }, []);
 
-  const userProfile = useSelector((state) => state.profile.value);
+  const { UserDetails } = useSelector((state) => state.User);
 
   const FullScreen = () => {
     if (isFullScreen === true) {
@@ -49,9 +51,8 @@ function Navigation({ openMenu, setOpenMenu, title = "Home" }) {
   };
 
   const logoutUser = () => {
-    SessionHelper.removeToken("accessToken");
-    SessionHelper.removeUserDetails("user");
-    window.location.href = "/login";
+    store.dispatch(SetLogout());
+    ToastMessage.successMessage("User Logout Successfull");
   };
 
   return (
@@ -84,8 +85,8 @@ function Navigation({ openMenu, setOpenMenu, title = "Home" }) {
             <div className="user-dropdown">
               <img
                 className="icon-nav-img icon-nav"
-                src={userProfile && userProfile.photo}
-                alt={userProfile && userProfile.userName}
+                src={UserDetails && UserDetails.Image}
+                alt={UserDetails && UserDetails.Phone}
                 onClick={() => setOpenDropdown(!openDropdown)}
               />
               <div
@@ -98,10 +99,10 @@ function Navigation({ openMenu, setOpenMenu, title = "Home" }) {
                 <div className="mt-4 text-center">
                   <img
                     className="icon-nav-img"
-                    src={userProfile && userProfile.photo}
-                    alt={userProfile && userProfile.userName}
+                    src={UserDetails && UserDetails.Image}
+                    alt={UserDetails && UserDetails.Phone}
                   />
-                  <h6>{userProfile && userProfile.name}</h6>
+                  <h6>{UserDetails && UserDetails.Name}</h6>
                   <hr className="user-dropdown-divider  p-0" />
                 </div>
                 <NavLink

@@ -13,7 +13,7 @@ const LoginService = require("../../services/Auth/LoginService");
 const RegisterUser = async (req, res, next) => {
   try {
     const result = await RegistrationService(req, UsersModel);
-    res.json(result);
+    res.json({ message: "User Register Successfull" });
   } catch (error) {
     next(error);
   }

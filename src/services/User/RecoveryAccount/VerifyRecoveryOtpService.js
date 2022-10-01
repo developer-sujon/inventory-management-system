@@ -1,7 +1,7 @@
 //Internal import
 const { CreateError } = require("../../../helper/ErrorHandler");
 
-const VerifyRecoveryOtpService = async (Request, OtpModel) => {
+const VerifyRecoveryOtpService = async (Request, OtpModel, session) => {
   const { OtpCode, Email } = Request.params;
 
   const countOtp = await OtpModel.aggregate([
@@ -42,8 +42,9 @@ const VerifyRecoveryOtpService = async (Request, OtpModel) => {
       OtpStatus: 1,
     },
     { new: true },
+    { session },
   );
 
-  return { messge: "Otp Verify Successful" };
+  return { message: "Otp Verify Successful" };
 };
 module.exports = VerifyRecoveryOtpService;

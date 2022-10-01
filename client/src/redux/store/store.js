@@ -2,15 +2,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 //Internal Import
-import authSlice from "../slices/authSlice";
-import loaderSlice from "../slices/loaderSlice";
-import profileSlice from "../slices/profileSlice";
+import AuthSlice from "../slices/AuthSlice";
+import LoaderSlice from "../slices/LoaderSlice";
+import UserSlice from "../slices/UserSlice";
 
 const store = configureStore({
   reducer: {
-    auth: authSlice,
-    loader: loaderSlice,
-    profile: profileSlice,
+    Auth: AuthSlice,
+    Loader: LoaderSlice,
+    User: UserSlice,
   },
 });
 

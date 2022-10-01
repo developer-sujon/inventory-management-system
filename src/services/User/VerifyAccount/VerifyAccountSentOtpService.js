@@ -15,7 +15,7 @@ const VerifyAccountSentOtpService = async (Request, UsersModel, OtpModel) => {
   const OtpCode = await CreateToken({ Email });
 
   const EmailBody = `<div>${User[0].Name},
-  We're happy you signed up for ${process.env.APPLICATION_NAME} To start exploring the Ring App and neighborhood, please confirm your email address. <a href="${process.env.ACCOUNT_VERIFY_EMAIL_URL}/User/VerifyAccountVerifyOtp/${Email}/${OtpCode}">Verify Now</a> </div>`;
+  We're happy you signed up for ${process.env.APPLICATION_NAME} To start exploring the Ring App and neighborhood, please confirm your email address. <a href="${process.env.ACCOUNT_VERIFY_EMAIL_URL}/verify-account-verify-otp/${Email}/${OtpCode}">Verify Now</a> </div>`;
 
   const EmailSubject = `Your ${process.env.APPLICATION_NAME} Account Verification Link`;
 
@@ -28,6 +28,6 @@ const VerifyAccountSentOtpService = async (Request, UsersModel, OtpModel) => {
 
   await newOtpCode.save();
 
-  return { messge: "Otp Send Successfull" };
+  return { message: "Otp Send Successfull" };
 };
 module.exports = VerifyAccountSentOtpService;

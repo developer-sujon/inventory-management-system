@@ -2,7 +2,7 @@
 import { useSelector } from "react-redux";
 
 const FullScreenLoader = () => {
-  const loader = useSelector((state) => state.loader.isLoading);
+  const loader = useSelector((state) => state.Loader.IsLoading);
 
   return (
     <div className={loader ? "LoadingOverlay" : "d-none"}>

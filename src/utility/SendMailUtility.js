@@ -8,7 +8,7 @@ const SendMailUtility = async (emailTo, emailText, emailSubject) => {
     port: 25,
     secure: false,
     auth: {
-      User: process.env.EMAIL_UserNAME,
+      user: process.env.EMAIL_USERNAME,
       pass: process.env.EMAIL_PASSWORD,
     },
     tls: {

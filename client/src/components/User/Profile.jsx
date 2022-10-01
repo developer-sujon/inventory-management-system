@@ -1,14 +1,18 @@
 //External Lib Import
 import { useRef } from "react";
 import { Container, Col, Row, Card, Form, Button } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import UserRequest from "../../APIRequest/UserRequest";
 
 //Internal Lib Import
-import FormValidation from "../../../helper/FormValidation";
-import GetBase64 from "../../../helper/GetBase64";
-import ToastMessage from "../../../helper/ToastMessage";
+import FormValidation from "../../helper/FormValidation";
+import GetBase64 from "../../helper/GetBase64";
+import ToastMessage from "../../helper/ToastMessage";
 
 const Profile = () => {
-  const UserProfile = {};
+  const navigate = useNavigate();
+  const { UserDetails } = useSelector((state) => state.User);
 
   let UserNameRef,
     UserMobileRef,
@@ -29,9 +33,15 @@ const Profile = () => {
     } else if (!FormValidation.isMobile(UserMobileRef.value)) {
       ToastMessage.errorMessage("Invalid Mobile Number");
     } else {
-      const name = UserNameRef.value;
-      const phone = UserMobileRef.value;
-      const photo = UserImgView.src;
+      const Name = UserNameRef.value;
+      const Phone = UserMobileRef.value;
+      const Image = UserImgView.src;
+
+      UserRequest.UserUpdate({ Name, Phone, Image }).then((result) => {
+        if (result) {
+          navigate("/");
+        }
+      });
     }
   };
 
@@ -44,13 +54,13 @@ const Profile = () => {
               <img
                 ref={(input) => (UserImgView = input)}
                 className="icon-nav-img-lg"
-                src="/unknown/bytesize_mail-(1)-1661776562988.png"
-                alt={UserProfile["UserName"]}
+                src={UserDetails?.Image}
+                alt={UserDetails?.Phone}
                 style={{ maxWidth: "200px" }}
               />
               <hr />
 
-              <Form nSubmit={updateProfile}>
+              <Form onSubmit={updateProfile}>
                 <Row>
                   <Col md={4} className="p-2">
                     <Form.Group className="mb-3" controlId="photo">
@@ -69,7 +79,7 @@ const Profile = () => {
                       <Form.Label>Email Address</Form.Label>
                       <Form.Control
                         key={Date.now()}
-                        defaultValue={UserProfile["email"]}
+                        defaultValue={UserDetails?.Email}
                         readOnly={true}
                         placeholder="User Email"
                         className="form-control animated fadeInUp"
@@ -78,24 +88,11 @@ const Profile = () => {
                     </Form.Group>
                   </Col>
                   <Col md={4} className="p-2">
-                    <Form.Group className="mb-3" controlId="UserName">
-                      <Form.Label>User Name</Form.Label>
+                    <Form.Group className="mb-3" controlId="Name">
+                      <Form.Label> Name</Form.Label>
                       <Form.Control
                         key={Date.now()}
-                        defaultValue={UserProfile["UserName"]}
-                        readOnly={true}
-                        placeholder="User Name"
-                        className="form-control animated fadeInUp"
-                        type="text"
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col className="p-2">
-                    <Form.Group>
-                      <Form.Label>Name</Form.Label>
-                      <Form.Control
-                        key={Date.now()}
-                        defaultValue={UserProfile["name"]}
+                        defaultValue={UserDetails?.Name}
                         ref={(input) => (UserNameRef = input)}
                         placeholder="Name"
                         className="form-control animated fadeInUp"
@@ -109,7 +106,7 @@ const Profile = () => {
                       <Form.Label>Mobile</Form.Label>
                       <Form.Control
                         key={Date.now()}
-                        defaultValue={UserProfile["phone"]}
+                        defaultValue={UserDetails?.Phone}
                         ref={(input) => (UserMobileRef = input)}
                         placeholder="Mobile"
                         className="form-control animated fadeInUp"
@@ -120,7 +117,7 @@ const Profile = () => {
                   <Col className="p-2">
                     <Button
                       type="submit"
-                      variant="success"
+                      variant="primary"
                       className="w-100 animated fadeInUp float-end mb-0 mt-4"
                     >
                       Update

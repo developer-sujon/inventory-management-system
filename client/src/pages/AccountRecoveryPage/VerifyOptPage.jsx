@@ -2,12 +2,12 @@
 import React, { lazy, Suspense } from "react";
 
 //Internal Lib Import
-import LazyLoader from "../../../components/Common/LazyLoader";
+import LazyLoader from "../../components/Common/LazyLoader";
 const AppNavigation = lazy(() =>
-  import("../../../components/AppNavigation/AppNavigation"),
+  import("../../components/AppNavigation/AppNavigation"),
 );
 const VerifyOtp = lazy(() =>
-  import("../../../components/AccountRecovery/VerifyOtp"),
+  import("../../components/AccountRecovery/VerifyOtp"),
 );
 
 const VerifyOptPage = () => {

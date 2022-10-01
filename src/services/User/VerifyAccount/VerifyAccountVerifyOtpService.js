@@ -2,7 +2,12 @@
 
 const { CreateError } = require("../../../helper/ErrorHandler");
 
-const VerifyAccountVerifyOtpService = async (Request, UsersModel, OtpModel) => {
+const VerifyAccountVerifyOtpService = async (
+  Request,
+  UsersModel,
+  OtpModel,
+  session,
+) => {
   const { Email, OtpCode } = Request.params;
 
   const countOtp = await OtpModel.aggregate([
@@ -42,10 +47,8 @@ const VerifyAccountVerifyOtpService = async (Request, UsersModel, OtpModel) => {
     {
       OtpStatus: 1,
     },
-    { new: true },
+    { session },
   );
-
-  //////////////////////////////transaction rollback//////////////////////////////
 
   const User = await UsersModel.aggregate([{ $match: { Email: Email } }]);
 
@@ -65,18 +68,12 @@ const VerifyAccountVerifyOtpService = async (Request, UsersModel, OtpModel) => {
     throw CreateError("You're Account REJECTED", 400);
   }
 
-  const checkAlreadyVerify = await UsersModel.aggregate([
-    {
-      $match: {
-        $and: [{ Email: Email }, { AccountStatus: "ACTIVE" }],
-      },
-    },
-  ]);
+  await UsersModel.updateOne(
+    { Email: Email },
+    { AccountStatus: "ACTIVE" },
+    { new: true },
+  );
 
-  if (checkAlreadyVerify.length > 0) {
-    throw CreateError("You're Account Already  Verify", 400);
-  }
-
-  return { messge: "Account Verify Successful" };
+  return { message: "Account Verify Successful" };
 };
 module.exports = VerifyAccountVerifyOtpService;

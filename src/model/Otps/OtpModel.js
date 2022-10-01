@@ -14,7 +14,7 @@ const otpSchema = new Schema(
     },
     OtpCodeExpire: {
       type: Number,
-      default: Date.now() + 5 * 60 * 1000,
+      default: Date.now() + 15 * 60 * 1000,
       required: true,
     },
     Email: {

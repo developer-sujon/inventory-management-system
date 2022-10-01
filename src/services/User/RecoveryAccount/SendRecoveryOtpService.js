@@ -13,7 +13,7 @@ const SendRecoveryOtpService = async (Request, UsersModel, OtpModel) => {
 
   const OtpCode = GenRandNumber(6);
 
-  const EmailBody = `<p>${User[0].name},
+  const EmailBody = `<p>${User[0].Name},
   Your ${process.env.APPLICATION_NAME} Account Recovery Code is <b>${OtpCode}</b> </p>`;
 
   const EmailSubject = `Your ${process.env.APPLICATION_NAME} Account Recovery Code`;
@@ -27,6 +27,6 @@ const SendRecoveryOtpService = async (Request, UsersModel, OtpModel) => {
 
   await newOtpCode.save();
 
-  return { messge: "Otp Send Successfull" };
+  return { message: "Otp Send Successfull" };
 };
 module.exports = SendRecoveryOtpService;

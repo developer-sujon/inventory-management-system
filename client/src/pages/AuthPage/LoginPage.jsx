@@ -2,13 +2,13 @@
 import React, { Suspense, lazy } from "react";
 
 //Internal Lib Import
-import LazyLoader from "../../../components/Common/LazyLoader";
+import LazyLoader from "../../components/Common/LazyLoader";
 
 const AppNavigation = lazy(() =>
-  import("../../../components/AppNavigation/AppNavigation"),
+  import("../../components/AppNavigation/AppNavigation"),
 );
 const LoginUser = lazy(() =>
-  import("../../../components/Auth/LoginUser/LoginUser"),
+  import("../../components/Auth/LoginUser"),
 );
 
 const LoginPage = () => {

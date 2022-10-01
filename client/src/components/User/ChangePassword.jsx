@@ -1,13 +1,15 @@
 //External Lib Import
 import { useEffect, useRef } from "react";
 import { Container, Card, Row, Col, Form, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import UserRequest from "../../APIRequest/UserRequest";
 
 //Internal Lib Import
-import FormValidation from "../../../helper/FormValidation";
-import ToastMessage from "../../../helper/ToastMessage";
+import FormValidation from "../../helper/FormValidation";
+import ToastMessage from "../../helper/ToastMessage";
 
-const Setting = () => {
-  useEffect(() => {}, []);
+const ChangePassword = () => {
+  const navigate = useNavigate();
 
   let previousPasswordRef,
     newPasswordRef,
@@ -23,12 +25,20 @@ const Setting = () => {
     } else if (newPasswordRef.value !== confirmNewPasswordRef.value) {
       ToastMessage.errorMessage("New & Confirm Password Not Match");
     } else {
+      UserRequest.UserChangePassword({
+        PreviousPassword: previousPasswordRef.value,
+        NewPassword: newPasswordRef.value,
+      }).then((result) => {
+        if (result) {
+          navigate("/");
+        }
+      });
     }
   };
 
   return (
     <Container fluid>
-      <Row className="d-flex justify-content-center">
+      <Row className="d-flex justify-content-center vh-100 align-items-center">
         <Col md={6}>
           <Card>
             <Card.Body className="card-body">
@@ -66,7 +76,7 @@ const Setting = () => {
               </Form.Group>
 
               <Button
-                variant="success"
+                variant="primary"
                 className="w-100 float-end animated fadeInUp"
                 onClick={updatePassword}
               >
@@ -80,4 +90,4 @@ const Setting = () => {
   );
 };
 
-export default Setting;
+export default ChangePassword;

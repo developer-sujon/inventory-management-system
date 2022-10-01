@@ -1,34 +1,101 @@
 //external lib imports
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 //internal lib imports
-import DashboardPage from "./pages/DashboardPage/DashboardPage";
-import ProfilePage from "./pages/UserPage/ProfilePage/ProfilePage";
-import SettingPage from "./pages/UserPage/SettingPage/SettingPage";
 import FullScreenLoader from "./components/Common/FullScreenLoader";
-import CreatePasswordPage from "./pages/AccountRecoveryPage/CreatePasswordPage/CreatePasswordPage";
-import SendOptPage from "./pages/AccountRecoveryPage/SendOptPage/SendOptPage";
-import VerifyOptPage from "./pages/AccountRecoveryPage/VerifyOptPage/VerifyOptPage";
-import LoginPage from "./pages/AuthPage/LoginPage/LoginPage";
-import RegistrationPage from "./pages/AuthPage/RegistrationPage/RegistrationPage";
+import LoginPage from "./pages/AuthPage/LoginPage";
+import RegistrationPage from "./pages/AuthPage/RegistrationPage";
+import RecoveryPasswordPage from "./pages/AccountRecoveryPage/RecoveryPasswordPage";
+import SendOptPage from "./pages/AccountRecoveryPage/SendOptPage";
+import VerifyOptPage from "./pages/AccountRecoveryPage/VerifyOptPage";
+import VerifyAccountSentOtpPage from "./pages/AccountVerifyPage/VerifyAccountSentOtpPage";
+import VerifyAccountVerifyOtpPage from "./pages/AccountVerifyPage/VerifyAccountVerifyOtpPage";
+
+import DashboardPage from "./pages/DashboardPage/DashboardPage";
+import ProfilePage from "./pages/UserPage/ProfilePage";
+import SettingPage from "./pages/UserPage/ChangePasswordPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import ChangePasswordPage from "./pages/UserPage/ChangePasswordPage";
 
 const App = () => {
+  const { accessToken } = useSelector((state) => state.Auth);
+
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Navigate to="/dashboard" />} />
-          <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/setting" element={<SettingPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegistrationPage />} />
-          <Route path="/send-otp" element={<SendOptPage />} />
-          <Route path="/verify-otp" element={<VerifyOptPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/create-password" element={<CreatePasswordPage />} />
-          <Route path="/CustomerCreateUpdatePage" element={<DashboardPage />} />
-          <Route path="/SalesListPage" element={<SettingPage />} />
+          <Route
+            path="/"
+            element={accessToken ? <DashboardPage /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/login"
+            element={accessToken ? <Navigate to="/dashboard" /> : <LoginPage />}
+          />
+          <Route
+            path="/register"
+            element={
+              accessToken ? <Navigate to="/dashboard" /> : <RegistrationPage />
+            }
+          />
+          <Route
+            path="/send-otp"
+            element={
+              accessToken ? <Navigate to="/dashboard" /> : <SendOptPage />
+            }
+          />
+          <Route
+            path="/verify-otp"
+            element={
+              accessToken ? <Navigate to="/dashboard" /> : <VerifyOptPage />
+            }
+          />
+          <Route
+            path="/reset-password"
+            element={
+              accessToken ? (
+                <Navigate to="/dashboard" />
+              ) : (
+                <RecoveryPasswordPage />
+              )
+            }
+          />
+
+          <Route
+            path="/verify-account-sent-otp"
+            element={
+              accessToken ? (
+                <Navigate to="/dashboard" />
+              ) : (
+                <VerifyAccountSentOtpPage />
+              )
+            }
+          />
+
+          <Route
+            path="/verify-account-verify-otp/:email/:otp"
+            element={
+              accessToken ? (
+                <Navigate to="/dashboard" />
+              ) : (
+                <VerifyAccountVerifyOtpPage />
+              )
+            }
+          />
+
+          <Route
+            path="/dashboard"
+            element={accessToken ? <DashboardPage /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/profile"
+            element={accessToken ? <ProfilePage /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/change-password"
+            element={accessToken ? <ChangePasswordPage /> : <Navigate to="/login" />}
+          />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>

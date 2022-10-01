@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
 
 //Internal Lib Import
-import logo from "../../assets/images/logo.svg";
+import logo from "../../assets/images/logo.png";
 
 const AppNavigation = ({ title }) => {
   return (

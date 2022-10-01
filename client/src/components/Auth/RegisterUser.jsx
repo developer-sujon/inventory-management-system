@@ -1,38 +1,46 @@
 import React, { useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Form, Container, Col, Row, Card, Button } from "react-bootstrap";
 
-import FormValidation from "../../../helper/FormValidation";
-import ToastMessage from "../../../helper/ToastMessage";
+import FormValidation from "../../helper/FormValidation";
+import ToastMessage from "../../helper/ToastMessage";
+import AuthRequest from "../../APIRequest/AuthRequest";
 
 const RegisterUser = () => {
-  let emailRef,
-    UserNameRef,
-    nameRef,
+  const navigate = useNavigate();
+
+  let nameRef,
     phoneRef,
-    passwordRef = useRef();
+    emailRef,
+    passwordRef,
+    confirmPasswordRef = useRef();
 
   const onRegistration = (e) => {
     e.preventDefault();
-    const newUser = {
-      email: emailRef.value,
-      UserName: UserNameRef.value,
-      name: nameRef.value,
-      phone: phoneRef.value,
-      password: passwordRef.value,
-    };
 
-    if (!FormValidation.isEmail(newUser.email)) {
-      ToastMessage.errorMessage("Invalid Email Address");
-    } else if (FormValidation.isEmpty(newUser.UserName)) {
-      ToastMessage.errorMessage("Username is Required");
-    } else if (FormValidation.isEmpty(newUser.name)) {
+    if (FormValidation.isEmpty(nameRef.value)) {
       ToastMessage.errorMessage("Name is Required");
-    } else if (!FormValidation.isMobile(newUser.phone)) {
+    } else if (!FormValidation.isMobile(phoneRef.value)) {
       ToastMessage.errorMessage("Invalid Phone Number");
-    } else if (FormValidation.isEmpty(newUser.password)) {
+    } else if (!FormValidation.isEmail(emailRef.value)) {
+      ToastMessage.errorMessage("Invalid Email Address");
+    } else if (FormValidation.isEmpty(passwordRef.value)) {
       ToastMessage.errorMessage("Password is Required");
+    } else if (FormValidation.isEmpty(confirmPasswordRef.value)) {
+      ToastMessage.errorMessage("Confirm Password is Required");
+    } else if (passwordRef.value !== confirmPasswordRef.value) {
+      ToastMessage.errorMessage("Password And Confirm Password Not Match");
     } else {
+      AuthRequest.RegisterUser({
+        Name: nameRef.value,
+        Phone: phoneRef.value,
+        Email: emailRef.value,
+        Password: passwordRef.value,
+      }).then((result) => {
+        if (result) {
+          navigate("/verify-account-sent-otp");
+        }
+      });
     }
   };
 
@@ -58,30 +66,6 @@ const RegisterUser = () => {
                   </Col>
 
                   <Col md={6} className="p-2">
-                    <Form.Group className="mb-3" controlId="email">
-                      <Form.Label>User Email</Form.Label>
-                      <Form.Control
-                        ref={(input) => (emailRef = input)}
-                        placeholder="User Email"
-                        className="form-control animated fadeInUp"
-                        type="email"
-                      />
-                    </Form.Group>
-                  </Col>
-
-                  <Col md={6} className="p-2">
-                    <Form.Group className="mb-3" controlId="UserName">
-                      <Form.Label>User Name</Form.Label>
-                      <Form.Control
-                        ref={(input) => (UserNameRef = input)}
-                        placeholder="User Name"
-                        className="form-control animated fadeInUp"
-                        type="text"
-                      />
-                    </Form.Group>
-                  </Col>
-
-                  <Col md={6} className="p-2">
                     <Form.Group className="mb-3" controlId="phone">
                       <Form.Label>User Phone</Form.Label>
                       <Form.Control
@@ -89,6 +73,19 @@ const RegisterUser = () => {
                         placeholder="User Phone"
                         className="form-control animated fadeInUp"
                         type="number"
+                        min="1"
+                      />
+                    </Form.Group>
+                  </Col>
+
+                  <Col md={6} className="p-2">
+                    <Form.Group className="mb-3" controlId="email">
+                      <Form.Label>User Email</Form.Label>
+                      <Form.Control
+                        ref={(input) => (emailRef = input)}
+                        placeholder="User Email"
+                        className="form-control animated fadeInUp"
+                        type="email"
                       />
                     </Form.Group>
                   </Col>
@@ -104,13 +101,24 @@ const RegisterUser = () => {
                       />
                     </Form.Group>
                   </Col>
+                  <Col md={6} className="p-2">
+                    <Form.Group className="mb-3" controlId="Password">
+                      <Form.Label>Confirm User Password</Form.Label>
+                      <Form.Control
+                        ref={(input) => (confirmPasswordRef = input)}
+                        placeholder="Confirm User Password"
+                        className="form-control animated fadeInUp"
+                        type="password"
+                      />
+                    </Form.Group>
+                  </Col>
                 </Row>
 
                 <Row>
                   <Col className="p-2">
                     <Button
                       type="submit"
-                      variant="success"
+                      variant="primary"
                       className="w-100 animated fadeInUp float-end"
                     >
                       Registration

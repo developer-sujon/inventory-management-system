@@ -2,10 +2,9 @@
 import React from "react";
 import {
   AiOutlineUnorderedList,
-  AiOutlineLogout,
   AiOutlineUser,
   AiOutlineBank,
-  AiOutlineMenu,
+  AiOutlineSetting,
 } from "react-icons/ai";
 import { Accordion } from "react-bootstrap";
 import { Link, NavLink } from "react-router-dom";
@@ -21,9 +20,10 @@ import {
 import { IoCreateOutline } from "react-icons/io5";
 import { RiDashboardLine } from "react-icons/ri";
 import { TbTruckDelivery } from "react-icons/tb";
+import { MdPassword, MdOutlineBackup } from "react-icons/md";
 
 //Internal Lib  imports
-import sidebarLogo from "../../assets/images/logo.svg";
+import sidebarLogo from "../../assets/images/logo.png";
 
 function SideBar({ openMenu }) {
   const sidebarItems = [
@@ -36,56 +36,56 @@ function SideBar({ openMenu }) {
     {
       title: "Customer",
       icon: <BsPeople className="side-bar-item-icon" />,
-      url: "/Customer",
+      url: "/customer",
       subMenu: [
         {
           title: "New Customer",
           icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
-          url: "/CustomerCreateUpdatePage",
+          url: "/new-customer",
         },
         {
           title: "Customer List",
           icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
-          url: "/CustomerListPage",
+          url: "/customer-list",
         },
       ],
     },
     {
       title: "Supplier",
       icon: <TbTruckDelivery className="side-bar-item-icon" />,
-      url: "/Supplier",
+      url: "/supplier",
       subMenu: [
         {
           title: "New Supplier",
           icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
-          url: "/SupplierCreateUpdatePage",
+          url: "/new-supplier",
         },
         {
           title: "Supplier List",
           icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
-          url: "/SupplierListPage",
+          url: "/supplier-list",
         },
       ],
     },
     {
       title: "Expense",
       icon: <AiOutlineBank className="side-bar-item-icon" />,
-      url: "/Expense",
+      url: "/expense",
       subMenu: [
         {
           title: "New Expense Type",
           icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
-          url: "/ExpenseTypeCreateUpdatePage",
+          url: "/new-expense-type",
         },
         {
           title: "Expense Type List",
           icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
-          url: "/ExpenseTypeListPage",
+          url: "/expense-type-list",
         },
         {
           title: "New Expense",
           icon: <IoCreateOutline size={16} className="side-bar-subitem-icon" />,
-          url: "/ExpenseCreateUpdatePage",
+          url: "/new-expense",
         },
         {
           title: "Expense List",
@@ -95,7 +95,7 @@ function SideBar({ openMenu }) {
               className="side-bar-subitem-icon"
             />
           ),
-          url: "/ExpenseListPage",
+          url: "/expense-list",
         },
       ],
     },
@@ -107,32 +107,32 @@ function SideBar({ openMenu }) {
         {
           title: "New Brand",
           icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
-          url: "/BrandCreateUpdatePage",
+          url: "/new-brand",
         },
         {
           title: "Brand List",
           icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
-          url: "/BrandListPage",
+          url: "/brand-list",
         },
         {
           title: "New Category",
           icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
-          url: "/CategoryCreateUpdatePage",
+          url: "/new-category",
         },
         {
           title: "Category List",
           icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
-          url: "/CategoryListPage",
+          url: "/category-list",
         },
         {
           title: "New Product",
           icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
-          url: "/ProductCreateUpdatePage",
+          url: "/new-product",
         },
         {
           title: "Product List",
           icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
-          url: "/ProductListPage",
+          url: "/product-list",
         },
       ],
     },
@@ -144,12 +144,12 @@ function SideBar({ openMenu }) {
         {
           title: "New Purchase",
           icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
-          url: "/PurchaseCreateUpdatePage",
+          url: "/new-purchase",
         },
         {
           title: "Purchase List",
           icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
-          url: "/PurchaseListPage",
+          url: "/purchase-list",
         },
       ],
     },
@@ -161,12 +161,12 @@ function SideBar({ openMenu }) {
         {
           title: "New Sale",
           icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
-          url: "/SalesCreateUpdatePage",
+          url: "/new-sale",
         },
         {
           title: "Sale List",
           icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
-          url: "/SalesListPage",
+          url: "/sale-list",
         },
       ],
     },
@@ -176,14 +176,24 @@ function SideBar({ openMenu }) {
       url: "/Return",
       subMenu: [
         {
-          title: "New Return",
+          title: "New Sale Return",
           icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
-          url: "/ReturnCreateUpdatePage",
+          url: "/new-sale-return",
         },
         {
-          title: "Return List",
+          title: "New Purchase Return",
           icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
-          url: "/ReturnListPage",
+          url: "/new-purchase-return",
+        },
+        {
+          title: "Sale Return List",
+          icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
+          url: "/sale-return-list",
+        },
+        {
+          title: "Purchase Return List",
+          icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
+          url: "/purchase-return-list",
         },
       ],
     },
@@ -195,29 +205,56 @@ function SideBar({ openMenu }) {
         {
           title: "Sale Report",
           icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
-          url: "/SaleReportPage",
+          url: "/sale-report",
           subMenu: [
             {
               title: "Sale Report",
               icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
-              url: "/SaleReportPage",
+              url: "/sale-report",
             },
           ],
         },
         {
-          title: "Return Report",
+          title: "Sale Return Report",
           icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
-          url: "/ReturnReportPage",
+          url: "/sale-return-report",
         },
         {
           title: "Purchase Report",
           icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
-          url: "/PurchaseReportPage",
+          url: "/purchase-report",
+        },
+        {
+          title: "Purchase Return Report",
+          icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
+          url: "/purchase-return-report",
         },
         {
           title: "Expense Report",
           icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
-          url: "/ExpenseReportPage",
+          url: "/expense-report",
+        },
+      ],
+    },
+    {
+      title: "Setting",
+      icon: <AiOutlineSetting className="side-bar-item-icon" />,
+      url: "/setting",
+      subMenu: [
+        {
+          title: "Profile",
+          icon: <AiOutlineUser size={16} className="side-bar-subitem-icon" />,
+          url: "/profile",
+        },
+        {
+          title: "Change Password",
+          icon: <MdPassword size={16} className="side-bar-subitem-icon" />,
+          url: "/change-password",
+        },
+        {
+          title: "Database Backup",
+          icon: <MdOutlineBackup size={16} className="side-bar-subitem-icon" />,
+          url: "/database-backup",
         },
       ],
     },

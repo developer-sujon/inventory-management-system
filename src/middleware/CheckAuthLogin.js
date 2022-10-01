@@ -42,8 +42,29 @@ const UserAuth = async (req, res, next) => {
       throw CreateError("User Not Found", 401);
     }
 
+    const userActive = await UsersModel.aggregate([
+      {
+        $match: { Email: decoded.Email, AccountStatus: "PENDING" },
+      },
+    ]);
+
+    if (userActive.length > 0) {
+      throw CreateError("User Not Active", 401);
+    }
+
+    const userBlock = await UsersModel.aggregate([
+      {
+        $match: { Email: decoded.Email, AccountStatus: "REJECTED" },
+      },
+    ]);
+
+    if (userBlock.length > 0) {
+      throw CreateError("User Block", 401);
+    }
+
     req.id = user[0]._id;
     req.Email = user[0].Email;
+    req.Password = user[0].Password;
 
     next();
   } catch (e) {

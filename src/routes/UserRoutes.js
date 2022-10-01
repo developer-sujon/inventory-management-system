@@ -8,6 +8,13 @@ const UserControllers = require("../controller/User/UserControllers");
 //User Profile
 UserRoutes.get("/UserDetails", UserAuth, UserControllers.UserDetails);
 
+//User Change Password
+UserRoutes.put(
+  "/UserChangePassword",
+  UserAuth,
+  UserControllers.UserChangePassword,
+);
+
 //Update User
 UserRoutes.patch("/UserUpdate", UserAuth, UserControllers.UserUpdate);
 

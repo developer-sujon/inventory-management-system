@@ -1,8 +1,12 @@
+//Internal import
+const mongoose = require("mongoose");
+
 //Internal Import
 const UsersModel = require("../../model/Users/UsersModel");
 const OtpModel = require("../../model/Otps/OtpModel");
 const UserDetailsService = require("../../services/User/UserDetailsService");
 const UserUpdateService = require("../../services/User/UserUpdateService");
+const UserPasswordChangeService = require("../../services/User/UserPasswordChangeService");
 const UserDeleteService = require("../../services/User/UserDeleteService");
 const RecoveryResetPassService = require("../../services/User/RecoveryAccount/RecoveryResetPassService");
 const VerifyRecoveryOtpService = require("../../services/User/RecoveryAccount/VerifyRecoveryOtpService");
@@ -19,6 +23,21 @@ const VerifyAccountVerifyOtpService = require("../../services/User/VerifyAccount
 const UserDetails = async (req, res, next) => {
   try {
     const result = await UserDetailsService(req, UsersModel);
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+/**
+ * @desc User Change Password
+ * @access private
+ * @route /api/v1/User/UserChangePassword
+ * @methud PUT
+ */
+const UserChangePassword = async (req, res, next) => {
+  try {
+    const result = await UserPasswordChangeService(req, UsersModel);
     res.json(result);
   } catch (error) {
     next(error);
@@ -128,20 +147,32 @@ const VerifyAccountSentOtp = async (req, res, next) => {
  */
 
 const VerifyAccountVerifyOtp = async (req, res, next) => {
+  const session = await mongoose.startSession();
+
   try {
+    await session.startTransaction();
+
     const result = await VerifyAccountVerifyOtpService(
       req,
       UsersModel,
       OtpModel,
+      session,
     );
+
+    await session.commitTransaction();
+    await session.endSession();
+
     res.json(result);
   } catch (error) {
+    await session.abortTransaction();
+    await session.endSession();
     next(error);
   }
 };
 
 module.exports = {
   UserDetails,
+  UserChangePassword,
   UserUpdate,
   UserDelete,
   SendRecoveryOtp,

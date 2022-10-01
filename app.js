@@ -33,7 +33,14 @@ const xssClean = require("xss-clean");
 //Security middleware emplement
 app.use(cors());
 app.use(hpp());
-app.use(helmet());
+app.use(
+  helmet.contentSecurityPolicy({
+    useDefaults: true,
+    directives: {
+      "img-src": ["'self'", "https: data: blob:"],
+    },
+  }),
+);
 app.use(expressMongoSanitize());
 app.use(xssClean());
 
@@ -70,7 +77,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
   // Add React Front End Routing
   app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "uploads"));
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
 

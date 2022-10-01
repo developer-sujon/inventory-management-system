@@ -1,33 +1,48 @@
 class SessionHelper {
-  static setToken(accessToken) {
-    sessionStorage.setItem("accessToken", accessToken);
+  static SetToken(accessToken) {
+    localStorage.setItem("accessToken", accessToken);
   }
-  static getToken() {
-    return sessionStorage.getItem("accessToken");
+  static GetToken() {
+    return localStorage.getItem("accessToken");
   }
-  static removeToken() {
-    return sessionStorage.removeItem("accessToken");
+  static RemoveToken() {
+    return localStorage.removeItem("accessToken");
   }
-  static setUserDetails(User) {
-    sessionStorage.setItem("User", JSON.stringify(User));
+  static SetUserDetails(User) {
+    localStorage.setItem("User", JSON.stringify(User));
   }
-  static getUserDetails() {
-    return JSON.parse(sessionStorage.getItem("User"));
+  static GetUserDetails() {
+    return JSON.parse(localStorage.getItem("User"));
   }
-  static removeUserDetails() {
-    return sessionStorage.removeItem("User");
+  static RemoveUserDetails() {
+    return localStorage.removeItem("User");
   }
-  static setOtpEmail() {
-    return JSON.parse(sessionStorage.getItem("otp"));
+  static SetOtpEmail(Email) {
+    return localStorage.setItem("OTPEmail", Email);
   }
-  static getOtpEmail() {
-    return sessionStorage.removeItem("otp");
+  static GetOtpEmail() {
+    return localStorage.getItem("OTPEmail");
   }
-  static setOtpCode() {
-    return JSON.parse(sessionStorage.getItem("otp"));
+  static SetOtpCode(Otp) {
+    return localStorage.setItem("OTPCode", Otp);
   }
-  static getOtpCode() {
-    return sessionStorage.removeItem("otp");
+  static GetOtpCode() {
+    return localStorage.getItem("OTPCode");
+  }
+
+  static SetVerifyEmail(Email) {
+    return localStorage.setItem("VerifyEmail", Email);
+  }
+  static GetVerifyEmail() {
+    return localStorage.getItem("VerifyEmail");
+  }
+
+  static ResetStorage() {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("User");
+    localStorage.removeItem("OTPEmail");
+    localStorage.removeItem("OTPCode");
+    return true;
   }
 }
 

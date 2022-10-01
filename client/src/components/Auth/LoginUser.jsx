@@ -1,47 +1,31 @@
+//External Import
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { Container, Col, Row, Card, Form, Button } from "react-bootstrap";
 
-import FormValidation from "../../../helper/FormValidation";
-import ToastMessage from "../../../helper/ToastMessage";
-import { useEffect } from "react";
-import AuthRequest from "../../../APIRequest/AuthRequest";
-import axios from "axios";
+//Internal Import
+import FormValidation from "../../helper/FormValidation";
+import ToastMessage from "../../helper/ToastMessage";
+import AuthRequest from "../../APIRequest/AuthRequest";
 
 const LoginUser = () => {
-  let passRef,
-    emailRef = useRef();
+  let emailRef,
+    passRef = useRef();
 
   const SubmitLogin = (e) => {
     e.preventDefault();
-    const email = emailRef.value;
-    const phone = emailRef.value;
-    const password = passRef.value;
 
-    //TODO !FormValidation.isEmail(email) || !FormValidation.isMobile(phone)
-
-    if (!FormValidation.isEmail(email)) {
+    if (!FormValidation.isEmail(emailRef.value)) {
       ToastMessage.errorMessage("Invalid Email Or Mobile");
-    } else if (FormValidation.isEmpty(password)) {
+    } else if (FormValidation.isEmpty(passRef.value)) {
       ToastMessage.errorMessage("Password Is Required");
     } else {
+      AuthRequest.LoginUser({
+        Email: emailRef.value,
+        Password: passRef.value,
+      });
     }
   };
-
-  useEffect(() => {
-
-    
-    axios
-      .get(
-        "https://product-management-table-amit.herokuapp.com/api/v1/productList/1/5/0",
-      )
-      .then((r) => {
-        console.log(r);
-      });
-
-
-
-  }, []);
 
   return (
     <Container>
@@ -53,10 +37,10 @@ const LoginUser = () => {
 
               <Form onSubmit={SubmitLogin}>
                 <Form.Group className="mb-3" controlId="email">
-                  <Form.Label>User Email Or Phone</Form.Label>
+                  <Form.Label>User Email Address</Form.Label>
                   <Form.Control
                     ref={(input) => (emailRef = input)}
-                    placeholder="User Email Or Phone"
+                    placeholder="User Email Address"
                     className="form-control animated fadeInUp"
                     type="text"
                   />
@@ -74,7 +58,7 @@ const LoginUser = () => {
 
                 <Button
                   type="submit"
-                  variant="success"
+                  variant="primary"
                   className="w-100 animated fadeInUp float-end"
                 >
                   Next

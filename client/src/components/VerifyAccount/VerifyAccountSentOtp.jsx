@@ -1,28 +1,14 @@
 //External lib Import
-import { useRef } from "react";
 import { Container, Col, Row, Card, Form, Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
-import UserRequest from "../../APIRequest/UserRequest";
 
 //Internal  lib import
-import FormValidation from "../../helper/FormValidation";
-import ToastMessage from "../../helper/ToastMessage";
+import UserRequest from "../../APIRequest/UserRequest";
+import SessionHelper from "../../helper/SessionHelper";
 
-const SendOtp = () => {
-  const navigate = useNavigate();
-  let emailRef = useRef();
-
+const VerifyAccountSentOtp = () => {
   const SendRecoveryOtp = (e) => {
     e.preventDefault();
-    if (!FormValidation.isEmail(emailRef.value)) {
-      ToastMessage.errorMessage("Invalid Email Address");
-    } else {
-      UserRequest.SendRecoveryOtp(emailRef.value).then((result) => {
-        if (result) {
-          navigate("/verify-otp");
-        }
-      });
-    }
+    UserRequest.VerifyAccountSentOtp();
   };
 
   return (
@@ -34,9 +20,9 @@ const SendOtp = () => {
               <Card.Title>Email Address</Card.Title>
               <Form onSubmit={SendRecoveryOtp}>
                 <Form.Group className="mb-3" controlId="passwordRef">
-                  <Form.Label>New Password</Form.Label>
                   <Form.Control
-                    ref={(input) => (emailRef = input)}
+                    defaultValue={SessionHelper.GetVerifyEmail()}
+                    readOnly
                     placeholder="Email Address"
                     className="animated fadeInUp"
                     type="email"
@@ -47,7 +33,7 @@ const SendOtp = () => {
                   type="submit"
                   className="w-100 animated fadeInUp float-end "
                 >
-                  Next
+                  Verify Account
                 </Button>
               </Form>
             </Card.Body>
@@ -58,4 +44,4 @@ const SendOtp = () => {
   );
 };
 
-export default SendOtp;
+export default VerifyAccountSentOtp;

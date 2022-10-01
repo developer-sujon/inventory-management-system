@@ -1,12 +1,17 @@
 //External  lib import
 import React, { useRef } from "react";
 import { Container, Col, Row, Card, Form, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import UserRequest from "../../APIRequest/UserRequest";
 
 //External lib Import
 import FormValidation from "../../helper/FormValidation";
+import SessionHelper from "../../helper/SessionHelper";
 import ToastMessage from "../../helper/ToastMessage";
 
-const CreatePassword = () => {
+const RecoveryResetPass = () => {
+  const navigate = useNavigate();
+
   let passwordRef,
     confirmPasswordRef = useRef();
 
@@ -20,6 +25,13 @@ const CreatePassword = () => {
     } else if (confirmPasswordRef.value !== passwordRef.value) {
       ToastMessage.errorMessage("Password & Confirm Password Not Match");
     } else {
+      UserRequest.RecoveryResetPass({ Password: passwordRef.value }).then(
+        (result) => {
+          if (result) {
+            navigate("/login");
+          }
+        },
+      );
     }
   };
 
@@ -32,10 +44,10 @@ const CreatePassword = () => {
               <Card.Title>Set New Password</Card.Title>
               <Form onSubmit={resetPass}>
                 <Form.Group className="mb-3" controlId="email">
-                  <Form.Label>Your email address</Form.Label>
+                  <Form.Label>Your Email address</Form.Label>
                   <Form.Control
                     readOnly={true}
-                    value={"email"}
+                    value={SessionHelper?.GetOtpEmail()}
                     className="animated fadeInUp"
                     type="email"
                   />
@@ -59,7 +71,7 @@ const CreatePassword = () => {
                   />
                 </Form.Group>
                 <Button
-                  variant="success"
+                  variant="primary"
                   type="submit"
                   className="w-100 animated fadeInUp float-end"
                 >
@@ -74,4 +86,4 @@ const CreatePassword = () => {
   );
 };
 
-export default CreatePassword;
+export default RecoveryResetPass;

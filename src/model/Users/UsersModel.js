@@ -50,7 +50,7 @@ const UsersSchema = new Schema(
     Image: {
       type: String,
       default:
-        "https://firebasestorage.googleapis.com/v0/b/portfolio-66931.appspot.com/o/client-3.png?alt=media&token=4f615887-cbda-49c9-b279-194fe7b7a802",
+        "https://res.cloudinary.com/dtcoomque/image/upload/v1662750046/avata_i0duew.jpg",
     },
   },
   { versionKey: false, timestamps: true },

@@ -2,22 +2,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 import SessionHelper from "../../helper/SessionHelper";
 
-const authSlice = createSlice({
-  name: "auth",
+const AuthSlice = createSlice({
+  name: "Auth",
   initialState: {
-    accessToken: SessionHelper.getToken(),
+    accessToken: SessionHelper.GetToken() || undefined,
   },
   reducers: {
-    login: (state, action) => {
-      state.accessToken = action.payload;
-      SessionHelper.setToken(action.payload);
+    SetLogin: (state, action) => {
+      SessionHelper.SetToken(action.payload);
+      state.accessToken = SessionHelper.GetToken() || undefined;
     },
-    logout: (state, action) => {
-      state.accessToken = null;
-      SessionHelper.removeToken();
+    SetLogout: (state, action) => {
+      SessionHelper.RemoveToken();
+      state.accessToken = SessionHelper.GetToken() || undefined;
     },
   },
 });
 
-export const { setLoading, removeLoading } = authSlice.actions;
-export default authSlice.reducer;
+export const { SetLogin, SetLogout } = AuthSlice.actions;
+export default AuthSlice.reducer;

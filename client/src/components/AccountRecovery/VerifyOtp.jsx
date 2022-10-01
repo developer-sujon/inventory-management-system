@@ -1,12 +1,15 @@
 //External  lib import
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ReactCodeInput from "react-code-input";
 import { Container, Col, Row, Card, Button, Form } from "react-bootstrap";
 
 //External lib Import
 import ToastMessage from "../../helper/ToastMessage";
+import UserRequest from "../../APIRequest/UserRequest";
 
 const VerifyOtp = () => {
+  const navigate = useNavigate();
   const [otp, setOtp] = useState("");
 
   let defaultInputStyle = {
@@ -32,6 +35,11 @@ const VerifyOtp = () => {
     if (otp.length !== 6) {
       ToastMessage.errorMessage("Invalid OTP Code");
     } else {
+      UserRequest.VerifyRecoveryOtp(otp).then((result) => {
+        if (result) {
+          navigate("/reset-password");
+        }
+      });
     }
   };
 
@@ -54,7 +62,7 @@ const VerifyOtp = () => {
                 />
 
                 <Button
-                  variant="success"
+                  variant="primary"
                   type="sumbit"
                   className="w-100 animated fadeInUp float-end mt-4"
                 >
