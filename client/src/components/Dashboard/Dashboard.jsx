@@ -1,49 +1,57 @@
 //External Lib Import
 import React from "react";
-import { Container, Row, Col, Table, Card, Button } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Table,
+  Card,
+  Button,
+  Breadcrumb,
+  Form,
+} from "react-bootstrap";
 import ReactPaginate from "react-paginate";
 import { AiOutlineDelete, AiOutlineEdit, AiOutlineEye } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   return (
     <Container fluid>
-      <Row>
+      <Row className="justify-content-center">
         <Col>
           <div className="page-title-box">
             <div className="page-title-right">
-              <nav aria-label="breadcrumb">
-                <ol className="breadcrumb m-0">
-                  <li className="breadcrumb-item">
-                    <a href="/">Hyper</a>
-                  </li>
-                  <li className="breadcrumb-item">
-                    <a href="/features/tables/advanced">Tables</a>
-                  </li>
-                  <li className="breadcrumb-item active" aria-current="page">
-                    Advanced Tables
-                  </li>
-                </ol>
-              </nav>
+              <Breadcrumb>
+                <li className="breadcrumb-item">
+                  <Link to="/dashboard">Library</Link>
+                </li>
+                <li className="breadcrumb-item">Library</li>
+                <li className="breadcrumb-item">Data</li>
+              </Breadcrumb>
             </div>
           </div>
         </Col>
       </Row>
 
-      <Row>
+      <Row className="justify-content-center">
         <Col>
           <Card>
             <Card.Body>
               <Card.Title className="mb-3">Product List</Card.Title>
-              <label className="d-flex align-items-center" for="product">
-                Search :{" "}
-                <input
-                  id="product"
+
+              <Form.Group
+                className="d-flex align-items-center"
+                controlId="product"
+              >
+                <Form.Label className="m-0">Search :</Form.Label>
+                <Form.Control
+                  type="email"
                   placeholder="60 records..."
-                  className="form-control w-auto ms-1"
-                  defaultValue=""
+                  className="w-auto ms-1"
                 />
-              </label>
-              <Table>
+              </Form.Group>
+
+              <Table responsive>
                 <thead>
                   <tr>
                     <th>Sl</th>
@@ -85,32 +93,38 @@ const Dashboard = () => {
                 </tbody>
               </Table>
 
-              <div className="d-lg-flex align-items-center text-center pb-1">
-                <div className="d-inline-block me-3">
-                  <label className="me-1">Display :</label>
-                  <select className="form-select d-inline-block w-auto">
+              <div className="d-md-flex align-items-center md-text-center pb-1">
+                <Form.Group
+                  className="md-d-inline-block me-3 mb-3"
+                  controlId="perPage"
+                >
+                  <Form.Label>Display :</Form.Label>
+                  <Form.Select className="d-inline-block md-w-auto md-ms-1">
                     <option value={5}>5</option>
                     <option value={10}>10</option>
                     <option value={25}>25</option>
                     <option value={60}>All</option>
-                  </select>
-                </div>
-                <span className="me-3">
-                  Page <strong>1 of 12</strong>{" "}
-                </span>
-                <span className="d-inline-block align-items-center text-sm-start text-center my-sm-0 my-2">
-                  <label>Go to page : </label>
-                  <input
+                  </Form.Select>
+                </Form.Group>
+
+                <Form.Group
+                  className="md-d-inline-block me-3 mb-3"
+                  controlId="pageNo"
+                >
+                  <Form.Label>Go to page :</Form.Label>
+                  <Form.Control
                     type="number"
                     min={1}
-                    className="form-control w-25 ms-1 d-inline-block"
+                    placeholder="60 records..."
+                    className="md-w-25 md-ms-1 d-inline-block"
                     defaultValue={1}
                   />
-                </span>
+                </Form.Group>
+
                 <ReactPaginate
                   previousLabel="<"
                   nextLabel=">"
-                  pageClassName="page-item"
+                  pageClassName="page-item d-none d-sm-block"
                   pageLinkClassName="page-link"
                   previousClassName="page-item"
                   previousLinkClassName="page-link"
@@ -122,7 +136,7 @@ const Dashboard = () => {
                   pageCount={100 / 10}
                   marginPagesDisplayed={2}
                   pageRangeDisplayed={5}
-                  containerClassName="pagination"
+                  containerClassName="pagination m-auto mt-3 md-mt-0"
                   activeClassName="active"
                 />
               </div>

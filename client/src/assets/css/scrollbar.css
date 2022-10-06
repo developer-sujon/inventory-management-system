@@ -3,7 +3,7 @@
   scrollbar-width: thin;
 }
 .modal::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
   height: 10px;
 }
 .modal::-webkit-scrollbar-track-piece {
@@ -21,7 +21,7 @@ html {
   scrollbar-width: thin;
 }
 html::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
   height: 10px;
 }
 html::-webkit-scrollbar-track-piece {
@@ -31,4 +31,7 @@ html::-webkit-scrollbar-thumb:vertical {
   height: 30px;
   border-radius: 4px;
   background: var(--bs-primary);
+}
+.fw-bold {
+  font-weight: 700!important;
 }

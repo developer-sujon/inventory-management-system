@@ -26,35 +26,37 @@ const SendOtp = () => {
   };
 
   return (
-    <Container>
-      <Row className="justify-content-center">
-        <Col md={7} lg={6} className="" style={{ marginTop: "100px" }}>
-          <Card className="w-90  p-4">
-            <Card.Body>
-              <Card.Title>Email Address</Card.Title>
-              <Form onSubmit={SendRecoveryOtp}>
-                <Form.Group className="mb-3" controlId="passwordRef">
-                  <Form.Label>New Password</Form.Label>
-                  <Form.Control
-                    ref={(input) => (emailRef = input)}
-                    placeholder="Email Address"
-                    className="animated fadeInUp"
-                    type="email"
-                  />
-                </Form.Group>
-                <Button
-                  variant="primary"
-                  type="submit"
-                  className="w-100 animated fadeInUp float-end "
-                >
-                  Next
-                </Button>
-              </Form>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-    </Container>
+    <div className="min-vh-100 d-flex align-items-center">
+      <Container>
+        <Row className="justify-content-center">
+          <Col md={7} lg={6} className="" style={{ marginTop: "100px" }}>
+            <Card className="w-90  p-4">
+              <Card.Body>
+                <Card.Title>Email Address</Card.Title>
+                <Form onSubmit={SendRecoveryOtp}>
+                  <Form.Group className="mb-3" controlId="passwordRef">
+                    <Form.Label>New Password</Form.Label>
+                    <Form.Control
+                      ref={(input) => (emailRef = input)}
+                      placeholder="Email Address"
+                      className="animated fadeInUp"
+                      type="email"
+                    />
+                  </Form.Group>
+                  <Button
+                    variant="primary"
+                    type="submit"
+                    className="w-100 animated fadeInUp float-end "
+                  >
+                    Next
+                  </Button>
+                </Form>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
 };
 

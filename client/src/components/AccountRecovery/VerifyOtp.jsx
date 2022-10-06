@@ -44,36 +44,39 @@ const VerifyOtp = () => {
   };
 
   return (
-    <Container>
-      <Row className="justify-content-center">
-        <Col md={7} lg={6} className="" style={{ marginTop: "100px" }}>
-          <Card className="w-90  p-4">
-            <Card.Body>
-              <Card.Title>OTP VERIFICATION</Card.Title>
-              <Card.Text>
-                A 6 Digit verification code has been sent to your email address.
-              </Card.Text>
-              <Form onSubmit={vefifyOtpCode}>
-                <ReactCodeInput
-                  onChange={(value) => setOtp(value)}
-                  inputStyle={defaultInputStyle}
-                  fields={6}
-                  type="text"
-                />
+    <div className="min-vh-100 d-flex align-items-center">
+      <Container>
+        <Row className="justify-content-center">
+          <Col md={7} lg={6} className="" style={{ marginTop: "100px" }}>
+            <Card className="w-90  p-4">
+              <Card.Body>
+                <Card.Title>OTP VERIFICATION</Card.Title>
+                <Card.Text>
+                  A 6 Digit verification code has been sent to your email
+                  address.
+                </Card.Text>
+                <Form onSubmit={vefifyOtpCode}>
+                  <ReactCodeInput
+                    onChange={(value) => setOtp(value)}
+                    inputStyle={defaultInputStyle}
+                    fields={6}
+                    type="text"
+                  />
 
-                <Button
-                  variant="primary"
-                  type="sumbit"
-                  className="w-100 animated fadeInUp float-end mt-4"
-                >
-                  Next
-                </Button>
-              </Form>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-    </Container>
+                  <Button
+                    variant="primary"
+                    type="sumbit"
+                    className="w-100 animated fadeInUp float-end mt-4"
+                  >
+                    Next
+                  </Button>
+                </Form>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
 };
 

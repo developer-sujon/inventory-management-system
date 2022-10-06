@@ -45,101 +45,103 @@ const RegisterUser = () => {
   };
 
   return (
-    <Container>
-      <Row className="justify-content-center">
-        <Col md={10} lg={10} className="" style={{ marginTop: "100px" }}>
-          <Card className="w-90 p-4">
-            <Card.Body>
-              <Card.Title>Sign Up</Card.Title> <hr />
-              <Form onSubmit={onRegistration}>
-                <Row>
-                  <Col md={6} className="p-2">
-                    <Form.Group className="mb-3" controlId="name">
-                      <Form.Label>Name</Form.Label>
-                      <Form.Control
-                        ref={(input) => (nameRef = input)}
-                        placeholder="Name"
-                        className="form-control animated fadeInUp"
-                        type="text"
-                      />
-                    </Form.Group>
-                  </Col>
+    <div className="min-vh-100 d-flex align-items-center">
+      <Container>
+        <Row className="justify-content-center">
+          <Col md={10} lg={10} className="" style={{ marginTop: "100px" }}>
+            <Card className="w-90 p-4">
+              <Card.Body>
+                <Card.Title>Sign Up</Card.Title> <hr />
+                <Form onSubmit={onRegistration}>
+                  <Row>
+                    <Col md={6} className="p-2">
+                      <Form.Group className="mb-3" controlId="name">
+                        <Form.Label>Name</Form.Label>
+                        <Form.Control
+                          ref={(input) => (nameRef = input)}
+                          placeholder="Name"
+                          className="form-control animated fadeInUp"
+                          type="text"
+                        />
+                      </Form.Group>
+                    </Col>
 
-                  <Col md={6} className="p-2">
-                    <Form.Group className="mb-3" controlId="phone">
-                      <Form.Label>User Phone</Form.Label>
-                      <Form.Control
-                        ref={(input) => (phoneRef = input)}
-                        placeholder="User Phone"
-                        className="form-control animated fadeInUp"
-                        type="number"
-                        min="1"
-                      />
-                    </Form.Group>
-                  </Col>
+                    <Col md={6} className="p-2">
+                      <Form.Group className="mb-3" controlId="phone">
+                        <Form.Label>User Phone</Form.Label>
+                        <Form.Control
+                          ref={(input) => (phoneRef = input)}
+                          placeholder="User Phone"
+                          className="form-control animated fadeInUp"
+                          type="number"
+                          min="1"
+                        />
+                      </Form.Group>
+                    </Col>
 
-                  <Col md={6} className="p-2">
-                    <Form.Group className="mb-3" controlId="email">
-                      <Form.Label>User Email</Form.Label>
-                      <Form.Control
-                        ref={(input) => (emailRef = input)}
-                        placeholder="User Email"
-                        className="form-control animated fadeInUp"
-                        type="email"
-                      />
-                    </Form.Group>
-                  </Col>
+                    <Col md={6} className="p-2">
+                      <Form.Group className="mb-3" controlId="email">
+                        <Form.Label>User Email</Form.Label>
+                        <Form.Control
+                          ref={(input) => (emailRef = input)}
+                          placeholder="User Email"
+                          className="form-control animated fadeInUp"
+                          type="email"
+                        />
+                      </Form.Group>
+                    </Col>
 
-                  <Col md={6} className="p-2">
-                    <Form.Group className="mb-3" controlId="Password">
-                      <Form.Label>User Password</Form.Label>
-                      <Form.Control
-                        ref={(input) => (passwordRef = input)}
-                        placeholder="User Password"
-                        className="form-control animated fadeInUp"
-                        type="password"
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col md={6} className="p-2">
-                    <Form.Group className="mb-3" controlId="Password">
-                      <Form.Label>Confirm User Password</Form.Label>
-                      <Form.Control
-                        ref={(input) => (confirmPasswordRef = input)}
-                        placeholder="Confirm User Password"
-                        className="form-control animated fadeInUp"
-                        type="password"
-                      />
-                    </Form.Group>
-                  </Col>
-                </Row>
+                    <Col md={6} className="p-2">
+                      <Form.Group className="mb-3" controlId="Password">
+                        <Form.Label>User Password</Form.Label>
+                        <Form.Control
+                          ref={(input) => (passwordRef = input)}
+                          placeholder="User Password"
+                          className="form-control animated fadeInUp"
+                          type="password"
+                        />
+                      </Form.Group>
+                    </Col>
+                    <Col md={6} className="p-2">
+                      <Form.Group className="mb-3" controlId="Password">
+                        <Form.Label>Confirm User Password</Form.Label>
+                        <Form.Control
+                          ref={(input) => (confirmPasswordRef = input)}
+                          placeholder="Confirm User Password"
+                          className="form-control animated fadeInUp"
+                          type="password"
+                        />
+                      </Form.Group>
+                    </Col>
+                  </Row>
 
-                <Row>
-                  <Col className="p-2">
-                    <Button
-                      type="submit"
-                      variant="primary"
-                      className="w-100 animated fadeInUp float-end"
-                    >
-                      Registration
-                    </Button>
-                  </Col>
-                </Row>
-              </Form>
-              <div className="text-center w-100">
-                <Link className="text-center" to="/login">
-                  Sign In
-                </Link>
-                <br />
-                <Link className="text-center" to="/send-otp">
-                  Forget Password
-                </Link>
-              </div>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-    </Container>
+                  <Row>
+                    <Col className="p-2">
+                      <Button
+                        type="submit"
+                        variant="primary"
+                        className="w-100 animated fadeInUp float-end"
+                      >
+                        Registration
+                      </Button>
+                    </Col>
+                  </Row>
+                </Form>
+                <div className="text-center w-100">
+                  <Link className="text-center" to="/login">
+                    Sign In
+                  </Link>
+                  <br />
+                  <Link className="text-center" to="/send-otp">
+                    Forget Password
+                  </Link>
+                </div>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
 };
 

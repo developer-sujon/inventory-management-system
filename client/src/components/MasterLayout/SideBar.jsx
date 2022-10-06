@@ -22,9 +22,6 @@ import { RiDashboardLine } from "react-icons/ri";
 import { TbTruckDelivery } from "react-icons/tb";
 import { MdPassword, MdOutlineBackup } from "react-icons/md";
 
-//Internal Lib  imports
-import sidebarLogo from "../../assets/images/logo.png";
-
 function SideBar({ openMenu }) {
   const sidebarItems = [
     {
@@ -262,13 +259,13 @@ function SideBar({ openMenu }) {
 
   const isSidebarAccordionActive = () => {
     let urlList = [];
-    sidebarItems.map((item) => {
+    sidebarItems.map((item) =>
       urlList.push(
         item.subMenu.map((subItem) => {
           return subItem?.url;
         }),
-      );
-    });
+      ),
+    );
 
     return urlList.findIndex((items) =>
       items.includes(window.location.pathname),
@@ -278,8 +275,8 @@ function SideBar({ openMenu }) {
   return (
     <div className={openMenu ? "side-nav-open" : "side-nav-close"}>
       <div className="side-nav-top text-center">
-        <Link to="/" className="text-center">
-          <img alt="" className="side-nav-logo" src={sidebarLogo} />
+        <Link to="/" className="bodyMedium fw-bold themeDarkBG d-block my-3">
+          cv <br /> <span className="text-white small-dot">BUILDER</span>
         </Link>
       </div>
       <Accordion defaultActiveKey={`${isSidebarAccordionActive()}`}>
@@ -313,6 +310,7 @@ function SideBar({ openMenu }) {
             </Accordion.Item>
           ) : (
             <NavLink
+              key={index}
               className={(navData) =>
                 navData.isActive
                   ? "side-bar-item-active side-bar-item mt-2"
