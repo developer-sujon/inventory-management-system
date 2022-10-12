@@ -22,6 +22,9 @@ import { RiDashboardLine } from "react-icons/ri";
 import { TbTruckDelivery } from "react-icons/tb";
 import { MdPassword, MdOutlineBackup } from "react-icons/md";
 
+//External Lib Import
+import Logo from "../../assets/images/logo.svg";
+
 function SideBar({ openMenu }) {
   const sidebarItems = [
     {
@@ -38,7 +41,7 @@ function SideBar({ openMenu }) {
         {
           title: "New Customer",
           icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
-          url: "/new-customer",
+          url: "/customer-create-update",
         },
         {
           title: "Customer List",
@@ -49,13 +52,13 @@ function SideBar({ openMenu }) {
     },
     {
       title: "Supplier",
-      icon: <TbTruckDelivery className="side-bar-item-icon" />,
-      url: "/supplier",
+      icon: <BsPeople className="side-bar-item-icon" />,
+      url: "/suppliers",
       subMenu: [
         {
           title: "New Supplier",
           icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
-          url: "/new-supplier",
+          url: "/supplier-create-update",
         },
         {
           title: "Supplier List",
@@ -72,7 +75,7 @@ function SideBar({ openMenu }) {
         {
           title: "New Expense Type",
           icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
-          url: "/new-expense-type",
+          url: "/expense-type-create-update",
         },
         {
           title: "Expense Type List",
@@ -82,7 +85,7 @@ function SideBar({ openMenu }) {
         {
           title: "New Expense",
           icon: <IoCreateOutline size={16} className="side-bar-subitem-icon" />,
-          url: "/new-expense",
+          url: "/expense-create-update",
         },
         {
           title: "Expense List",
@@ -104,7 +107,7 @@ function SideBar({ openMenu }) {
         {
           title: "New Brand",
           icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
-          url: "/new-brand",
+          url: "/brand-create-update",
         },
         {
           title: "Brand List",
@@ -114,7 +117,7 @@ function SideBar({ openMenu }) {
         {
           title: "New Category",
           icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
-          url: "/new-category",
+          url: "/category-create-update",
         },
         {
           title: "Category List",
@@ -124,7 +127,7 @@ function SideBar({ openMenu }) {
         {
           title: "New Product",
           icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
-          url: "/new-product",
+          url: "/product-create-update",
         },
         {
           title: "Product List",
@@ -275,8 +278,8 @@ function SideBar({ openMenu }) {
   return (
     <div className={openMenu ? "side-nav-open" : "side-nav-close"}>
       <div className="side-nav-top text-center">
-        <Link to="/" className="bodyMedium fw-bold themeDarkBG d-block my-3">
-          cv <br /> <span className="text-white small-dot">BUILDER</span>
+        <Link to="/" className="d-block my-3 logo">
+          <img src={Logo} alt="logo" />
         </Link>
       </div>
       <Accordion defaultActiveKey={`${isSidebarAccordionActive()}`}>

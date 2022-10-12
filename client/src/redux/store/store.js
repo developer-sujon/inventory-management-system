@@ -1,16 +1,18 @@
-//External import
+//External Lib Import
 import { configureStore } from "@reduxjs/toolkit";
 
 //Internal Import
-import AuthSlice from "../slices/AuthSlice";
 import LoaderSlice from "../slices/LoaderSlice";
+import AuthSlice from "../slices/AuthSlice";
 import UserSlice from "../slices/UserSlice";
+import CustomerSlice from "../slices/CustomerSlice";
 
 const store = configureStore({
   reducer: {
-    Auth: AuthSlice,
     Loader: LoaderSlice,
+    Auth: AuthSlice,
     User: UserSlice,
+    Customer: CustomerSlice,
   },
 });
 

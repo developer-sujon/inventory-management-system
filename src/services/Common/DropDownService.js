@@ -1,7 +1,7 @@
 const DropDownService = async (Request, DataModel, Projection) => {
-  const UserEmail = Request.Email;
+  const UserId = Request.UserId;
   const data = DataModel.aggregate([
-    { $match: { UserEmail: UserEmail } },
+    { $match: { UserId: UserId } },
     { $project: Projection },
   ]);
   return data;

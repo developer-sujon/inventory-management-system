@@ -12,6 +12,8 @@ import DashboardPage from "../../pages/DashboardPage/DashboardPage";
 import ProfilePage from "../../pages/UserPage/ProfilePage";
 import ChangePasswordPage from "../../pages/UserPage/ChangePasswordPage";
 import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
+import CustomerCreateUpdatePage from "../../pages/CustomerPage/CustomerCreateUpdatePage";
+import CustomerListPage from "../../pages/CustomerPage/CustomerListPage";
 
 const AppRoutes = () => {
   const { accessToken } = useSelector((state) => state.Auth);
@@ -74,6 +76,16 @@ const AppRoutes = () => {
             accessToken ? <ChangePasswordPage /> : <Navigate to="/login" />
           }
         />
+
+        <Route
+          path="/customer-create-update"
+          element={accessToken ? <CustomerCreateUpdatePage /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/customer-list"
+          element={accessToken ? <CustomerListPage /> : <Navigate to="/login" />}
+        />
+
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>

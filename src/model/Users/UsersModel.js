@@ -44,7 +44,7 @@ const UsersSchema = new Schema(
     AccountStatus: {
       type: String,
       enum: ["PENDING", "ACTIVE", "REJECTED"],
-      default: "PENDING",
+      default: "ACTIVE",
       required: true,
     },
     Image: {

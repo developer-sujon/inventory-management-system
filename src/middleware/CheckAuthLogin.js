@@ -62,7 +62,7 @@ const UserAuth = async (req, res, next) => {
       throw CreateError("User Block", 401);
     }
 
-    req.id = user[0]._id;
+    req.UserId = user[0]._id;
     req.Email = user[0].Email;
     req.Password = user[0].Password;
 

@@ -5,34 +5,14 @@ const ObjectId = require("mongoose").Types.ObjectId;
 const { CreateError } = require("../../helper/ErrorHandler");
 
 const UpdateService = async (Request, DataModel) => {
-  const UserEmail = Request.Email;
+  const UserId = Request.UserId;
   const UpdateID = Request.params.id;
   const PostBody = Request.body;
-  PostBody.UserEmail = UserEmail;
+  PostBody.UserId = UserId;
 
-  const axisData = await DataModel.aggregate([
-    {
-      $match: {
-        $and: [{ UserEmail: UserEmail }, { _id: ObjectId(UpdateID) }],
-      },
-    },
-  ]);
-
-  if (!axisData.length > 0) {
-    throw CreateError(
-      `${DataModel?.collection?.collectionName} Not Found`,
-      404,
-    );
-  }
-
-  const data = await DataModel.updateOne(
-    { _id: UpdateID, UserEmail: UserEmail },
-    PostBody,
-    {
-      new: true,
-    },
-  );
-  return data;
+  return DataModel.updateOne({ _id: UpdateID, UserId: UserId }, PostBody, {
+    new: true,
+  });
 };
 
 module.exports = UpdateService;

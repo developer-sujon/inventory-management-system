@@ -4,12 +4,12 @@ import cogoToast from "cogo-toast";
 class ToastMessage {
   static successMessage(msg) {
     return cogoToast.success(msg, {
-      position: "bottom-center",
+      position: "top-right",
     });
   }
   static errorMessage(msg) {
     return cogoToast.error(msg, {
-      position: "bottom-center",
+      position: "top-right",
     });
   }
 }

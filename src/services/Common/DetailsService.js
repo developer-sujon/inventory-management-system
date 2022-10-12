@@ -3,12 +3,12 @@ const ObjectId = require("mongoose").Types.ObjectId;
 
 const DetailsService = async (Request, DataModel) => {
   const DetailsID = Request.params.id;
-  const UserEmail = Request.Email;
+  const UserId = Request.UserId;
 
   const data = await DataModel.aggregate([
     {
       $match: {
-        $and: [{ UserEmail: UserEmail }, { _id: ObjectId(DetailsID) }],
+        $and: [{ UserId: UserId }, { _id: ObjectId(DetailsID) }],
       },
     },
   ]);

@@ -2,6 +2,7 @@
 import SessionHelper from "../helper/SessionHelper";
 import ToastMessage from "../helper/ToastMessage";
 import { SetLogin } from "../redux/slices/AuthSlice";
+import { SetUserDetails } from "../redux/slices/UserSlice";
 import store from "../redux/store/store";
 import RestClient from "./RestClient";
 
@@ -22,6 +23,7 @@ class AuthRequest {
     const { data } = await RestClient.postRequest("/Auth/LoginUser", postBody);
     if (data) {
       store.dispatch(SetLogin(data?.accessToken));
+      store.dispatch(SetUserDetails(data?.userDetails));
       ToastMessage.successMessage("User Login Successfull");
       return true;
     }

@@ -8,7 +8,7 @@ const DeleteParentChildService = async (
   const DeleteId = Request.params.id;
   const ChildDeleteQuery = {};
   ChildDeleteQuery[JoinPropertyName] = DeleteId;
-  ChildDeleteQuery["UserEmail"] = Request.Email;
+  ChildDeleteQuery["UserId"] = Request.UserId;
 
   const deleteChild = await ChildModel.deleteMany(ChildDeleteQuery).session(
     Session,
@@ -16,7 +16,7 @@ const DeleteParentChildService = async (
 
   const ParentDeleteQuery = {};
   ParentDeleteQuery["_id"] = DeleteId;
-  ParentDeleteQuery["UserEmail"] = Request.Email;
+  ParentDeleteQuery["UserId"] = Request.UserId;
 
   const deleteParent = await ParentModel.deleteMany(ParentDeleteQuery).session(
     Session,

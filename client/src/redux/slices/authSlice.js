@@ -1,4 +1,4 @@
-//external import
+//External Lib Import
 import { createSlice } from "@reduxjs/toolkit";
 import SessionHelper from "../../helper/SessionHelper";
 
@@ -14,6 +14,7 @@ const AuthSlice = createSlice({
     },
     SetLogout: (state, action) => {
       SessionHelper.RemoveToken();
+      SessionHelper.RemoveUserDetails();
       state.accessToken = SessionHelper.GetToken() || undefined;
     },
   },

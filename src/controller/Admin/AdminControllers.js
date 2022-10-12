@@ -1,9 +1,9 @@
 //Internal Import
 const UsersModel = require("../../model/Users/UsersModel");
-const SelectAllUserService = require("../../services/Admin/SelectAllUserService");
-const SelectUserService = require("../../services/Admin/SelectUserService");
-const BlockUserService = require("../../services/Admin/BlockUserService");
-const UnblockUserService = require("../../services/Admin/UnblockUserService");
+const SelectAllUserService = require("../../services/User/UserListService");
+const UserDetailsService = require("../../services/User/UserDetailsService");
+const BlockUserService = require("../../services/User/UserBlockService");
+const UserActiveService = require("../../services/User/UserActiveService");
 
 /**
  * @desc Select All User
@@ -30,7 +30,7 @@ const SelectAllUser = async (req, res, next) => {
 
 const SelectUser = async (req, res, next) => {
   try {
-    const result = await SelectUserService(req, UsersModel);
+    const result = await UserDetailsService(req, UsersModel);
     res.json(result);
   } catch (error) {
     next(error);
@@ -62,7 +62,7 @@ const BlockUser = async (req, res, next) => {
 
 const UnblockUser = async (req, res, next) => {
   try {
-    const result = await UnblockUserService(req, UsersModel);
+    const result = await UserActiveService(req, UsersModel);
     res.json(result);
   } catch (error) {
     next(error);

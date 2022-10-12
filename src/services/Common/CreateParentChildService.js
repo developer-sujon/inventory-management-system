@@ -7,7 +7,7 @@ const CreateParentChildService = async (
 ) => {
   //create parent
   const parent = Request.body["Parent"];
-  parent.UserEmail = Request.Email;
+  parent.UserId = Request.UserId;
   const newParent = new ParentModel(parent);
   const parentCreation = await newParent.save({ session });
 
@@ -16,7 +16,7 @@ const CreateParentChildService = async (
 
   child.forEach((element) => {
     element[JoinPropertyName] = parentCreation._id;
-    element["UserEmail"] = Request.Email;
+    element["UserId"] = Request.UserId;
   });
 
   const childCreation = await ChildModel.insertMany(child, { session });

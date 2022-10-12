@@ -1,10 +1,11 @@
-//External import
+//External Lib Import
 const { model, Schema } = require("mongoose");
 
 const ExpenseTypesSchema = new Schema(
   {
-    UserEmail: {
-      type: String,
+    UserId: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
       required: true,
     },
     Name: {

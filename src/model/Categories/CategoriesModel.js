@@ -3,8 +3,9 @@ const { model, Schema } = require("mongoose");
 
 const categoriesSchema = new Schema(
   {
-    UserEmail: {
-      type: String,
+    UserId: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
       required: true,
     },
     Name: {

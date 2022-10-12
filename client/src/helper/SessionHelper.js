@@ -1,6 +1,6 @@
 class SessionHelper {
-  static SetToken(accessToken) {
-    localStorage.setItem("accessToken", accessToken);
+  static SetToken(token) {
+    localStorage.setItem("accessToken", token);
   }
   static GetToken() {
     return localStorage.getItem("accessToken");
@@ -8,40 +8,33 @@ class SessionHelper {
   static RemoveToken() {
     return localStorage.removeItem("accessToken");
   }
-  static SetUserDetails(User) {
-    localStorage.setItem("User", JSON.stringify(User));
+  static SetUserDetails(UserDetails) {
+    localStorage.setItem("UserDetails", JSON.stringify(UserDetails));
   }
   static GetUserDetails() {
-    return JSON.parse(localStorage.getItem("User"));
+    return JSON.parse(localStorage.getItem("UserDetails"));
   }
   static RemoveUserDetails() {
-    return localStorage.removeItem("User");
+    return localStorage.removeItem("UserDetails");
   }
-  static SetOtpEmail(Email) {
-    return localStorage.setItem("OTPEmail", Email);
+  static RecoverVerifyEmail(Email) {
+    return localStorage.setItem("RecoverVerifyEmail", Email);
   }
-  static GetOtpEmail() {
-    return localStorage.getItem("OTPEmail");
+  static GetRecoverVerifyEmail() {
+    return localStorage.getItem("RecoverVerifyEmail");
   }
-  static SetOtpCode(Otp) {
-    return localStorage.setItem("OTPCode", Otp);
+  static SetRecoverVerifyOTP(OTP) {
+    return localStorage.setItem("RecoverVerifyOTP", OTP);
   }
-  static GetOtpCode() {
-    return localStorage.getItem("OTPCode");
-  }
-
-  static SetVerifyEmail(Email) {
-    return localStorage.setItem("VerifyEmail", Email);
-  }
-  static GetVerifyEmail() {
-    return localStorage.getItem("VerifyEmail");
+  static GetRecoverVerifyOTP() {
+    return localStorage.getItem("RecoverVerifyOTP");
   }
 
   static ResetStorage() {
     localStorage.removeItem("accessToken");
-    localStorage.removeItem("User");
-    localStorage.removeItem("OTPEmail");
-    localStorage.removeItem("OTPCode");
+    localStorage.removeItem("UserDetails");
+    localStorage.removeItem("RecoverVerifyEmail");
+    localStorage.removeItem("RecoverVerifyOTP");
     return true;
   }
 }

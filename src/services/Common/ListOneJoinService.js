@@ -5,7 +5,7 @@ const ListOneJoinService = async (
   JoinStage,
   projection,
 ) => {
-  const UserEmail = Request.Email;
+  const UserId = Request.UserId;
   const searchKeyword = Request.params.searchKeyword;
   const pageNumber = +Request.params.pageNumber;
   const perPage = +Request.params.perPage;
@@ -16,7 +16,7 @@ const ListOneJoinService = async (
   if (searchKeyword !== "0") {
     data = await DataModel.aggregate([
       {
-        $match: { UserEmail: UserEmail },
+        $match: { UserId: UserId },
       },
       JoinStage,
       {
@@ -34,7 +34,7 @@ const ListOneJoinService = async (
   } else {
     data = await DataModel.aggregate([
       {
-        $match: { UserEmail: UserEmail },
+        $match: { UserId: UserId },
       },
       JoinStage,
       {

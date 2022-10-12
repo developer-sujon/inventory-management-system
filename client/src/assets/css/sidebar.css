@@ -27,9 +27,8 @@
   object-fit: cover;
 }
 
-.logo {
-  width: 70px;
-  margin: 20px;
+.logo img {
+  width: 50px;
 }
 .accordion-button {
   direction: ltr;

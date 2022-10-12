@@ -1,12 +1,12 @@
 const ExpensesReportService = async (Request, DataModel) => {
-  const UserEmail = Request.Email;
+  const UserId = Request.UserId;
   const FormDate = Request.body.FormDate;
   const ToDate = Request.body.ToDate;
 
   const data = await DataModel.aggregate([
     {
       $match: {
-        UserEmail: UserEmail,
+        UserId: UserId,
         createdAt: { $gte: new Date(FormDate), $lte: new Date(ToDate) },
       },
     },

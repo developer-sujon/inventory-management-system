@@ -3,8 +3,9 @@ const { model, Schema } = require("mongoose");
 
 const SalesSummarySchema = new Schema(
   {
-    UserEmail: {
-      type: String,
+    UserId: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
       required: true,
     },
     CustomerId: {
@@ -21,8 +22,5 @@ const SalesSummarySchema = new Schema(
   { timestamps: true, versionKey: false },
 );
 
-const SalesSummaryModel = new model(
-  "SalesSummary",
-  SalesSummarySchema,
-);
+const SalesSummaryModel = new model("SalesSummary", SalesSummarySchema);
 module.exports = SalesSummaryModel;

@@ -6,18 +6,17 @@ const ListTwoJoinService = async (
   JoinStageTwo,
   projection,
 ) => {
-  const UserEmail = Request.Email;
+  const UserId = Request.UserId;
   const searchKeyword = Request.params.searchKeyword;
   const pageNumber = +Request.params.pageNumber;
   const perPage = +Request.params.perPage;
 
   const skipRow = (pageNumber - 1) * perPage;
-  let data;
 
   if (searchKeyword !== "0") {
-    data = await DataModel.aggregate([
+    return await DataModel.aggregate([
       {
-        $match: { UserEmail: UserEmail },
+        $match: { UserId: UserId },
       },
       JoinStageOne,
       JoinStageTwo,
@@ -31,12 +30,10 @@ const ListTwoJoinService = async (
         },
       },
     ]);
-
-    return data;
   } else {
-    data = await DataModel.aggregate([
+    return await DataModel.aggregate([
       {
-        $match: { UserEmail: UserEmail },
+        $match: { UserId: UserId },
       },
       JoinStageOne,
       JoinStageTwo,
@@ -47,8 +44,6 @@ const ListTwoJoinService = async (
         },
       },
     ]);
-
-    return data;
   }
 };
 
