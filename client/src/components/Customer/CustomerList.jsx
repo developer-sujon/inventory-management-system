@@ -27,7 +27,7 @@ const CustomerList = () => {
 
   useEffect(() => {
     CustomerRequest.CustomerList(pageNumber, perPage, searchKey);
-  }, []);
+  }, [pageNumber, perPage, searchKey]);
 
   const { CustomerLists, TotalCustomer } = useSelector(
     (state) => state.Customer,
@@ -35,23 +35,19 @@ const CustomerList = () => {
 
   const perPageOnChange = (e) => {
     setPerPage(e.target.value);
-    CustomerRequest.CustomerList(1, perPage, searchKey);
   };
 
   const searchKeywordOnChange = (e) => {
     const key = e.target.value || 0;
     setSearchKey(key);
-    CustomerRequest.CustomerList(1, perPage, searchKey);
   };
 
   const handlePageClick = (e) => {
     setPageNumber(e.selected + 1);
-    CustomerRequest.CustomerList(1, perPage, searchKey);
   };
 
   const goToPage = (e) => {
     setPageNumber(e.target.value);
-    CustomerRequest.CustomerList(1, perPage, searchKey);
   };
 
   const deleteCustomer = (id) => {

@@ -17,11 +17,14 @@ const ListService = async (Request, DataModel, SearchArray) => {
       {
         $facet: {
           Total: [{ $count: "count" }],
-          Data: [{ $skip: skipRow }, { $limit: perPage }],
+          Data: [
+            { $sort: { _id: -1 } },
+            { $skip: skipRow },
+            { $limit: perPage },
+          ],
         },
       },
     ]);
-
   } else {
     return await DataModel.aggregate([
       {
@@ -30,7 +33,11 @@ const ListService = async (Request, DataModel, SearchArray) => {
       {
         $facet: {
           Total: [{ $count: "count" }],
-          Data: [{ $skip: skipRow }, { $limit: perPage }],
+          Data: [
+            { $sort: { _id: -1 } },
+            { $skip: skipRow },
+            { $limit: perPage },
+          ],
         },
       },
     ]);
