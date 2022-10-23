@@ -8,7 +8,7 @@ import { RemoveUserDetails } from "../redux/slices/UserSlice";
 import store from "../redux/store/store";
 
 //Axios default setting
-axios.defaults.baseURL = "http://localhost:8080/api/v1";
+axios.defaults.baseURL = "https://cv-bilder-sujon.herokuapp.com/api/v1";
 axios.defaults.headers.post["Content-Type"] =
   "application/x-www-form-urlencoded";
 
@@ -24,14 +24,14 @@ const ResponseReturn = (response) => {
 
 const ErrorReturn = (error) => {
   store.dispatch(RemoveLoading());
-  if (error.response.status === 400) {
-    ToastMessage.errorMessage(error.response.data.message);
+  if (error.response.status === 500) {
+    ToastMessage.errorMessage("Sorry, Something went wrong");
   } else if (error.response.status === 401) {
     ToastMessage.errorMessage(error.response.data.message);
     store.dispatch(SetLogout());
     store.dispatch(RemoveUserDetails());
   } else {
-    ToastMessage.errorMessage("Sorry, Something went wrong");
+    ToastMessage.errorMessage(error.response.data.message);
   }
 
   return false;

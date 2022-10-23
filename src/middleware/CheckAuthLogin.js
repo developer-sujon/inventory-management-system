@@ -1,9 +1,10 @@
-//external import
-const UsersModel = require("../model/Users/UsersModel");
+//External Lib Import
+const { ObjectId } = require("mongoose").Types;
 
-//internal import
+//Internal Lib Import
 const { CreateError } = require("../helper/ErrorHandler");
 const DecodedToken = require("../utility/DecodedToken");
+const UsersModel = require("../model/Users/UsersModel");
 
 /**
  * @desc Check User Auth
@@ -34,7 +35,7 @@ const UserAuth = async (req, res, next) => {
 
     const user = await UsersModel.aggregate([
       {
-        $match: { Email: decoded.Email },
+        $match: { _id: ObjectId(decoded.id) },
       },
     ]);
 
@@ -44,7 +45,7 @@ const UserAuth = async (req, res, next) => {
 
     const userActive = await UsersModel.aggregate([
       {
-        $match: { Email: decoded.Email, AccountStatus: "PENDING" },
+        $match: { _id: ObjectId(decoded.id), AccountStatus: "PENDING" },
       },
     ]);
 

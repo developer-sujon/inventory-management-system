@@ -48,7 +48,7 @@ const LoginService = async (Request, DataModel) => {
 
   const token = await CreateToken(payLoad);
 
-  return { accessToken: token, userDetails: User[0] };
+  return { AccessToken: token, UserDetails: User[0] };
 };
 
 module.exports = LoginService;

@@ -1,21 +1,20 @@
 //External Lib Import
 import { createSlice } from "@reduxjs/toolkit";
-import SessionHelper from "../../helper/SessionHelper";
+import SessionHelper from "../../helpers/SessionHelper";
 
 const AuthSlice = createSlice({
   name: "Auth",
   initialState: {
-    accessToken: SessionHelper.GetToken() || undefined,
+    AccessToken: SessionHelper.GetToken() || undefined,
   },
   reducers: {
     SetLogin: (state, action) => {
       SessionHelper.SetToken(action.payload);
-      state.accessToken = SessionHelper.GetToken() || undefined;
+      state.AccessToken = SessionHelper.GetToken() || undefined;
     },
     SetLogout: (state, action) => {
       SessionHelper.RemoveToken();
-      SessionHelper.RemoveUserDetails();
-      state.accessToken = SessionHelper.GetToken() || undefined;
+      state.AccessToken = SessionHelper.GetToken() || undefined;
     },
   },
 });
