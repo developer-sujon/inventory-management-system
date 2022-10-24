@@ -12,12 +12,6 @@ const UsersSchema = new Schema(
     Phone: {
       type: String,
       required: true,
-      validate: {
-        validator: function (v) {
-          return /(^(\+88|0088|88)?(01){1}[3456789]{1}(\d){8})$/.test(v);
-        },
-        message: (prop) => `Invalid Phone Number: ${prop.value}`,
-      },
       unique: true,
     },
     Email: {
@@ -50,7 +44,7 @@ const UsersSchema = new Schema(
     Image: {
       type: String,
       default:
-        "https://res.cloudinary.com/dtcoomque/image/upload/v1662750046/avata_i0duew.jpg",
+        "https://res.cloudinary.com/dtcoomque/image/upload/v1663317145/vz7iz88hfniwxejirvjw.png",
     },
   },
   { versionKey: false, timestamps: true },

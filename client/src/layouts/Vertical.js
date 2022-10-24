@@ -14,7 +14,6 @@ import * as layoutConstants from "../redux/slices/SettingSlice";
 import { changeBodyAttribute } from "../utils";
 
 //External Import
-import LazyLoader from "../components/Common/LazyLoader";
 
 const Topbar = React.lazy(() => import("./Topbar"));
 const LeftSidebar = React.lazy(() => import("./LeftSidebar"));
@@ -94,26 +93,20 @@ const VerticalLayout = () => {
   return (
     <>
       <div className="wrapper">
-        <Suspense fallback={<LazyLoader />}>
-          <LeftSidebar
-            isCondensed={isCondensed}
-            isLight={isLight}
-            hideUserProfile={true}
-          />
-        </Suspense>
+        <LeftSidebar
+          isCondensed={isCondensed}
+          isLight={isLight}
+          hideUserProfile={true}
+        />
         <div className="content-page">
           <div className="content">
-            <Suspense fallback={<LazyLoader />}>
-              <Topbar openLeftMenuCallBack={openMenu} hideLogo={true} />
-            </Suspense>
+            <Topbar openLeftMenuCallBack={openMenu} hideLogo={true} />
             <Container fluid>
               <Outlet />
             </Container>
           </div>
 
-          <Suspense fallback={<LazyLoader />}>
-            <Footer />
-          </Suspense>
+          <Footer />
         </div>
       </div>
     </>

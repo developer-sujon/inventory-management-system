@@ -14,23 +14,28 @@ import { SetLanguage } from "../../redux/slices/SettingSlice";
 // Get the languages
 const Languages = [
   {
-    name: "English",
+    display: "English",
+    name: "en",
     flag: enFlag,
   },
   {
-    name: "German",
+    display: "German",
+    name: "de",
     flag: germanyFlag,
   },
   {
-    name: "Italian",
+    display: "Italian",
+    name: "it",
     flag: italyFlag,
   },
   {
-    name: "Spanish",
+    display: "Spanish",
+    name: "es",
     flag: spainFlag,
   },
   {
-    name: "Russian",
+    display: "Russian",
+    name: "ru",
     flag: russiaFlag,
   },
 ];
@@ -67,7 +72,7 @@ const LanguageDropdown = (): React$Element<any> => {
           height="12"
         />
         <span className="align-middle d-none d-sm-inline-block">
-          {Language.name}
+          {Language.display}
         </span>
         <i className="mdi mdi-chevron-down d-none d-sm-inline-block align-middle"></i>
       </Dropdown.Toggle>
@@ -90,7 +95,7 @@ const LanguageDropdown = (): React$Element<any> => {
                   className="me-1"
                   height="12"
                 />
-                <span className="align-middle">{lang.name}</span>
+                <span className="align-middle">{lang.display}</span>
               </span>
             );
           })}

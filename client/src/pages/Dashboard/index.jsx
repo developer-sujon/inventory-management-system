@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 // components
 import GlossyDatepicker from "../../components/Ui/Datepicker";
@@ -14,8 +15,10 @@ import SalesChart from "./SalesChart";
 import Activity from "./Activity";
 import Products from "./Products";
 
-const Dashboard = (): React$Element<React$FragmentType> => {
+const Dashboard = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const { t } = useTranslation();
 
   const onDateChange = (date) => {
     if (date) {
@@ -47,7 +50,7 @@ const Dashboard = (): React$Element<React$FragmentType> => {
                 </Link>
               </form>
             </div>
-            <h4 className="page-title">Dashboard</h4>
+            <h4 className="page-title"> {t("Dashboard")}</h4>
           </div>
         </Col>
       </Row>

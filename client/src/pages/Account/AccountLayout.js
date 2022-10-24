@@ -22,7 +22,7 @@ const AccountLayout = ({ bottomLinks, children }) => {
       <div className="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5">
         <Container>
           <Row className="justify-content-center">
-            <Col md={8} lg={6} xl={5} xxl={4}>
+            <Col md={8} lg={6} xl={5}>
               <Card>
                 <Card.Header className="pt-4 pb-4 text-center bg-primary">
                   <Link to="/">
@@ -40,7 +40,7 @@ const AccountLayout = ({ bottomLinks, children }) => {
         </Container>
       </div>
       <footer className="footer footer-alt">
-        {t("2018 - 2021 © Glossy - Glossyit.com")}
+        {t("2010 - 2022 © Glossy - Glossyit.com")}
       </footer>
     </>
   );

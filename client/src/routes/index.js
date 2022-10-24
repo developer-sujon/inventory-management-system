@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { useRoutes } from "react-router-dom";
+import { Navigate, useRoutes } from "react-router-dom";
 import { useSelector } from "react-redux";
 import * as layoutConstants from "../redux/slices/SettingSlice";
 
@@ -21,6 +21,10 @@ const Register = React.lazy(() => import("../pages/Account/Register"));
 
 //Page
 const Dashboard = React.lazy(() => import("../pages/Dashboard"));
+const Logout = React.lazy(() => import("../pages/Account/Logout"));
+const CustomerCreateUpdatePage = React.lazy(() =>
+  import("../pages/Customer/CustomerCreateUpdatePage"),
+);
 
 const LoadComponent = ({ component: Component }) => (
   <Suspense fallback={<LazyLoader />}>
@@ -60,6 +64,7 @@ const AllRoutes = () => {
       element: <PublicRoute component={DefaultLayout} />,
       children: [
         { path: "login", element: <LoadComponent component={Login} /> },
+        { path: "logout", element: <LoadComponent component={Logout} /> },
         {
           path: "register",
           element: <LoadComponent component={Register} />,
@@ -72,14 +77,22 @@ const AllRoutes = () => {
       element: <PrivateRoute component={Layout} />,
       children: [
         {
-          path: "dashboard",
-          element: <Dashboard />,
+          path: "",
+          element: <Navigate to="/dashboard" />,
+        },
+        {
+          path: "/dashboard",
+          element: <LoadComponent component={Dashboard} />,
         },
         {
           path: "customer",
           children: [
             {
-              path: "new-customer",
+              path: "customer-create-update",
+              element: <CustomerCreateUpdatePage />,
+            },
+            {
+              path: "customer-list",
               element: <Dashboard />,
             },
           ],

@@ -124,6 +124,7 @@ const Topbar = ({
   const dispatch = useDispatch();
 
   const [isopen, setIsopen] = useState(false);
+  const { UserDetails } = useSelector((state) => state.User);
 
   const navbarCssClasses = navCssClasses || "";
   const containerCssClasses = !hideLogo ? "container-fluid" : "";
@@ -217,10 +218,10 @@ const Topbar = ({
             </li>
             <li className="dropdown notification-list">
               <ProfileDropdown
-                profilePic={profilePic}
+                profilePic={UserDetails.Image}
                 menuItems={ProfileMenus}
-                username={"Dominic Keller"}
-                userTitle={"Founder"}
+                username={UserDetails.Name}
+                userTitle={UserDetails.Roles}
               />
             </li>
           </ul>

@@ -26,6 +26,7 @@ const SettingSlice = createSlice({
     SetTheme(state, action) {
       SessionHelper.SetTheme(action.payload);
       state.LayoutColor = SessionHelper.GetTheme();
+      state.LeftSideBarTheme = SessionHelper.GetTheme();
     },
     SetLanguage(state, action) {
       SessionHelper.SetLanguage(action.payload);

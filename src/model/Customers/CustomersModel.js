@@ -12,6 +12,11 @@ const CustomersSchema = new Schema(
       type: String,
       required: true,
     },
+    CustomerAvatar: {
+      type: String,
+      required: true,
+      default: "https://res.cloudinary.com/dtcoomque/image/upload/v1663317145/vz7iz88hfniwxejirvjw.png",
+    },
     CustomerEmail: {
       type: String,
       required: true,

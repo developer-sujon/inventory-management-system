@@ -1,14 +1,14 @@
 //External import
 import axios from "axios";
-import SessionHelper from "../helper/SessionHelper";
-import ToastMessage from "../helper/ToastMessage";
+import SessionHelper from "../helpers/SessionHelper";
+import ToastMessage from "../helpers/ToastMessage";
 import { SetLogout } from "../redux/slices/AuthSlice";
 import { RemoveLoading, SetLoading } from "../redux/slices/LoaderSlice";
 import { RemoveUserDetails } from "../redux/slices/UserSlice";
 import store from "../redux/store/store";
 
 //Axios default setting
-axios.defaults.baseURL = "https://cv-bilder-sujon.herokuapp.com/api/v1";
+axios.defaults.baseURL = "http://localhost:8080/api/v1";
 axios.defaults.headers.post["Content-Type"] =
   "application/x-www-form-urlencoded";
 

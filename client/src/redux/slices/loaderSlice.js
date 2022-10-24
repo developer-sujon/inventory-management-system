@@ -1,22 +1,20 @@
 //External Lib Import
 import { createSlice } from "@reduxjs/toolkit";
 
-const SettingSlice = createSlice({
-  name: "Setting",
+const LoaderSlice = createSlice({
+  name: "Loader",
   initialState: {
-    Loader: false,
+    IsLoading: false,
   },
-
-  reducer: {
-    SetLoader(state, action) {
-      state.Loader = action.payload;
+  reducers: {
+    SetLoading: (state) => {
+      state.IsLoading = true;
     },
-    RemoveLoader(state, action) {
-      state.Loader = action.payload;
+    RemoveLoading: (state) => {
+      state.IsLoading = false;
     },
   },
 });
 
-export const { SetLoader, RemoveLoader, SetMode, SetLang } =
-  SettingSlice.actions;
-export default SettingSlice.reducer;
+export const { SetLoading, RemoveLoading } = LoaderSlice.actions;
+export default LoaderSlice.reducer;

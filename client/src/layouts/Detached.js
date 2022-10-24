@@ -13,9 +13,6 @@ import * as layoutConstants from "../redux/slices/SettingSlice";
 // utils
 import { changeBodyAttribute } from "../utils/";
 
-//External Import
-import LazyLoader from "../components/Common/LazyLoader";
-
 const Topbar = React.lazy(() => import("./Topbar"));
 const LeftSidebar = React.lazy(() => import("./LeftSidebar"));
 const Footer = React.lazy(() => import("./Footer"));
@@ -90,34 +87,28 @@ const DetachedLayout = ({ children }, state) => {
 
   return (
     <>
-      <Suspense fallback={<LazyLoader />}>
-        <Topbar
-          isMenuOpened={isMenuOpened}
-          openLeftMenuCallBack={openMenu}
-          navCssClasses="topnav-navbar topnav-navbar-dark"
-          topbarDark={true}
-        />
-      </Suspense>
+      <Topbar
+        isMenuOpened={isMenuOpened}
+        openLeftMenuCallBack={openMenu}
+        navCssClasses="topnav-navbar topnav-navbar-dark"
+        topbarDark={true}
+      />
       <Container fluid>
         <div className="wrapper">
-          <Suspense fallback={<LazyLoader />}>
-            <LeftSidebar
-              isMenuOpened={isMenuOpened}
-              isCondensed={isCondensed}
-              isLight={isLight}
-              hideLogo={true}
-              hideUserProfile={false}
-            />
-          </Suspense>
+          <LeftSidebar
+            isMenuOpened={isMenuOpened}
+            isCondensed={isCondensed}
+            isLight={isLight}
+            hideLogo={true}
+            hideUserProfile={false}
+          />
 
           <div className="content-page">
             <div className="content">
               <Outlet />
             </div>
 
-            <Suspense fallback={<LazyLoader />}>
-              <Footer />
-            </Suspense>
+            <Footer />
           </div>
         </div>
       </Container>

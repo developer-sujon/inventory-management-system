@@ -14,6 +14,7 @@ const AuthSlice = createSlice({
     },
     SetLogout: (state, action) => {
       SessionHelper.RemoveToken();
+      SessionHelper.RemoveUserDetails();
       state.AccessToken = SessionHelper.GetToken() || undefined;
     },
   },

@@ -1,10 +1,10 @@
 //Exteral Lib Import
 import React from "react";
-import { Field, Form, Formik, FormikProps } from "formik";
+import { Form, Formik } from "formik";
 
 const VerticalForm = ({
   defaultValues,
-  resolver,
+  validationSchema,
   children,
   onSubmit,
   formClass,
@@ -12,14 +12,12 @@ const VerticalForm = ({
   return (
     <Formik
       initialValues={defaultValues}
+      validationSchema={validationSchema}
       onSubmit={(values, actions) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          actions.setSubmitting(false);
-        }, 1000);
+        onSubmit(values);
       }}
     >
-      {(props: FormikProps<any>) => (
+      {(props) => (
         <Form className={formClass} noValidate>
           {children}
         </Form>

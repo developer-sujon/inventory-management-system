@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 import { Card, Dropdown, Row, Col } from 'react-bootstrap';
 import SimpleBar from 'simplebar-react';
 import * as yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -61,11 +60,11 @@ const ChatForm = (props) => {
     /*
      * form validation schema
      */
-    const schemaResolver = yupResolver(
+    const schemaResolver =
         yup.object().shape({
             newMessage: yup.string().required('Please enter your messsage'),
         })
-    );
+    ;
 
     const methods = useForm({ resolver: schemaResolver });
     const {

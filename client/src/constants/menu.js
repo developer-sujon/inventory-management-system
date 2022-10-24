@@ -36,14 +36,14 @@ const MENU_ITEMS = [
       {
         key: "NewCustomer",
         label: "New Customer",
-        url: "/new-customer",
+        url: "/customer/customer-create-update",
         parentKey: "Customer",
         icon: <AiOutlineUserAdd size={16} className="side-bar-subitem-icon" />,
       },
       {
         key: "CustomerList",
         label: "Customer List",
-        url: "/customer-list",
+        url: "/customer/customer-list",
         parentKey: "Customer",
         icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
       },

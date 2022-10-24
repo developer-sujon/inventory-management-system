@@ -4,16 +4,16 @@ import detector from "i18next-browser-languagedetector";
 import { initReactI18next } from "react-i18next";
 
 //Internal Lib Import
-import translationSpanish from "./Spanish/translation.json";
+import translationEs from "./es/translation.json";
 import store from "../redux/store/store";
 
 //Translations
 const resources = {
-  Spanish: {
-    translation: translationSpanish,
+  es: {
+    translation: translationEs,
   },
-  German: {
-    translation: translationSpanish,
+  de: {
+    translation: translationEs,
   },
 };
 
@@ -22,8 +22,7 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: store?.getState()?.Setting?.Language?.name,
-    fallbackLng: "en",
+    lng: store?.getState()?.Setting?.Language,
     keySeparator: false,
     interpolation: {
       escapeValue: false,

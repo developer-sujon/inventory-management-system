@@ -49,7 +49,7 @@ const ErrorPageNotFound = (): React$Element<React$FragmentType> => {
       </div>
 
       <footer className="footer footer-alt">
-        2018 - 2021 © Glossy - Glossyit.com
+        2010 - 2022 © Glossy - Glossyit.com
       </footer>
     </>
   );

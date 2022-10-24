@@ -1,5 +1,5 @@
 //Internal Import
-import ToastMessage from "../helper/ToastMessage";
+import ToastMessage from "../helpers/ToastMessage";
 import { SetLogin } from "../redux/slices/AuthSlice";
 import { SetUserDetails } from "../redux/slices/UserSlice";
 import store from "../redux/store/store";
@@ -22,7 +22,7 @@ class AuthRequest {
 
     if (data) {
       store.dispatch(SetLogin(data?.AccessToken));
-      store.dispatch(SetUserDetails(data?.UserDetail));
+      store.dispatch(SetUserDetails(data?.UserDetails));
       ToastMessage.successMessage("User Login Successfull");
     }
   }

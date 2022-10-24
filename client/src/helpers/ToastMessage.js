@@ -1,15 +1,15 @@
-//external import
-import cogoToast from "cogo-toast";
+//External Lib Import
+import toast from "react-hot-toast";
 
 class ToastMessage {
   static successMessage(msg) {
-    return cogoToast.success(msg, {
-      position: "bottom-center",
+    return toast.success(msg, {
+      position: "top-center",
     });
   }
   static errorMessage(msg) {
-    return cogoToast.error(msg, {
-      position: "bottom-center",
+    return toast.error(msg, {
+      position: "top-center",
     });
   }
 }

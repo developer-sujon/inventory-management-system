@@ -6,9 +6,6 @@ import { Outlet } from "react-router-dom";
 // Utils
 import { changeBodyAttribute } from "../utils";
 
-//External Import
-import LazyLoader from "../components/Common/LazyLoader";
-
 const DefaultLayout = (props) => {
   const { LayoutColor } = useSelector((state) => state.Setting);
 
@@ -24,10 +21,6 @@ const DefaultLayout = (props) => {
     };
   }, []);
 
-  return (
-    <Suspense fallback={<LazyLoader />}>
-      <Outlet />
-    </Suspense>
-  );
+  return <Outlet />;
 };
 export default DefaultLayout;
