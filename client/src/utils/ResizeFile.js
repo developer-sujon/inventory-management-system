@@ -7,7 +7,7 @@ const ResizeFile = (file) =>
       file,
       140,
       140,
-      "JPEG",
+      "PNG",
       100,
       0,
       (uri) => {

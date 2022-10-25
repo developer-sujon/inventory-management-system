@@ -16,12 +16,11 @@ import TopbarSearch from "../components/Ui/TopbarSearch";
 import AppsDropdown from "../components/AppsDropdown/";
 
 // images
-import profilePic from "../assets/images/users/avatar-1.jpg";
 import avatar1 from "../assets/images/users/avatar-2.jpg";
 import avatar2 from "../assets/images/users/avatar-4.jpg";
 import logoSmDark from "../assets/images/logo_sm_dark.png";
 import logoSmLight from "../assets/images/logo_sm.png";
-import logo from "../assets/images/logo.svg";
+import logo from "../assets/images/logo.png";
 
 //constants
 import * as layoutConstants from "../redux/slices/SettingSlice";

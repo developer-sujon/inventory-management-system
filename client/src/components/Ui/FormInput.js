@@ -1,11 +1,14 @@
-// @flow
+//External Lib Import
 import React, { useState } from "react";
 import { Form, InputGroup } from "react-bootstrap";
 import classNames from "classnames";
 import { ErrorMessage, Field } from "formik";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+
+//Internal Lib Import
 import FileUploader from "./FileUploader";
+import ResizeFile from "../../utils/ResizeFile";
 
 const FormInput = ({
   label,
@@ -16,8 +19,15 @@ const FormInput = ({
   labelClassName,
   containerClass,
   children,
+  SetFormValueOnChange,
+  defaultValue,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
+
+  const FileHandleChange = async (e, setFieldValue) => {
+    setFieldValue(name, await ResizeFile(e.target?.files?.[0]));
+    SetFormValueOnChange(await ResizeFile(e.target?.files?.[0]));
+  };
 
   if (type === "password") {
     return (
@@ -143,8 +153,7 @@ const FormInput = ({
           {({ field, form: { touched, errors, setFieldValue, values } }) => (
             <>
               <PhoneInput
-                country={"bd"}
-                value={values?.Phone}
+                value={defaultValue}
                 onChange={(phone) => setFieldValue(name, phone)}
                 className={className}
                 isInvalid={errors && errors[name] ? true : false}
@@ -180,6 +189,43 @@ const FormInput = ({
                 </p>
                 <FileUploader
                   onFileUpload={(files) => setFieldValue(name, files)}
+                />
+              </Form.Group>
+
+              <ErrorMessage name={name}>
+                {(msg) => (
+                  <Form.Control.Feedback
+                    type="invalid"
+                    style={{ display: "block" }}
+                  >
+                    {msg}
+                  </Form.Control.Feedback>
+                )}
+              </ErrorMessage>
+            </>
+          )}
+        </Field>
+      </Form.Group>
+    );
+  } else if (type === "file") {
+    return (
+      <Form.Group className={containerClass} controlId={name}>
+        <Field name={name}>
+          {({ field, form: { touched, errors, setFieldValue, values } }) => (
+            <>
+              <Form.Group className="mb-3 mt-3 mt-xl-0">
+                {label ? (
+                  <Form.Label className={labelClassName}>{label}</Form.Label>
+                ) : null}
+                <p className="text-muted font-14">
+                  Recommended thumbnail size 800x400 (px).
+                </p>
+                <Form.Control
+                  type={type}
+                  placeholder={placeholder}
+                  className={className}
+                  isInvalid={touched[name] && errors[name] ? true : false}
+                  onChange={(e) => FileHandleChange(e, setFieldValue)}
                 />
               </Form.Group>
 

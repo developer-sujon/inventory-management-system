@@ -11,7 +11,8 @@ import { ChangeLeftSideBarType } from "../redux/slices/SettingSlice";
 import * as layoutConstants from "../redux/slices/SettingSlice";
 
 // utils
-import { changeBodyAttribute } from "../utils/";
+import { ChangeBodyAttribute } from "../helpers/ChangeBodyAttribute";
+import LazyLoader from "../components/Common/LazyLoader";
 
 const Topbar = React.lazy(() => import("./Topbar"));
 const LeftSidebar = React.lazy(() => import("./LeftSidebar"));
@@ -30,20 +31,20 @@ const DetachedLayout = ({ children }, state) => {
    * layout defaults
    */
   useEffect(() => {
-    changeBodyAttribute("data-layout", layoutConstants.LAYOUT_DETACHED);
-    changeBodyAttribute("data-layout-mode", layoutConstants.LAYOUT_WIDTH_FLUID);
-    changeBodyAttribute(
+    ChangeBodyAttribute("data-layout", layoutConstants.LAYOUT_DETACHED);
+    ChangeBodyAttribute("data-layout-mode", layoutConstants.LAYOUT_WIDTH_FLUID);
+    ChangeBodyAttribute(
       "data-leftbar-theme",
       layoutConstants.LEFT_SIDEBAR_THEME_DARK,
     );
   }, []);
 
   useEffect(() => {
-    changeBodyAttribute("data-layout-color", LayoutColor);
+    ChangeBodyAttribute("data-layout-color", LayoutColor);
   }, [LayoutColor]);
 
   useEffect(() => {
-    changeBodyAttribute("data-leftbar-compact-mode", LeftSideBarType);
+    ChangeBodyAttribute("data-leftbar-compact-mode", LeftSideBarType);
   }, [LeftSideBarType]);
 
   /**
@@ -86,7 +87,7 @@ const DetachedLayout = ({ children }, state) => {
   const isLight = LeftSideBarTheme === layoutConstants.LEFT_SIDEBAR_THEME_LIGHT;
 
   return (
-    <>
+    <Suspense fallback={<LazyLoader />}>
       <Topbar
         isMenuOpened={isMenuOpened}
         openLeftMenuCallBack={openMenu}
@@ -112,7 +113,7 @@ const DetachedLayout = ({ children }, state) => {
           </div>
         </div>
       </Container>
-    </>
+    </Suspense>
   );
 };
 

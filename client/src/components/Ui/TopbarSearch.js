@@ -5,7 +5,7 @@ import Select, { components } from "react-select";
 import classNames from "classnames";
 
 // utils
-import { groupByFields } from "../../utils";
+import { GroupByFields } from "../../helpers/GroupByFields";
 
 // images
 import Avatar2 from "../../assets/images/users/avatar-2.jpg";
@@ -85,7 +85,7 @@ const optionGetter = (option) => {
  * filter options
  */
 const formateOptions = (options) => {
-  const grouppedData = groupByFields(options, (item) => {
+  const grouppedData = GroupByFields(options, (item) => {
     return [item.type];
   });
 

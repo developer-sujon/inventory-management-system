@@ -10,9 +10,9 @@ import AppMenu from "./Menu";
 
 // images
 import logoSm from "../assets/images/logo_sm.png";
-import logoDark from "../assets/images/logo.svg";
+import logoDark from "../assets/images/logo-dark.png";
 import logoDarkSm from "../assets/images/logo_sm_dark.png";
-import logo from "../assets/images/logo.svg";
+import logo from "../assets/images/logo.png";
 import profileImg from "../assets/images/users/avatar-1.jpg";
 
 /* sidebar content */
@@ -38,20 +38,8 @@ const SideBarContent = ({ hideUserProfile }) => {
   );
 };
 
-type LeftSidebarProps = {
-  hideLogo: boolean,
-  hideUserProfile: boolean,
-  isLight: boolean,
-  isCondensed: boolean,
-};
-
-const LeftSidebar = ({
-  isCondensed,
-  isLight,
-  hideLogo,
-  hideUserProfile,
-}: LeftSidebarProps): React$Element<any> => {
-  const menuNodeRef: any = useRef(null);
+const LeftSidebar = ({ isCondensed, isLight, hideLogo, hideUserProfile }) => {
+  const menuNodeRef = useRef(null);
 
   /**
    * Handle the click anywhere in doc

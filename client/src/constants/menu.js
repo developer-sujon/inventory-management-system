@@ -58,14 +58,14 @@ const MENU_ITEMS = [
       {
         key: "NewSupplier",
         label: "New Supplier",
-        url: "/new-supplier",
+        url: "/supplier/supplier-create-update",
         parentKey: "Supplier",
         icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
       },
       {
         key: "SupplierList",
         label: "Supplier List",
-        url: "/supplier-list",
+        url: "/supplier/supplier-list",
         parentKey: "Supplier",
         icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
       },

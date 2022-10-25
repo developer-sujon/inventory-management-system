@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 // images
-import Logo from "../../assets/images/logo.svg";
+import Logo from "../../assets/images/logo.png";
 
 const AccountLayout = ({ bottomLinks, children }) => {
   const { t } = useTranslation();

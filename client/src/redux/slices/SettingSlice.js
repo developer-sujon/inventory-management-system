@@ -5,7 +5,7 @@ import SessionHelper from "../../helpers/SessionHelper";
 const SettingSlice = createSlice({
   name: "Setting",
   initialState: {
-    LayoutColor: SessionHelper.GetTheme(),
+    LayoutColor: SessionHelper.GetTheme() || "light",
     LayoutType: "vertical",
     LayoutWidth: "fluid",
     LeftSideBarTheme: "light",

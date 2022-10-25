@@ -12,7 +12,7 @@ import {
 import classNames from "classnames";
 
 // components
-import Pagination from ".././Pagination";
+import Pagination from "./Pagination";
 
 // Define a default UI for filtering
 const GlobalFilter = ({

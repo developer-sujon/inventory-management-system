@@ -1,16 +1,16 @@
 // @flow
-import React, { useEffect, Suspense } from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 
 // Utils
-import { changeBodyAttribute } from "../utils";
+import { ChangeBodyAttribute } from "../helpers/ChangeBodyAttribute";
 
 const DefaultLayout = (props) => {
   const { LayoutColor } = useSelector((state) => state.Setting);
 
   useEffect(() => {
-    changeBodyAttribute("data-layout-color", LayoutColor);
+    ChangeBodyAttribute("data-layout-color", LayoutColor);
   }, [LayoutColor]);
 
   useEffect(() => {

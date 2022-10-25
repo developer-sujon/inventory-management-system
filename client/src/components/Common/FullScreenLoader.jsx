@@ -5,8 +5,10 @@ const FullScreenLoader = () => {
   const { IsLoading } = useSelector((state) => state.Loader);
 
   return (
-    <div className={IsLoading ? "loading__overlay" : "d-none"}>
-      <div className="indeterminate"></div>
+    <div className={IsLoading ? "LoadingOverlay" : "d-none"}>
+      <div className="loading__overlay">
+        <div className="indeterminate"></div>
+      </div>
     </div>
   );
 };

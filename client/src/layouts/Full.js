@@ -8,26 +8,16 @@ import { Outlet } from "react-router-dom";
 import * as layoutConstants from "../redux/slices/SettingSlice";
 
 // utils
-import { changeBodyAttribute } from "../utils";
+import { ChangeBodyAttribute } from "../helpers/ChangeBodyAttribute";
 import { ChangeLayoutType } from "../redux/slices/SettingSlice";
+import LazyLoader from "../components/Common/LazyLoader";
 
 //External Import
 const Topbar = React.lazy(() => import("./Topbar"));
 const LeftSidebar = React.lazy(() => import("./LeftSidebar"));
 const Footer = React.lazy(() => import("./Footer"));
 
-type VerticalLayoutProps = {
-  children?: any,
-};
-
-type VerticalLayoutState = {
-  isMenuOpened?: boolean,
-};
-
-const FullLayout = (
-  { children }: VerticalLayoutProps,
-  state: VerticalLayoutState,
-): React$Element<any> => {
+const FullLayout = ({ children }) => {
   const dispatch = useDispatch();
 
   const { LayoutColor, LayoutWidth, LeftSideBarTheme, LeftSideBarType } =
@@ -46,23 +36,23 @@ const FullLayout = (
    * layout defaults
    */
   useEffect(() => {
-    changeBodyAttribute("data-layout", layoutConstants.LAYOUT_FULL);
+    ChangeBodyAttribute("data-layout", layoutConstants.LAYOUT_FULL);
   }, []);
 
   useEffect(() => {
-    changeBodyAttribute("data-layout-color", LayoutColor);
+    ChangeBodyAttribute("data-layout-color", LayoutColor);
   }, [LayoutColor]);
 
   useEffect(() => {
-    changeBodyAttribute("data-layout-mode", LayoutWidth);
+    ChangeBodyAttribute("data-layout-mode", LayoutWidth);
   }, [LayoutWidth]);
 
   useEffect(() => {
-    changeBodyAttribute("data-leftbar-theme", LeftSideBarTheme);
+    ChangeBodyAttribute("data-leftbar-theme", LeftSideBarTheme);
   }, [LeftSideBarTheme]);
 
   useEffect(() => {
-    changeBodyAttribute("data-leftbar-compact-mode", LeftSideBarType);
+    ChangeBodyAttribute("data-leftbar-compact-mode", LeftSideBarType);
   }, [LeftSideBarType]);
 
   /**
@@ -104,7 +94,7 @@ const FullLayout = (
   const isLight = LeftSideBarTheme === layoutConstants.LEFT_SIDEBAR_THEME_LIGHT;
 
   return (
-    <>
+    <Suspense fallback={<LazyLoader />}>
       <div className="wrapper">
         <LeftSidebar
           isCondensed={isCondensed}
@@ -122,7 +112,7 @@ const FullLayout = (
           <Footer />
         </div>
       </div>
-    </>
+    </Suspense>
   );
 };
 export default FullLayout;

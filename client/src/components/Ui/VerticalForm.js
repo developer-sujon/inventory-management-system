@@ -11,6 +11,7 @@ const VerticalForm = ({
 }) => {
   return (
     <Formik
+      enableReinitialize
       initialValues={defaultValues}
       validationSchema={validationSchema}
       onSubmit={(values, actions) => {

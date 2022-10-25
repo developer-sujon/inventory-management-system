@@ -25,6 +25,16 @@ const Logout = React.lazy(() => import("../pages/Account/Logout"));
 const CustomerCreateUpdatePage = React.lazy(() =>
   import("../pages/Customer/CustomerCreateUpdatePage"),
 );
+const CustomerListPage = React.lazy(() =>
+  import("../pages/Customer/CustomerListPage"),
+);
+
+const SupplierCreateUpdatePage = React.lazy(() =>
+  import("../pages/Supplier/SupplierCreateUpdatePage"),
+);
+const SupplierListPage = React.lazy(() =>
+  import("../pages/Supplier/SupplierListPage"),
+);
 
 const LoadComponent = ({ component: Component }) => (
   <Suspense fallback={<LazyLoader />}>
@@ -93,7 +103,20 @@ const AllRoutes = () => {
             },
             {
               path: "customer-list",
-              element: <Dashboard />,
+              element: <CustomerListPage />,
+            },
+          ],
+        },
+        {
+          path: "supplier",
+          children: [
+            {
+              path: "supplier-create-update",
+              element: <SupplierCreateUpdatePage />,
+            },
+            {
+              path: "supplier-list",
+              element: <SupplierListPage />,
             },
           ],
         },

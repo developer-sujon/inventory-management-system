@@ -15,7 +15,6 @@ class AleartMessage {
       if (result.isConfirmed) {
         return request(id).then((res) => {
           if (res) {
-            Swal.fire("Deleted!", "Your file has been deleted.", "success");
             return true;
           }
         });

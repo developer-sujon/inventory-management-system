@@ -8,7 +8,7 @@ import { Outlet } from "react-router-dom";
 import * as layoutConstants from "../../redux/slices/SettingSlice";
 
 // utils
-import { changeBodyAttribute } from "../../utils";
+import { ChangeBodyAttribute } from "../../helpers/ChangeBodyAttribute";
 
 // code splitting and lazy loading
 // https://blog.logrocket.com/lazy-loading-components-in-react-16-6-6cea535c0b52
@@ -41,23 +41,23 @@ const HorizontalLayout = ({ children }): React$Element<any> => {
    * layout defaults
    */
   useEffect(() => {
-    changeBodyAttribute("data-layout", layoutConstants.LAYOUT_HORIZONTAL);
-    changeBodyAttribute(
+    ChangeBodyAttribute("data-layout", layoutConstants.LAYOUT_HORIZONTAL);
+    ChangeBodyAttribute(
       "data-leftbar-theme",
       layoutConstants.LEFT_SIDEBAR_THEME_DEFAULT,
     );
-    changeBodyAttribute(
+    ChangeBodyAttribute(
       "data-leftbar-compact-mode",
       layoutConstants.LEFT_SIDEBAR_TYPE_FIXED,
     );
   }, []);
 
   useEffect(() => {
-    changeBodyAttribute("data-layout-color", LayoutColor);
+    ChangeBodyAttribute("data-layout-color", LayoutColor);
   }, [LayoutColor]);
 
   useEffect(() => {
-    changeBodyAttribute("data-layout-mode", LayoutWidth);
+    ChangeBodyAttribute("data-layout-mode", LayoutWidth);
   }, [LayoutWidth]);
 
   return (

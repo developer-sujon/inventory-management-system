@@ -9,27 +9,27 @@ import { SiMicrosoftexcel } from "react-icons/si";
 // Internal  Lib Import
 import PageTitle from "../../components/Ui/PageTitle";
 import { useSelector } from "react-redux";
-import CustomerRequest from "../../APIRequest/CustomerRequest";
+import SupplierRequest from "../../APIRequest/SupplierRequest";
 import AleartMessage from "../../helpers/AleartMessage";
 import ExportDataJSON from "../../utils/ExportFromJSON";
 import DateFormatter from "../../utils/DateFormatter";
 
-const CustomerListPage = () => {
+const SupplierListPage = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const [perPage, setPerPage] = useState(5);
   const [searchKey, setSearchKey] = useState(0);
 
   useEffect(() => {
-    CustomerRequest.CustomerList(pageNumber, perPage, searchKey);
+    SupplierRequest.SupplierList(pageNumber, perPage, searchKey);
   }, [pageNumber, perPage, searchKey]);
 
-  const { CustomerLists, TotalCustomer } = useSelector(
-    (state) => state.Customer,
+  const { SupplierLists, TotalSupplier } = useSelector(
+    (state) => state.Supplier,
   );
 
   const PerPageOnChange = (e) => {
     if (e.target.value === "All") {
-      setPerPage(TotalCustomer);
+      setPerPage(TotalSupplier);
     } else {
       setPerPage(e.target.value);
     }
@@ -48,11 +48,11 @@ const CustomerListPage = () => {
     setPageNumber(e.target.value);
   };
 
-  const DeleteCustomer = (id) => {
+  const DeleteSupplier = (id) => {
     console.log(id);
-    AleartMessage.Delete(id, CustomerRequest.CustomerDelete).then((result) => {
+    AleartMessage.Delete(id, SupplierRequest.SupplierDelete).then((result) => {
       if (result) {
-        CustomerRequest.CustomerList(pageNumber, perPage, searchKey);
+        SupplierRequest.SupplierList(pageNumber, perPage, searchKey);
       }
     });
   };
@@ -61,14 +61,14 @@ const CustomerListPage = () => {
     <>
       <PageTitle
         breadCrumbItems={[
-          { label: "Customer", path: "/customer/customer-list" },
+          { label: "Supplier", path: "/supplier/supplier-list" },
           {
             label: "Create List",
-            path: "/customer/customer-list",
+            path: "/supplier/supplier-list",
             active: true,
           },
         ]}
-        title={"Customer List"}
+        title={"Supplier List"}
       />
       <Row>
         <Col xs={12}>
@@ -77,10 +77,10 @@ const CustomerListPage = () => {
               <Row className="mb-2">
                 <Col sm={5}>
                   <Link
-                    to="/customer/customer-create-update"
+                    to="/supplier/supplier-create-update"
                     className="btn btn-danger mb-2"
                   >
-                    <i className="mdi mdi-plus-circle me-2"></i> Add Customer
+                    <i className="mdi mdi-plus-circle me-2"></i> Add Supplier
                   </Link>
                 </Col>
 
@@ -98,7 +98,7 @@ const CustomerListPage = () => {
                       variant="light"
                       className="mb-2 me-1"
                       onClick={() =>
-                        ExportDataJSON(CustomerLists, "Customer", "xls")
+                        ExportDataJSON(SupplierLists, "Supplier", "xls")
                       }
                     >
                       <SiMicrosoftexcel /> Export
@@ -108,7 +108,7 @@ const CustomerListPage = () => {
                       variant="light"
                       className="mb-2"
                       onClick={() =>
-                        ExportDataJSON(CustomerLists, "Customer", "csv")
+                        ExportDataJSON(SupplierLists, "Supplier", "csv")
                       }
                     >
                       <GrDocumentCsv /> Export
@@ -122,7 +122,7 @@ const CustomerListPage = () => {
                     <span className="d-flex align-items-center">
                       Search :{" "}
                       <input
-                        placeholder={TotalCustomer + " records..."}
+                        placeholder={TotalSupplier + " records..."}
                         className="form-control w-auto ms-1"
                         defaultValue=""
                         onChange={SearchKeywordOnChange}
@@ -139,50 +139,50 @@ const CustomerListPage = () => {
                       style={{ backgroundColor: "#eef2f7" }}
                     >
                       <tr>
-                        <th>Customer</th>
-                        <th>Customer Mobile</th>
-                        <th>Customer Address</th>
+                        <th>Supplier</th>
+                        <th>Supplier Mobile</th>
+                        <th>Supplier Address</th>
                         <th>Created On</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {CustomerLists?.map((record, index) => {
+                      {SupplierLists?.map((record, index) => {
                         return (
                           <tr key={index}>
                             <td>
                               <div className="d-flex px-2 py-1">
                                 <div>
                                   <img
-                                    src={record.CustomerAvatar}
+                                    src={record.SupplierAvatar}
                                     className="avatar avatar-sm me-3"
                                     alt="user1"
                                   />
                                 </div>
                                 <div className="d-flex flex-column justify-content-center">
                                   <h6 className="mb-0 text-sm">
-                                    {record.CustomerName}
+                                    {record.SupplierName}
                                   </h6>
                                   <p className="text-xs text-secondary mb-0">
-                                    <td>{record.CustomerEmail}</td>
+                                    <td>{record.SupplierEmail}</td>
                                   </p>
                                 </div>
                               </div>
                             </td>
 
-                            <td>{record.CustomerPhone}</td>
-                            <td>{record.CustomerAddress}</td>
+                            <td>{record.SupplierPhone}</td>
+                            <td>{record.SupplierAddress}</td>
                             <td>{DateFormatter(record.createdAt)}</td>
                             <td>
                               <Link
-                                to={`/customer/customer-create-update?id=${record._id}`}
+                                to={`/supplier/supplier-create-update?id=${record._id}`}
                                 className="action-icon text-warning"
                               >
                                 <i className="mdi mdi-square-edit-outline"></i>
                               </Link>
                               <Link
                                 className="action-icon text-danger"
-                                onClick={() => DeleteCustomer(record._id)}
+                                onClick={() => DeleteSupplier(record._id)}
                               >
                                 <i className="mdi mdi-delete"></i>
                               </Link>
@@ -212,7 +212,7 @@ const CustomerListPage = () => {
                     <span className="me-3">
                       Page
                       <strong>
-                        {pageNumber} of {Math.ceil(TotalCustomer / perPage)}
+                        {pageNumber} of {Math.ceil(TotalSupplier / perPage)}
                       </strong>
                     </span>
                     <span className="d-inline-block align-items-center text-sm-start text-center my-sm-0 my-2">
@@ -237,7 +237,7 @@ const CustomerListPage = () => {
                       breakLabel="..."
                       breakClassName="page-item"
                       breakLinkClassName="page-link"
-                      pageCount={TotalCustomer / perPage}
+                      pageCount={TotalSupplier / perPage}
                       marginPagesDisplayed={2}
                       pageRangeDisplayed={5}
                       containerClassName="pagination pagination-rounded d-inline-flex ms-auto align-item-center mb-0"
@@ -257,4 +257,4 @@ const CustomerListPage = () => {
   );
 };
 
-export default CustomerListPage;
+export default SupplierListPage;

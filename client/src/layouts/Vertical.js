@@ -11,10 +11,10 @@ import { ChangeLeftSideBarType } from "../redux/slices/SettingSlice";
 import * as layoutConstants from "../redux/slices/SettingSlice";
 
 // utils
-import { changeBodyAttribute } from "../utils";
+import { ChangeBodyAttribute } from "../helpers/ChangeBodyAttribute";
+import LazyLoader from "../components/Common/LazyLoader";
 
 //External Import
-
 const Topbar = React.lazy(() => import("./Topbar"));
 const LeftSidebar = React.lazy(() => import("./LeftSidebar"));
 const Footer = React.lazy(() => import("./Footer"));
@@ -31,23 +31,23 @@ const VerticalLayout = () => {
    * layout defaults
    */
   useEffect(() => {
-    changeBodyAttribute("data-layout", layoutConstants.LAYOUT_VERTICAL);
+    ChangeBodyAttribute("data-layout", layoutConstants.LAYOUT_VERTICAL);
   }, []);
 
   useEffect(() => {
-    changeBodyAttribute("data-layout-color", LayoutColor);
+    ChangeBodyAttribute("data-layout-color", LayoutColor);
   }, [LayoutColor]);
 
   useEffect(() => {
-    changeBodyAttribute("data-layout-mode", LayoutWidth);
+    ChangeBodyAttribute("data-layout-mode", LayoutWidth);
   }, [LayoutWidth]);
 
   useEffect(() => {
-    changeBodyAttribute("data-leftbar-theme", LeftSideBarTheme);
+    ChangeBodyAttribute("data-leftbar-theme", LeftSideBarTheme);
   }, [LeftSideBarTheme]);
 
   useEffect(() => {
-    changeBodyAttribute("data-leftbar-compact-mode", LeftSideBarType);
+    ChangeBodyAttribute("data-leftbar-compact-mode", LeftSideBarType);
   }, [LeftSideBarType]);
 
   /**
@@ -91,7 +91,7 @@ const VerticalLayout = () => {
   const isLight = LeftSideBarTheme === layoutConstants.LEFT_SIDEBAR_THEME_LIGHT;
 
   return (
-    <>
+    <Suspense fallback={<LazyLoader />}>
       <div className="wrapper">
         <LeftSidebar
           isCondensed={isCondensed}
@@ -109,7 +109,7 @@ const VerticalLayout = () => {
           <Footer />
         </div>
       </div>
-    </>
+    </Suspense>
   );
 };
 export default VerticalLayout;

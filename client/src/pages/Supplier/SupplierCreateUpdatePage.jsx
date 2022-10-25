@@ -8,17 +8,17 @@ import { useNavigate } from "react-router-dom";
 
 //Internal Lib Import
 import PageTitle from "../../components/Ui/PageTitle";
-import { FormInput } from "../../components/Ui/";
+import { FormInput } from "../../components/Ui";
 import { VerticalForm } from "../../components/Ui";
-import CustomerRequest from "../../APIRequest/CustomerRequest";
+import SupplierRequest from "../../APIRequest/SupplierRequest";
 import { defaultAvatarImg } from "../../helpers/Default";
-import { SetFormValueOnChange } from "../../redux/slices/CustomerSlice";
+import { SetFormValueOnChange } from "../../redux/slices/SupplierSlice";
 
-const CustomerCreateUpdatePage = () => {
+const SupplierCreateUpdatePage = () => {
   let [ObjectID, SetObjectID] = useState(0);
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { CustomerDetails } = useSelector((state) => state.Customer);
+  const { SupplierDetails } = useSelector((state) => state.Supplier);
 
   const navigate = useNavigate();
 
@@ -26,7 +26,7 @@ const CustomerCreateUpdatePage = () => {
     let params = new URLSearchParams(window.location.search);
     let id = params.get("id");
     if (id !== null) {
-      CustomerRequest.CustomerDetails(id);
+      SupplierRequest.SupplierDetails(id);
       SetObjectID(id);
     }
   }, []);
@@ -35,10 +35,10 @@ const CustomerCreateUpdatePage = () => {
    * form validation schema
    */
   const validationSchema = yup.object().shape({
-    CustomerName: yup.string().required("Please Enter Customer Name"),
-    CustomerEmail: yup.string().required("Please Enter Customer Email"),
-    CustomerPhone: yup.string().required("Please Enter Customer Phone"),
-    CustomerAddress: yup.string().required("Please Enter Customer Address"),
+    SupplierName: yup.string().required("Please Enter Supplier Name"),
+    SupplierEmail: yup.string().required("Please Enter Supplier Email"),
+    SupplierPhone: yup.string().required("Please Enter Supplier Phone"),
+    SupplierAddress: yup.string().required("Please Enter Supplier Address"),
   });
 
   /*
@@ -48,18 +48,30 @@ const CustomerCreateUpdatePage = () => {
   /**
    * Handle the form submission
    */
-  const CreateUpdateCustomer = (values) => {
-    if (!values.CustomerAvatar) values.CustomerAvatar = defaultAvatarImg;
+  const CreateUpdateSupplier = (values) => {
+    if (!values.SupplierAvatar) values.SupplierAvatar = defaultAvatarImg;
     if (!ObjectID) {
-      CustomerRequest.CustomerCreate(values).then((result) => {
+      SupplierRequest.SupplierCreate({
+        SupplierName: values.SupplierName,
+        SupplierEmail: values.SupplierEmail,
+        SupplierPhone: values.SupplierPhone,
+        SupplierAddress: values.SupplierAddress,
+        SupplierAvatar: values.SupplierAvatar,
+      }).then((result) => {
         if (result) {
-          navigate("/customer/customer-list");
+          navigate("/supplier/supplier-list");
         }
       });
     } else {
-      CustomerRequest.CustomerUpdate(ObjectID, values).then((result) => {
+      SupplierRequest.SupplierUpdate(ObjectID, {
+        SupplierName: values.SupplierName,
+        SupplierEmail: values.SupplierEmail,
+        SupplierPhone: values.SupplierPhone,
+        SupplierAddress: values.SupplierAddress,
+        SupplierAvatar: values.SupplierAvatar,
+      }).then((result) => {
         if (result) {
-          navigate("/customer/customer-list");
+          navigate("/supplier/supplier-list");
         }
       });
     }
@@ -69,14 +81,14 @@ const CustomerCreateUpdatePage = () => {
     <>
       <PageTitle
         breadCrumbItems={[
-          { label: "Customer", path: "/customer/customer-list" },
+          { label: "Supplier", path: "/supplier/supplier-list" },
           {
-            label: !ObjectID ? "Create Customer" : "Update Customer",
-            path: "/customer/customer-list",
+            label: !ObjectID ? "Create Supplier" : "Update Supplier",
+            path: "/supplier/supplier-list",
             active: true,
           },
         ]}
-        title={!ObjectID ? "Create Customer" : "Update Customer"}
+        title={!ObjectID ? "Create Supplier" : "Update Supplier"}
       />
 
       <Row>
@@ -86,23 +98,23 @@ const CustomerCreateUpdatePage = () => {
               <Row>
                 <Col>
                   <VerticalForm
-                    onSubmit={CreateUpdateCustomer}
+                    onSubmit={CreateUpdateSupplier}
                     validationSchema={validationSchema}
-                    defaultValues={CustomerDetails}
+                    defaultValues={SupplierDetails}
                   >
                     <Row>
                       <Col xl={6}>
                         <FormInput
-                          name="CustomerName"
-                          label={t("Customer Name")}
-                          placeholder={t("Enter Customer Name")}
+                          name="SupplierName"
+                          label={t("Supplier Name")}
+                          placeholder={t("Enter Supplier Name")}
                           containerClass={"mb-3"}
                         />
 
                         <FormInput
-                          name="CustomerEmail"
-                          label={t("Customer Email")}
-                          placeholder={t("Enter Customer Email")}
+                          name="SupplierEmail"
+                          label={t("Supplier Email")}
+                          placeholder={t("Enter Supplier Email")}
                           type="email"
                           containerClass={"mb-3"}
                         />
@@ -110,16 +122,16 @@ const CustomerCreateUpdatePage = () => {
                         <FormInput
                           label={t("Mobile Number")}
                           type="react-phone"
-                          name="CustomerPhone"
+                          name="SupplierPhone"
                           placeholder={t("Enter your mobile")}
                           containerClass={"mb-3"}
-                          defaultValue={CustomerDetails.CustomerPhone}
+                          defaultValue={SupplierDetails.SupplierPhone}
                         />
 
                         <FormInput
-                          name="CustomerAddress"
-                          label={t("Customer Address")}
-                          placeholder={t("Enter Customer Address")}
+                          name="SupplierAddress"
+                          label={t("Supplier Address")}
+                          placeholder={t("Enter Supplier Address")}
                           type="textarea"
                           containerClass={"mb-3"}
                           rows="3"
@@ -130,21 +142,21 @@ const CustomerCreateUpdatePage = () => {
                         <br />
                         <img
                           src={
-                            CustomerDetails?.CustomerAvatar || defaultAvatarImg
+                            SupplierDetails?.SupplierAvatar || defaultAvatarImg
                           }
-                          alt="CustomerAvatar"
+                          alt="SupplierAvatar"
                         />
                         <hr />
                         <FormInput
-                          name="CustomerAvatar"
-                          label={t("Customer Avatar")}
+                          name="SupplierAvatar"
+                          label={t("Supplier Avatar")}
                           type="file"
-                          placeholder={t("Upload Customer Avatar")}
+                          placeholder={t("Upload Supplier Avatar")}
                           containerClass={"mb-3"}
                           SetFormValueOnChange={(img) =>
                             dispatch(
                               SetFormValueOnChange({
-                                name: "CustomerAvatar",
+                                name: "SupplierAvatar",
                                 value: img,
                               }),
                             )
@@ -171,4 +183,4 @@ const CustomerCreateUpdatePage = () => {
   );
 };
 
-export default CustomerCreateUpdatePage;
+export default SupplierCreateUpdatePage;
