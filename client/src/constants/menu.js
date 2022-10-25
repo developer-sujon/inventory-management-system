@@ -87,14 +87,14 @@ const MENU_ITEMS = [
           {
             key: "NewExpenseType",
             label: "New Expense Type",
-            url: "/new-expense-type",
+            url: "/expense-type/expense-type-create-update",
             parentKey: "ExpenseType",
             icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
           },
           {
             key: "ExpenseTypeList",
             label: "Expense Type List",
-            url: "/expense-type-list",
+            url: "/expense-type/expense-type-list",
             parentKey: "ExpenseType",
             icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
           },
@@ -103,14 +103,14 @@ const MENU_ITEMS = [
       {
         key: "NewExpense",
         label: "New Expense",
-        url: "/new-expense",
+        url: "/expense/expense-create-update",
         parentKey: "Expense",
         icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
       },
       {
         key: "ExpenseList",
         label: "Expense List",
-        url: "/expense-list",
+        url: "/expense/expense-list",
         parentKey: "Expense",
         icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
       },

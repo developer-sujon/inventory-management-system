@@ -14,6 +14,8 @@ import FullLayout from "../layouts/Full";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 import LazyLoader from "../components/Common/LazyLoader";
+import ExpenseTypeCreateUpdatePage from "../pages/ExpenseType/ExpenseTypeCreateUpdatePage";
+import ExpenseTypeListPage from "../pages/ExpenseType/ExpenseTypeListPage";
 
 // Auth
 const Login = React.lazy(() => import("../pages/Account/Login"));
@@ -117,6 +119,19 @@ const AllRoutes = () => {
             {
               path: "supplier-list",
               element: <SupplierListPage />,
+            },
+          ],
+        },
+        {
+          path: "expense-type",
+          children: [
+            {
+              path: "expense-type-create-update",
+              element: <ExpenseTypeCreateUpdatePage />,
+            },
+            {
+              path: "expense-type-list",
+              element: <ExpenseTypeListPage />,
             },
           ],
         },

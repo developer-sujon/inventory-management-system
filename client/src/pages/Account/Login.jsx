@@ -42,9 +42,7 @@ const Login = () => {
     handle form submission
     */
   const onSubmit = (formData) => {
-    AuthRequest.LoginUser(formData).then((result) => {
-      console.log(result);
-    });
+    AuthRequest.LoginUser(formData);
   };
 
   return (

@@ -17,6 +17,7 @@ import { SetFormValueOnChange } from "../../redux/slices/SupplierSlice";
 const SupplierCreateUpdatePage = () => {
   let [ObjectID, SetObjectID] = useState(0);
   const { t } = useTranslation();
+  let [PreviewImg, SetPreviewImg] = useState(defaultAvatarImg);
   const dispatch = useDispatch();
   const { SupplierDetails } = useSelector((state) => state.Supplier);
 
@@ -26,7 +27,9 @@ const SupplierCreateUpdatePage = () => {
     let params = new URLSearchParams(window.location.search);
     let id = params.get("id");
     if (id !== null) {
-      SupplierRequest.SupplierDetails(id);
+      SupplierRequest.SupplierDetails(id).then((result) => {
+        SetPreviewImg(SupplierDetails?.SupplierAvatar);
+      });
       SetObjectID(id);
     }
   }, []);
@@ -141,9 +144,7 @@ const SupplierCreateUpdatePage = () => {
                       <Col xl={6}>
                         <br />
                         <img
-                          src={
-                            SupplierDetails?.SupplierAvatar || defaultAvatarImg
-                          }
+                          src={PreviewImg || SupplierDetails?.SupplierAvatar}
                           alt="SupplierAvatar"
                         />
                         <hr />
@@ -153,14 +154,7 @@ const SupplierCreateUpdatePage = () => {
                           type="file"
                           placeholder={t("Upload Supplier Avatar")}
                           containerClass={"mb-3"}
-                          SetFormValueOnChange={(img) =>
-                            dispatch(
-                              SetFormValueOnChange({
-                                name: "SupplierAvatar",
-                                value: img,
-                              }),
-                            )
-                          }
+                          onChange={(img) => SetPreviewImg(img)}
                         />
                       </Col>
                     </Row>

@@ -8,10 +8,17 @@ const ExpenseTypesSchema = new Schema(
       ref: "User",
       required: true,
     },
-    Name: {
+    ExpenseTypeName: {
       type: String,
       required: true,
       unique: true,
+    },
+    ExpenseTypeNote: {
+      type: String,
+    },
+    ExpenseTypeStatus: {
+      type: Boolean,
+      required: true,
     },
   },
   { timestamps: true, versionKey: false },

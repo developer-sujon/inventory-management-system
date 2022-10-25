@@ -8,6 +8,8 @@ import AuthSlice from "../slices/AuthSlice";
 import UserSlice from "../slices/UserSlice";
 import CustomerSlice from "../slices/CustomerSlice";
 import SupplierSlice from "../slices/SupplierSlice";
+import ExpenseTypeSlice from "../slices/ExpenseTypeSlice";
+import ExpenceSlice from "../slices/ExpenceSlice";
 
 const store = configureStore({
   reducer: {
@@ -17,6 +19,8 @@ const store = configureStore({
     User: UserSlice,
     Customer: CustomerSlice,
     Supplier: SupplierSlice,
+    ExpenseType: ExpenseTypeSlice,
+    Expence: ExpenceSlice,
   },
 });
 

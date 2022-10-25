@@ -5,6 +5,8 @@ import classNames from "classnames";
 import { ErrorMessage, Field } from "formik";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 //Internal Lib Import
 import FileUploader from "./FileUploader";
@@ -19,14 +21,15 @@ const FormInput = ({
   labelClassName,
   containerClass,
   children,
-  SetFormValueOnChange,
+  onChange,
   defaultValue,
+  delay,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const FileHandleChange = async (e, setFieldValue) => {
     setFieldValue(name, await ResizeFile(e.target?.files?.[0]));
-    SetFormValueOnChange(await ResizeFile(e.target?.files?.[0]));
+    onChange(await ResizeFile(e.target?.files?.[0]));
   };
 
   if (type === "password") {
@@ -117,11 +120,11 @@ const FormInput = ({
         </Field>
       </Form.Group>
     );
-  } else if (type === "checkbox") {
+  } else if (type === "checkbox" || type === "radio") {
     return (
       <Form.Group className={containerClass} controlId={name}>
         <Field name={name}>
-          {({ field, form: { touched, errors } }) => (
+          {({ field, form: { touched, errors, values } }) => (
             <>
               <Form.Check
                 type={type}
@@ -129,6 +132,7 @@ const FormInput = ({
                 className={className}
                 isInvalid={errors && errors[name] ? true : false}
                 {...field}
+                checked={values?.ExpenseTypeStatus}
               />
 
               <ErrorMessage name={name}>
@@ -157,6 +161,35 @@ const FormInput = ({
                 onChange={(phone) => setFieldValue(name, phone)}
                 className={className}
                 isInvalid={errors && errors[name] ? true : false}
+              />
+
+              <ErrorMessage name={name}>
+                {(msg) => (
+                  <Form.Control.Feedback
+                    type="invalid"
+                    style={{ display: "block" }}
+                  >
+                    {msg}
+                  </Form.Control.Feedback>
+                )}
+              </ErrorMessage>
+            </>
+          )}
+        </Field>
+      </Form.Group>
+    );
+  } else if (type === "simple-rich-edior") {
+    return (
+      <Form.Group className={containerClass} controlId={name}>
+        {label ? (
+          <Form.Label className={labelClassName}>{label}</Form.Label>
+        ) : null}
+        <Field>
+          {({ field, form: { touched, errors, setFieldValue, values } }) => (
+            <>
+              <ReactQuill
+                value={values?.ExpenseTypeNote}
+                onChange={(text) => setFieldValue(name, text)}
               />
 
               <ErrorMessage name={name}>

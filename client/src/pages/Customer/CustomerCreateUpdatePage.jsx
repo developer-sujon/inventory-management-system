@@ -12,13 +12,12 @@ import { FormInput } from "../../components/Ui/";
 import { VerticalForm } from "../../components/Ui";
 import CustomerRequest from "../../APIRequest/CustomerRequest";
 import { defaultAvatarImg } from "../../helpers/Default";
-import { SetFormValueOnChange } from "../../redux/slices/CustomerSlice";
 
 const CustomerCreateUpdatePage = () => {
   let [ObjectID, SetObjectID] = useState(0);
   const { t } = useTranslation();
-  const dispatch = useDispatch();
   const { CustomerDetails } = useSelector((state) => state.Customer);
+  let [PreviewImg, SetPreviewImg] = useState(defaultAvatarImg);
 
   const navigate = useNavigate();
 
@@ -26,7 +25,10 @@ const CustomerCreateUpdatePage = () => {
     let params = new URLSearchParams(window.location.search);
     let id = params.get("id");
     if (id !== null) {
-      CustomerRequest.CustomerDetails(id);
+      CustomerRequest.CustomerDetails(id).then((result) => {
+        SetPreviewImg(CustomerDetails?.CustomerAvatar);
+      });
+
       SetObjectID(id);
     }
   }, []);
@@ -129,9 +131,7 @@ const CustomerCreateUpdatePage = () => {
                       <Col xl={6}>
                         <br />
                         <img
-                          src={
-                            CustomerDetails?.CustomerAvatar || defaultAvatarImg
-                          }
+                          src={PreviewImg || CustomerDetails?.CustomerAvatar}
                           alt="CustomerAvatar"
                         />
                         <hr />
@@ -141,14 +141,7 @@ const CustomerCreateUpdatePage = () => {
                           type="file"
                           placeholder={t("Upload Customer Avatar")}
                           containerClass={"mb-3"}
-                          SetFormValueOnChange={(img) =>
-                            dispatch(
-                              SetFormValueOnChange({
-                                name: "CustomerAvatar",
-                                value: img,
-                              }),
-                            )
-                          }
+                          onChange={(img) => SetPreviewImg(img)}
                         />
                       </Col>
                     </Row>
