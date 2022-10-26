@@ -1,4 +1,4 @@
-//External import
+//External Lib Import
 const routes = require("express").Router();
 
 //Internal Import
@@ -7,6 +7,8 @@ const UserRoutes = require("./UserRoutes");
 const AdminRoutes = require("./AdminRoutes");
 const BrandRoutes = require("./BrandRoutes");
 const CategoryRoutes = require("./CategoryRoutes");
+const UnitRoutes = require("./UnitRoutes");
+const ModelRoutes = require("./ModelRoutes");
 const SupplierRoutes = require("./SupplierRoutes");
 const CustomerRoutes = require("./CustomerRoutes");
 const ExpenseTypeRoutes = require("./ExpenseTypeRoutes");
@@ -67,5 +69,11 @@ routes.use("/Report", ReportRoutes);
 
 //Summary Routes
 routes.use("/Summary", SummaryRoutes);
+
+//Unit Routes
+routes.use("/Unit", UnitRoutes);
+
+//Model Routes
+routes.use("/Model", ModelRoutes);
 
 module.exports = routes;

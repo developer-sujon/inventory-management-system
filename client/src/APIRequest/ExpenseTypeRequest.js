@@ -17,6 +17,8 @@ class ExpenseTypeRequest {
       postBody,
     );
 
+    console.log(data);
+
     if (data) {
       store.dispatch(ResetExpenseTypeDetails());
       ToastMessage.successMessage("ExpenseType Create Successful");
@@ -41,7 +43,7 @@ class ExpenseTypeRequest {
     const { data } = await RestClient.getRequest(`/ExpenseType/ExpenseTypeDropDown`);
 
     if (data) {
-      store.dispatch(SetExpenseTypeDropDown(data?.data));
+      store.dispatch(SetExpenseTypeDropDown(data));
     }
   }
 

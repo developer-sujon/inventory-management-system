@@ -12,7 +12,6 @@ import { FormInput } from "../../components/Ui";
 import { VerticalForm } from "../../components/Ui";
 import SupplierRequest from "../../APIRequest/SupplierRequest";
 import { defaultAvatarImg } from "../../helpers/Default";
-import { SetFormValueOnChange } from "../../redux/slices/SupplierSlice";
 
 const SupplierCreateUpdatePage = () => {
   let [ObjectID, SetObjectID] = useState(0);
@@ -60,6 +59,7 @@ const SupplierCreateUpdatePage = () => {
         SupplierPhone: values.SupplierPhone,
         SupplierAddress: values.SupplierAddress,
         SupplierAvatar: values.SupplierAvatar,
+        SupplierStatus: values.SupplierStatus,
       }).then((result) => {
         if (result) {
           navigate("/supplier/supplier-list");
@@ -72,6 +72,7 @@ const SupplierCreateUpdatePage = () => {
         SupplierPhone: values.SupplierPhone,
         SupplierAddress: values.SupplierAddress,
         SupplierAvatar: values.SupplierAvatar,
+        SupplierStatus: values.SupplierStatus,
       }).then((result) => {
         if (result) {
           navigate("/supplier/supplier-list");
@@ -140,6 +141,13 @@ const SupplierCreateUpdatePage = () => {
                           rows="3"
                           as="textarea"
                         />
+                        <FormInput
+                          name="SupplierStatus"
+                          label={t("Supplier Status")}
+                          placeholder={t("Enter Supplier Status")}
+                          containerClass={"mb-3"}
+                          type="checkbox"
+                        />
                       </Col>
                       <Col xl={6}>
                         <br />
@@ -162,7 +170,7 @@ const SupplierCreateUpdatePage = () => {
                     <Row className="mt-2">
                       <Col>
                         <Button type="submit" variant="success">
-                          Submit
+                          {!ObjectID ? "Add Supplier" : "Update Supplier"}
                         </Button>
                       </Col>
                     </Row>

@@ -1,4 +1,4 @@
-//external import
+//External Lib Import
 import { createSlice } from "@reduxjs/toolkit";
 import SessionHelper from "../../helpers/SessionHelper";
 

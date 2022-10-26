@@ -1,4 +1,4 @@
-//External import
+//External Lib Import
 const cloudinary = require("cloudinary");
 const { CreateError } = require("../helper/ErrorHandler");
 

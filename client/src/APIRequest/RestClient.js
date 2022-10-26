@@ -1,4 +1,4 @@
-//External import
+//External Lib Import
 import axios from "axios";
 import SessionHelper from "../helpers/SessionHelper";
 import ToastMessage from "../helpers/ToastMessage";

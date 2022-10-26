@@ -10,12 +10,10 @@ import DetachedLayout from "../layouts/Detached";
 import HorizontalLayout from "../layouts/Horizontal";
 import FullLayout from "../layouts/Full";
 
-//External Import
+//External Lib Import
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 import LazyLoader from "../components/Common/LazyLoader";
-import ExpenseTypeCreateUpdatePage from "../pages/ExpenseType/ExpenseTypeCreateUpdatePage";
-import ExpenseTypeListPage from "../pages/ExpenseType/ExpenseTypeListPage";
 
 // Auth
 const Login = React.lazy(() => import("../pages/Account/Login"));
@@ -37,6 +35,42 @@ const SupplierCreateUpdatePage = React.lazy(() =>
 const SupplierListPage = React.lazy(() =>
   import("../pages/Supplier/SupplierListPage"),
 );
+
+const ExpenseTypeCreateUpdatePage = React.lazy(() =>
+  import("../pages/ExpenseType/ExpenseTypeCreateUpdatePage"),
+);
+const ExpenseTypeListPage = React.lazy(() =>
+  import("../pages/ExpenseType/ExpenseTypeListPage"),
+);
+
+const ExpenseCreateUpdatePage = React.lazy(() =>
+  import("../pages/Expense/ExpenseCreateUpdatePage"),
+);
+const ExpenseListPage = React.lazy(() =>
+  import("../pages/Expense/ExpenseListPage"),
+);
+
+const BrandCreateUpdatePage = React.lazy(() =>
+  import("../pages/Brand/BrandCreateUpdatePage"),
+);
+const BrandListPage = React.lazy(() => import("../pages/Brand/BrandListPage"));
+
+const CategoryCreateUpdatePage = React.lazy(() =>
+  import("../pages/Category/CategoryCreateUpdatePage"),
+);
+const CategoryListPage = React.lazy(() =>
+  import("../pages/Category/CategoryListPage"),
+);
+
+const UnitCreateUpdatePage = React.lazy(() =>
+  import("../pages/Unit/UnitCreateUpdatePage"),
+);
+const UnitListPage = React.lazy(() => import("../pages/Unit/UnitListPage"));
+
+const ModelCreateUpdatePage = React.lazy(() =>
+  import("../pages/Model/ModelCreateUpdatePage"),
+);
+const ModelListPage = React.lazy(() => import("../pages/Model/ModelListPage"));
 
 const LoadComponent = ({ component: Component }) => (
   <Suspense fallback={<LazyLoader />}>
@@ -132,6 +166,84 @@ const AllRoutes = () => {
             {
               path: "expense-type-list",
               element: <ExpenseTypeListPage />,
+            },
+          ],
+        },
+        {
+          path: "expense",
+          children: [
+            {
+              path: "expense-create-update",
+              element: <ExpenseCreateUpdatePage />,
+            },
+            {
+              path: "expense-list",
+              element: <ExpenseListPage />,
+            },
+          ],
+        },
+        {
+          path: "brand",
+          children: [
+            {
+              path: "brand-create-update",
+              element: <BrandCreateUpdatePage />,
+            },
+            {
+              path: "brand-list",
+              element: <BrandListPage />,
+            },
+          ],
+        },
+        {
+          path: "category",
+          children: [
+            {
+              path: "category-create-update",
+              element: <CategoryCreateUpdatePage />,
+            },
+            {
+              path: "category-list",
+              element: <CategoryListPage />,
+            },
+          ],
+        },
+        {
+          path: "unit",
+          children: [
+            {
+              path: "unit-create-update",
+              element: <UnitCreateUpdatePage />,
+            },
+            {
+              path: "unit-list",
+              element: <UnitListPage />,
+            },
+          ],
+        },
+        {
+          path: "model",
+          children: [
+            {
+              path: "model-create-update",
+              element: <ModelCreateUpdatePage />,
+            },
+            {
+              path: "model-list",
+              element: <ModelListPage />,
+            },
+          ],
+        },
+        {
+          path: "product",
+          children: [
+            {
+              path: "product-create-update",
+              element: <ModelCreateUpdatePage />,
+            },
+            {
+              path: "product-list",
+              element: <ModelListPage />,
             },
           ],
         },

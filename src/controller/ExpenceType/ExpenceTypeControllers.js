@@ -1,7 +1,7 @@
-//External Import
+//External Lib Import
 const ObjectId = require("mongoose").Types.ObjectId;
 
-//External import
+//External Lib Import
 const ExpenseTypesModel = require("../../model/ExpensesType/ExpensesTypeModel");
 const ExpensesModel = require("../../model/Expenses/ExpensesModel");
 const CheckAssociateService = require("../../services/Common/CheckAssociateService");
@@ -38,10 +38,17 @@ const ExpenseTypeCreate = async (req, res, next) => {
 
 const ExpenseTypeDropDown = async (req, res, next) => {
   try {
-    const result = await DropDownService(req, ExpenseTypesModel, {
-      _id: 1,
-      Name: 1,
-    });
+    const result = await DropDownService(
+      req,
+      ExpenseTypesModel,
+      {
+        ExpenseTypeStatus: true,
+      },
+      {
+        label: "$ExpenseTypeName",
+        value: "$_id",
+      },
+    );
     res.json(result);
   } catch (error) {
     next(error);

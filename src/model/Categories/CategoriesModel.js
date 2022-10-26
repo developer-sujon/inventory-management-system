@@ -1,4 +1,4 @@
-//External import
+//External Lib Import
 const { model, Schema } = require("mongoose");
 
 const categoriesSchema = new Schema(
@@ -8,10 +8,17 @@ const categoriesSchema = new Schema(
       ref: "User",
       required: true,
     },
-    Name: {
+    CategoryName: {
       type: String,
       required: true,
       unique: true,
+    },
+    CategoryDescription: {
+      type: String,
+    },
+    CategoryStatus: {
+      type: Boolean,
+      required: true,
     },
   },
   { timestamps: true, versionKey: false },

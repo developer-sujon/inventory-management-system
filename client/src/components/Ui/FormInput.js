@@ -1,5 +1,5 @@
 //External Lib Import
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, InputGroup } from "react-bootstrap";
 import classNames from "classnames";
 import { ErrorMessage, Field } from "formik";
@@ -7,6 +7,7 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import Select from "react-select";
 
 //Internal Lib Import
 import FileUploader from "./FileUploader";
@@ -23,13 +24,52 @@ const FormInput = ({
   children,
   onChange,
   defaultValue,
-  delay,
+  options,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
+  const [defaultValueSelect, setDefaultValueSelect] = useState(defaultValue);
 
   const FileHandleChange = async (e, setFieldValue) => {
     setFieldValue(name, await ResizeFile(e.target?.files?.[0]));
     onChange(await ResizeFile(e.target?.files?.[0]));
+  };
+
+  useEffect(() => {
+    setDefaultValueSelect(defaultValue);
+  }, [defaultValue]);
+
+  const ReactSelect = () => {
+    return (
+      <Form.Group className={containerClass} controlId={name}>
+        {label ? (
+          <Form.Label className={labelClassName}>{label}</Form.Label>
+        ) : null}
+        <Field>
+          {({ field, form: { touched, errors, setFieldValue, values } }) => (
+            <>
+              <Select
+                className="react-select"
+                classNamePrefix="react-select"
+                options={options}
+                onChange={(option) => setFieldValue(name, option.value)}
+                defaultValue={defaultValueSelect}
+              />
+
+              <ErrorMessage name={name}>
+                {(msg) => (
+                  <Form.Control.Feedback
+                    type="invalid"
+                    style={{ display: "block" }}
+                  >
+                    {msg}
+                  </Form.Control.Feedback>
+                )}
+              </ErrorMessage>
+            </>
+          )}
+        </Field>
+      </Form.Group>
+    );
   };
 
   if (type === "password") {
@@ -132,7 +172,7 @@ const FormInput = ({
                 className={className}
                 isInvalid={errors && errors[name] ? true : false}
                 {...field}
-                checked={values?.ExpenseTypeStatus}
+                checked={values?.[name]}
               />
 
               <ErrorMessage name={name}>
@@ -188,7 +228,7 @@ const FormInput = ({
           {({ field, form: { touched, errors, setFieldValue, values } }) => (
             <>
               <ReactQuill
-                value={values?.ExpenseTypeNote}
+                value={values?.[name]}
                 onChange={(text) => setFieldValue(name, text)}
               />
 
@@ -207,6 +247,8 @@ const FormInput = ({
         </Field>
       </Form.Group>
     );
+  } else if (type === "react-single-select") {
+    return <ReactSelect />;
   } else if (type === "dropzone") {
     return (
       <Form.Group className={containerClass} controlId={name}>
@@ -326,6 +368,7 @@ const FormInput = ({
                 isInvalid={touched[name] && errors[name] ? true : false}
                 {...field}
                 autoComplete={name}
+                min="1"
               />
               <ErrorMessage name={name}>
                 {(msg) => (

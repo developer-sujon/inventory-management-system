@@ -1,4 +1,4 @@
-//external import
+//External Lib Import
 import { createSlice } from "@reduxjs/toolkit";
 
 const ExpenseTypeSlice = createSlice({
@@ -27,9 +27,11 @@ const ExpenseTypeSlice = createSlice({
       state.ExpenseTypeDetails = action.payload;
     },
     ResetExpenseTypeDetails(state, action) {
-      state.ExpenseTypeName = "";
-      state.ExpenseTypeNote = "";
-      state.ExpenseTypeStatus = true;
+      Object.keys(state.ExpenseTypeDetails).map((i) => {
+        return i === "ExpenseTypeStatus"
+          ? (state.ExpenseTypeDetails[i] = true)
+          : (state.ExpenseTypeDetails[i] = "");
+      });
     },
   },
 });

@@ -1,4 +1,4 @@
-//External Import
+//External Lib Import
 const { model, Schema } = require("mongoose");
 
 const UsersSchema = new Schema(

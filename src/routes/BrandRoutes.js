@@ -1,4 +1,4 @@
-//External Import
+//External Lib Import
 const BrandRoutes = require("express").Router();
 const BrandControllers = require("../controller/Brand/BrandControllers");
 const { UserAuth } = require("../middleware/CheckAuthLogin");

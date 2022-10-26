@@ -1,4 +1,4 @@
-//external import
+//External Lib Import
 import { createSlice } from "@reduxjs/toolkit";
 
 const SupplierSlice = createSlice({
@@ -13,13 +13,7 @@ const SupplierSlice = createSlice({
       SupplierPhone: "",
       SupplierAddress: "",
       SupplierAvatar: "",
-    },
-    SupplierFormValue: {
-      SupplierName: "",
-      SupplierEmail: "",
-      SupplierPhone: "",
-      SupplierAddress: "",
-      SupplierAvatar: "",
+      SupplierStatus: true,
     },
   },
   reducers: {
@@ -35,15 +29,12 @@ const SupplierSlice = createSlice({
     SetSupplierDetails(state, action) {
       state.SupplierDetails = action.payload;
     },
-    SetFormValueOnChange(state, action) {
-      state.SupplierFormValue[action.payload.name] = action.payload.value;
-    },
     ResetSupplierDetails(state, action) {
-      state.SupplierDetails.SupplierName = "";
-      state.SupplierDetails.SupplierEmail = "";
-      state.SupplierDetails.SupplierPhone = "";
-      state.SupplierDetails.SupplierAddress = "";
-      state.SupplierDetails.SupplierAvatar = "";
+      Object.keys(state.SupplierDetails).map((i) => {
+        return i === "SupplierStatus"
+          ? (state.SupplierDetails[i] = true)
+          : (state.SupplierDetails[i] = "");
+      });
     },
   },
 });
@@ -53,7 +44,6 @@ export const {
   SetTotalSupplier,
   SetSupplierDropDown,
   SetSupplierDetails,
-  SetFormValueOnChange,
   ResetSupplierDetails,
 } = SupplierSlice.actions;
 export default SupplierSlice.reducer;

@@ -1,4 +1,4 @@
-//External Import
+//External Lib Import
 const ObjectId = require("mongoose").Types.ObjectId;
 
 const DetailsService = async (Request, DataModel) => {

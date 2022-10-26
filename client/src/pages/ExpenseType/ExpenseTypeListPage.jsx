@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import { GrDocumentCsv } from "react-icons/gr";
 import { SiMicrosoftexcel } from "react-icons/si";
+import classNames from "classnames";
 
 // Internal  Lib Import
 import PageTitle from "../../components/Ui/PageTitle";
@@ -13,6 +14,7 @@ import ExpenseTypeRequest from "../../APIRequest/ExpenseTypeRequest";
 import AleartMessage from "../../helpers/AleartMessage";
 import ExportDataJSON from "../../utils/ExportFromJSON";
 import DateFormatter from "../../utils/DateFormatter";
+import HtmlParser from "../../utils/HtmlParser";
 
 const ExpenseTypeListPage = () => {
   const [pageNumber, setPageNumber] = useState(1);
@@ -136,7 +138,7 @@ const ExpenseTypeListPage = () => {
               </Row>
               <Row>
                 <Col>
-                  <Table className="table-centered react-table">
+                  <Table className="table-centered react-table" responsive>
                     <thead
                       className="table-light"
                       style={{ backgroundColor: "#eef2f7" }}
@@ -144,8 +146,8 @@ const ExpenseTypeListPage = () => {
                       <tr>
                         <th>Expense Type Name</th>
                         <th>Expense Type Note</th>
-                        <th>Expense Type Status</th>
                         <th>Created On</th>
+                        <th>Expense Type Status</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -153,20 +155,36 @@ const ExpenseTypeListPage = () => {
                       {ExpenseTypeLists?.map((record, index) => {
                         return (
                           <tr key={index}>
-                            <td>{record.ExpenseTypeName}</td>
-                            <td>{record.ExpenseTypeNote}</td>
-                            <td>{record.ExpenseTypeStatus}</td>
-                            <td>{DateFormatter(record.createdAt)}</td>
+                            <td>{record?.ExpenseTypeName}</td>
+                            <td>
+                              {record?.ExpenseTypeNote &&
+                                HtmlParser(
+                                  record?.ExpenseTypeNote.slice(0, 100),
+                                )}
+                            </td>
+                            <td>{DateFormatter(record?.createdAt)}</td>
+                            <td>
+                              <span
+                                className={classNames("badge", {
+                                  "bg-success": record?.ExpenseTypeStatus,
+                                  "bg-danger": !record?.ExpenseTypeStatus,
+                                })}
+                              >
+                                {record?.ExpenseTypeStatus
+                                  ? "Active"
+                                  : "Deactivated"}
+                              </span>
+                            </td>
                             <td>
                               <Link
-                                to={`/ExpenseType/ExpenseType-create-update?id=${record._id}`}
+                                to={`/expense-type/expense-type-create-update?id=${record?._id}`}
                                 className="action-icon text-warning"
                               >
                                 <i className="mdi mdi-square-edit-outline"></i>
                               </Link>
                               <Link
                                 className="action-icon text-danger"
-                                onClick={() => DeleteExpenseType(record._id)}
+                                onClick={() => DeleteExpenseType(record?._id)}
                               >
                                 <i className="mdi mdi-delete"></i>
                               </Link>

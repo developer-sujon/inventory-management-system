@@ -1,4 +1,4 @@
-//External import
+//External Lib Import
 const multer = require("multer");
 const sharp = require("sharp");
 const path = require("path");

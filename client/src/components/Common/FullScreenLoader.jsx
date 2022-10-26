@@ -1,4 +1,4 @@
-//External Import
+//External Lib Import
 import { useSelector } from "react-redux";
 
 const FullScreenLoader = () => {

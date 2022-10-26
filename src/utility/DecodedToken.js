@@ -1,4 +1,4 @@
-//External import
+//External Lib Import
 const jwt = require("jsonwebtoken");
 
 const DecodedToken = async (Token) => {

@@ -1,4 +1,4 @@
-//External Import
+//External Lib Import
 const ExpenseTypeRoutes = require("express").Router();
 const ExpenceTypeControllers = require("../controller/ExpenceType/ExpenceTypeControllers");
 const { UserAuth } = require("../middleware/CheckAuthLogin");

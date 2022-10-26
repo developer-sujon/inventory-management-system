@@ -1,4 +1,4 @@
-//external import
+//External Lib Import
 import { createSlice } from "@reduxjs/toolkit";
 
 const CustomerSlice = createSlice({
@@ -13,6 +13,7 @@ const CustomerSlice = createSlice({
       CustomerPhone: "",
       CustomerAddress: "",
       CustomerAvatar: "",
+      CustomerStatus: true,
     },
   },
   reducers: {
@@ -29,9 +30,11 @@ const CustomerSlice = createSlice({
       state.CustomerDetails = action.payload;
     },
     ResetCustomerDetails(state, action) {
-      Object.keys(state.CustomerDetails).map(
-        (i) => (state.CustomerDetails[i] = ""),
-      );
+      Object.keys(state.CustomerDetails).map((i) => {
+        return i === "CustomerStatus"
+          ? (state.CustomerDetails[i] = true)
+          : (state.CustomerDetails[i] = "");
+      });
     },
   },
 });

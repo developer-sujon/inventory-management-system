@@ -1,7 +1,7 @@
-//External Import
+//External Lib Import
 const ObjectId = require("mongoose").Types.ObjectId;
 
-//External import
+//External Lib Import
 const { CreateError } = require("../../helper/ErrorHandler");
 const PurchaseSummaryModel = require("../../model/Purchase/PurchaseSummaryModel");
 const SuppliersModel = require("../../model/Suppliers/SuppliersModel");

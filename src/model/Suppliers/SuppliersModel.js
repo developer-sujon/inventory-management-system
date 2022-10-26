@@ -1,4 +1,4 @@
-//External import
+//External Lib Import
 const { model, Schema } = require("mongoose");
 
 const SuppliersSchema = new Schema(
@@ -31,6 +31,10 @@ const SuppliersSchema = new Schema(
     SupplierAddress: String,
     SupplierAvatar: {
       type: String,
+      required: true,
+    },
+    SupplierStatus: {
+      type: Boolean,
       required: true,
     },
   },

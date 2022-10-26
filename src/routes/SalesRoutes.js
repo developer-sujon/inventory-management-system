@@ -1,4 +1,4 @@
-//External Import
+//External Lib Import
 const SalesRoutes = require("express").Router();
 const SalesControllers = require("../controller/Sales/SalesControllers");
 const { UserAuth } = require("../middleware/CheckAuthLogin");

@@ -1,4 +1,4 @@
-//External import
+//External Lib Import
 const { model, Schema } = require("mongoose");
 
 const CustomersSchema = new Schema(
@@ -33,6 +33,10 @@ const CustomersSchema = new Schema(
       unique: true,
     },
     CustomerAddress: String,
+    CustomerStatus: {
+      type: Boolean,
+      required: true,
+    },
   },
   { timestamps: true, versionKey: false },
 );

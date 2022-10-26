@@ -1,5 +1,5 @@
 //External Lib Import
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Row, Col, Card, Button } from "react-bootstrap";
 import * as yup from "yup";
@@ -53,13 +53,27 @@ const CustomerCreateUpdatePage = () => {
   const CreateUpdateCustomer = (values) => {
     if (!values.CustomerAvatar) values.CustomerAvatar = defaultAvatarImg;
     if (!ObjectID) {
-      CustomerRequest.CustomerCreate(values).then((result) => {
+      CustomerRequest.CustomerCreate({
+        CustomerName: values.CustomerName,
+        CustomerEmail: values.CustomerEmail,
+        CustomerPhone: values.CustomerPhone,
+        CustomerAddress: values.CustomerAddress,
+        CustomerAvatar: values.CustomerAvatar,
+        CustomerStatus: values.CustomerStatus,
+      }).then((result) => {
         if (result) {
           navigate("/customer/customer-list");
         }
       });
     } else {
-      CustomerRequest.CustomerUpdate(ObjectID, values).then((result) => {
+      CustomerRequest.CustomerUpdate(ObjectID, {
+        CustomerName: values.CustomerName,
+        CustomerEmail: values.CustomerEmail,
+        CustomerPhone: values.CustomerPhone,
+        CustomerAddress: values.CustomerAddress,
+        CustomerAvatar: values.CustomerAvatar,
+        CustomerStatus: values.CustomerStatus,
+      }).then((result) => {
         if (result) {
           navigate("/customer/customer-list");
         }
@@ -127,7 +141,15 @@ const CustomerCreateUpdatePage = () => {
                           rows="3"
                           as="textarea"
                         />
+                        <FormInput
+                          name="CustomerStatus"
+                          label={t("Customer Status")}
+                          placeholder={t("Enter Customer Status")}
+                          containerClass={"mb-3"}
+                          type="checkbox"
+                        />
                       </Col>
+
                       <Col xl={6}>
                         <br />
                         <img
@@ -149,7 +171,7 @@ const CustomerCreateUpdatePage = () => {
                     <Row className="mt-2">
                       <Col>
                         <Button type="submit" variant="success">
-                          Submit
+                          {!ObjectID ? "Add Customer" : "Update Customer"}
                         </Button>
                       </Col>
                     </Row>

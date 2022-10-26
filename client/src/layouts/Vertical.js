@@ -14,7 +14,7 @@ import * as layoutConstants from "../redux/slices/SettingSlice";
 import { ChangeBodyAttribute } from "../helpers/ChangeBodyAttribute";
 import LazyLoader from "../components/Common/LazyLoader";
 
-//External Import
+//External Lib Import
 const Topbar = React.lazy(() => import("./Topbar"));
 const LeftSidebar = React.lazy(() => import("./LeftSidebar"));
 const Footer = React.lazy(() => import("./Footer"));

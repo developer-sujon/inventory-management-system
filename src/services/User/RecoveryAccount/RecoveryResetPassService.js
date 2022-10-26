@@ -1,4 +1,4 @@
-//External Import
+//External Lib Import
 const bcrypt = require("bcrypt");
 
 //Internal Import

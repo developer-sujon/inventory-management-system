@@ -1,4 +1,4 @@
-//External Import
+//External Lib Import
 const ExpensesModel = require("../../model/Expenses/ExpensesModel");
 const PurchaseSummaryModel = require("../../model/Purchase/PurchaseSummaryModel");
 const SalesReturnsSummaryModel = require("../../model/SalesReturn/SalesReturnsSummaryModel");

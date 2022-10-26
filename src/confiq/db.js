@@ -1,4 +1,4 @@
-//external import
+//External Lib Import
 const mongoose = require("mongoose");
 const { error } = require("../helper/ErrorHandler");
 

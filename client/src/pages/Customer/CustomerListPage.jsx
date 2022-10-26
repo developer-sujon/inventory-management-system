@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import { GrDocumentCsv } from "react-icons/gr";
 import { SiMicrosoftexcel } from "react-icons/si";
+import classNames from "classnames";
 
 // Internal  Lib Import
 import PageTitle from "../../components/Ui/PageTitle";
@@ -133,7 +134,7 @@ const CustomerListPage = () => {
               </Row>
               <Row>
                 <Col>
-                  <Table className="table-centered react-table">
+                  <Table className="table-centered react-table" responsive>
                     <thead
                       className="table-light"
                       style={{ backgroundColor: "#eef2f7" }}
@@ -143,6 +144,7 @@ const CustomerListPage = () => {
                         <th>Customer Mobile</th>
                         <th>Customer Address</th>
                         <th>Created On</th>
+                        <th>Customer Status</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -154,35 +156,47 @@ const CustomerListPage = () => {
                               <div className="d-flex px-2 py-1">
                                 <div>
                                   <img
-                                    src={record.CustomerAvatar}
+                                    src={record?.CustomerAvatar}
                                     className="avatar avatar-sm me-3"
                                     alt="user1"
                                   />
                                 </div>
                                 <div className="d-flex flex-column justify-content-center">
                                   <h6 className="mb-0 text-sm">
-                                    {record.CustomerName}
+                                    {record?.CustomerName}
                                   </h6>
                                   <p className="text-xs text-secondary mb-0">
-                                    <td>{record.CustomerEmail}</td>
+                                    <td>{record?.CustomerEmail}</td>
                                   </p>
                                 </div>
                               </div>
                             </td>
 
-                            <td>{record.CustomerPhone}</td>
-                            <td>{record.CustomerAddress}</td>
-                            <td>{DateFormatter(record.createdAt)}</td>
+                            <td>{record?.CustomerPhone}</td>
+                            <td>{record?.CustomerAddress}</td>
+                            <td>{DateFormatter(record?.createdAt)}</td>
+                            <td>
+                              <span
+                                className={classNames("badge", {
+                                  "bg-success": record?.CustomerStatus,
+                                  "bg-danger": !record?.CustomerStatus,
+                                })}
+                              >
+                                {record?.CustomerStatus
+                                  ? "Active"
+                                  : "Deactivated"}
+                              </span>
+                            </td>
                             <td>
                               <Link
-                                to={`/customer/customer-create-update?id=${record._id}`}
+                                to={`/customer/customer-create-update?id=${record?._id}`}
                                 className="action-icon text-warning"
                               >
                                 <i className="mdi mdi-square-edit-outline"></i>
                               </Link>
                               <Link
                                 className="action-icon text-danger"
-                                onClick={() => DeleteCustomer(record._id)}
+                                onClick={() => DeleteCustomer(record?._id)}
                               >
                                 <i className="mdi mdi-delete"></i>
                               </Link>

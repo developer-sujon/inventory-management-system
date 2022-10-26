@@ -1,4 +1,4 @@
-//External import
+//External Lib Import
 const { model, Schema } = require("mongoose");
 
 const PurchaseSummarySchema = new Schema(

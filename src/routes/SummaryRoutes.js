@@ -1,4 +1,4 @@
-//External Import
+//External Lib Import
 const SummaryRoutes = require("express").Router();
 const SummaryControllers = require("../controller/Summary/SummaryControllers");
 const { UserAuth } = require("../middleware/CheckAuthLogin");

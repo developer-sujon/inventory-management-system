@@ -7,7 +7,6 @@ const VerticalForm = ({
   validationSchema,
   children,
   onSubmit,
-  formClass,
 }) => {
   return (
     <Formik
@@ -18,11 +17,7 @@ const VerticalForm = ({
         onSubmit(values);
       }}
     >
-      {(props) => (
-        <Form className={formClass} noValidate>
-          {children}
-        </Form>
-      )}
+      {(props) => <Form>{children}</Form>}
     </Formik>
   );
 };

@@ -1,4 +1,4 @@
-//External import
+//External Lib Import
 const { model, Schema } = require("mongoose");
 
 const BrandsSchema = new Schema(
@@ -8,10 +8,17 @@ const BrandsSchema = new Schema(
       ref: "User",
       required: true,
     },
-    Name: {
+    BrandName: {
       type: String,
       required: true,
       unique: true,
+    },
+    BrandDescription: {
+      type: String,
+    },
+    BrandStatus: {
+      type: Boolean,
+      required: true,
     },
   },
   { timestamps: true, versionKey: false },

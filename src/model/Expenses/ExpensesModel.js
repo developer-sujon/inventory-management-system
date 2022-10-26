@@ -8,20 +8,20 @@ const ExpensesSchema = new Schema(
       ref: "User",
       required: true,
     },
-    ExpenceType: {
+    ExpenseType: {
       type: Schema.Types.ObjectId,
       ref: "ExpenseType",
       required: true,
     },
-    ExpenceName: {
+    ExpenseName: {
       type: String,
       required: true,
     },
-    ExpenceAmount: {
+    ExpenseAmount: {
       type: Number,
       required: true,
     },
-    ExpenceNote: String,
+    ExpenseNote: String,
   },
   { timestamps: true, versionKey: false },
 );

@@ -1,7 +1,7 @@
 //Internal import
 const mongoose = require("mongoose");
 
-//External import
+//External Lib Import
 const ParentModel = require("../../model/PurchaseReturns/PurchaseReturnsSummaryModel");
 const ChildModel = require("../../model/PurchaseReturns/PurchaseReturnsModel");
 const CreateParentChildService = require("../../services/Common/CreateParentChildService");

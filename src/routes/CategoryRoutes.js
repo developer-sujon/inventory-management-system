@@ -1,4 +1,4 @@
-//External Import
+//External Lib Import
 const CategoryRoutes = require("express").Router();
 const CategoryControllers = require("../controller/Category/CategoryControllers");
 const { UserAuth } = require("../middleware/CheckAuthLogin");

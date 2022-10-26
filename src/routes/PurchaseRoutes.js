@@ -1,4 +1,4 @@
-//External Import
+//External Lib Import
 const PurchaseRoutes = require("express").Router();
 const PurchaseControllers = require("../controller/Purchase/PurchaseControllers");
 const { UserAuth } = require("../middleware/CheckAuthLogin");

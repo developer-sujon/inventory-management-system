@@ -1,4 +1,4 @@
-//External import
+//External Lib Import
 const ExpenseModel = require("../../model/Expenses/ExpensesModel");
 const CreateService = require("../../services/Common/CreateService");
 const DeleteService = require("../../services/Common/DeleteService");
@@ -33,27 +33,27 @@ const ExpenseList = async (req, res, next) => {
   const searchKeyword = req.params.searchKeyword;
   let SearchRgx = { $regex: searchKeyword, $options: "i" };
   let SearchArray = [
-    { ExpenceName: SearchRgx },
-    { ExpenceAmount: SearchRgx },
-    { ExpenceNote: SearchRgx },
-    { "ExpenceType.Name": SearchRgx },
+    { ExpenseName: SearchRgx },
+    { ExpenseAmount: SearchRgx },
+    { ExpenseNote: SearchRgx },
+    { "ExpenseType.Name": SearchRgx },
   ];
   const JoinStage = {
     $lookup: {
       from: "expensetypes",
-      localField: "ExpenceType",
+      localField: "ExpenseType",
       foreignField: "_id",
-      as: "ExpenceType",
+      as: "ExpenseType",
     },
   };
 
   const projection = {
     $project: {
-      ExpenceName: 1,
-      ExpenceAmount: 1,
-      ExpenceNote: 1,
+      ExpenseName: 1,
+      ExpenseAmount: 1,
+      ExpenseNote: 1,
       createdAt: 1,
-      ExpenceType: { $first: "$ExpenceType.Name" },
+      ExpenseType: { $first: "$ExpenseType.ExpenseTypeName" },
     },
   };
 

@@ -33,10 +33,6 @@ const ExpenseTypeCreateUpdatePage = () => {
    */
   const validationSchema = yup.object().shape({
     ExpenseTypeName: yup.string().required("Please Enter Expense Type Name"),
-    ExpenseTypeNote: yup.string().required("Please Enter Expense Type Note"),
-    ExpenseTypeStatus: yup
-      .boolean()
-      .required("Please Enter Expense Type Status"),
   });
 
   /*
@@ -53,6 +49,7 @@ const ExpenseTypeCreateUpdatePage = () => {
         ExpenseTypeNote: values.ExpenseTypeNote,
         ExpenseTypeStatus: values.ExpenseTypeStatus,
       }).then((result) => {
+        console.log(result);
         if (result) {
           navigate("/expense-type/expense-type-list");
         }
@@ -125,7 +122,7 @@ const ExpenseTypeCreateUpdatePage = () => {
                     <Row className="mt-2">
                       <Col>
                         <Button type="submit" variant="success">
-                          Submit
+                          {!ObjectID ? 'Add Expense Type': 'Update Expense Type'}
                         </Button>
                       </Col>
                     </Row>

@@ -1,4 +1,4 @@
-//External Import
+//External Lib Import
 const UserRoutes = require("express").Router();
 
 //Internal Import

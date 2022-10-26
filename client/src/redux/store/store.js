@@ -9,7 +9,11 @@ import UserSlice from "../slices/UserSlice";
 import CustomerSlice from "../slices/CustomerSlice";
 import SupplierSlice from "../slices/SupplierSlice";
 import ExpenseTypeSlice from "../slices/ExpenseTypeSlice";
-import ExpenceSlice from "../slices/ExpenceSlice";
+import ExpenseSlice from "../slices/ExpenseSlice";
+import BrandSlice from "../slices/BrandSlice";
+import CategorySlice from "../slices/CategorySlice";
+import UnitSlice from "../slices/UnitSlice";
+import ModelSlice from "../slices/ModelSlice";
 
 const store = configureStore({
   reducer: {
@@ -20,7 +24,11 @@ const store = configureStore({
     Customer: CustomerSlice,
     Supplier: SupplierSlice,
     ExpenseType: ExpenseTypeSlice,
-    Expence: ExpenceSlice,
+    Expense: ExpenseSlice,
+    Brand: BrandSlice,
+    Category: CategorySlice,
+    Unit: UnitSlice,
+    Model: ModelSlice,
   },
 });
 
