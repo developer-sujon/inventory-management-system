@@ -13,7 +13,7 @@ const BrandsSchema = new Schema(
       required: true,
       unique: true,
     },
-    BrandDescription: {
+    BrandDetails: {
       type: String,
     },
     BrandStatus: {

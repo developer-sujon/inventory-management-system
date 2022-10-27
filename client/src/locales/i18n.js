@@ -4,16 +4,13 @@ import detector from "i18next-browser-languagedetector";
 import { initReactI18next } from "react-i18next";
 
 //Internal Lib Import
-import translationEs from "./es/translation.json";
+import translationBn from "./bn/translation.json";
 import store from "../redux/store/store";
 
 //Translations
 const resources = {
-  es: {
-    translation: translationEs,
-  },
-  de: {
-    translation: translationEs,
+  bn: {
+    translation: translationBn,
   },
 };
 

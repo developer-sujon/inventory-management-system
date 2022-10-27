@@ -20,8 +20,19 @@ const ProductsSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Categorie",
     },
-    ProductUnit: String,
+    UnitId: {
+      type: Schema.Types.ObjectId,
+      ref: "Unit",
+    },
+    ModelId: {
+      type: Schema.Types.ObjectId,
+      ref: "Model",
+    },
     ProductDetails: String,
+    ProductStatus: {
+      type: Boolean,
+      required: true,
+    },
   },
   { timestamps: true, versionKey: false },
 );

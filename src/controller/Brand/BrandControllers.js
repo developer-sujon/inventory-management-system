@@ -23,6 +23,15 @@ const DetailsService = require("../../services/Common/DetailsService");
 
 const BrandCreate = async (req, res, next) => {
   try {
+    const associal = await CheckAssociateService(
+      { BrandName: req.body.BrandName },
+      BrandModel,
+    );
+
+    if (associal) {
+      throw CreateError("This Brand Already Created");
+    }
+
     const result = await CreateService(req, BrandModel);
     res.status(201).json(result);
   } catch (error) {
@@ -39,7 +48,17 @@ const BrandCreate = async (req, res, next) => {
 
 const BrandDropDown = async (req, res, next) => {
   try {
-    const result = await DropDownService(req, BrandModel, { _id: 1, Name: 1 });
+    const result = await DropDownService(
+      req,
+      BrandModel,
+      {
+        BrandStatus: true,
+      },
+      {
+        label: "$BrandName",
+        value: "$_id",
+      },
+    );
     res.json(result);
   } catch (error) {
     next(error);

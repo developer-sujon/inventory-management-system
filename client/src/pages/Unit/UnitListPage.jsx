@@ -49,7 +49,6 @@ const UnitListPage = () => {
   };
 
   const DeleteUnit = (id) => {
-    console.log(id);
     AleartMessage.Delete(id, UnitRequest.UnitDelete).then((result) => {
       if (result) {
         UnitRequest.UnitList(pageNumber, perPage, searchKey);
@@ -68,7 +67,7 @@ const UnitListPage = () => {
             active: true,
           },
         ]}
-        title={"Unit List"}
+        title={"Unit List " + TotalUnit}
       />
       <Row>
         <Col xs={12}>
@@ -88,10 +87,6 @@ const UnitListPage = () => {
                   <div className="text-sm-end">
                     <Button variant="success" className="mb-2 me-1">
                       <i className="mdi mdi-cog-outline"></i>
-                    </Button>
-
-                    <Button variant="light" className="mb-2 me-1">
-                      Import
                     </Button>
 
                     <Button
@@ -136,7 +131,7 @@ const UnitListPage = () => {
                     >
                       <tr>
                         <th>Unit Name</th>
-                        <th>Unit Description</th>
+                        <th>Unit Details</th>
                         <th>Created On</th>
                         <th>Unit Status</th>
                         <th>Action</th>
@@ -148,10 +143,11 @@ const UnitListPage = () => {
                           <tr key={index}>
                             <td>{record?.UnitName}</td>
                             <td>
-                              {record?.UnitDescription &&
+                              {(record?.UnitDetails &&
                                 HtmlParser(
-                                  record?.UnitDescription.slice(0, 100),
-                                )}
+                                  record?.UnitDetails.slice(0, 100),
+                                )) ||
+                                "NA"}
                             </td>
                             <td>{DateFormatter(record?.createdAt)}</td>
                             <td>

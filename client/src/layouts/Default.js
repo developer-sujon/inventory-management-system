@@ -1,10 +1,11 @@
-// @flow
-import React, { useEffect } from "react";
+// External Lib Import
+import React, { Suspense, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 
-// Utils
+// Internal Lib Import
 import { ChangeBodyAttribute } from "../helpers/ChangeBodyAttribute";
+import LazyLoader from "../components/Common/LazyLoader";
 
 const DefaultLayout = (props) => {
   const { LayoutColor } = useSelector((state) => state.Setting);
@@ -21,6 +22,10 @@ const DefaultLayout = (props) => {
     };
   }, []);
 
-  return <Outlet />;
+  return (
+    <Suspense fallback={<LazyLoader />}>
+      <Outlet />
+    </Suspense>
+  );
 };
 export default DefaultLayout;

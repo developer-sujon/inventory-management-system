@@ -14,6 +14,7 @@ import BrandSlice from "../slices/BrandSlice";
 import CategorySlice from "../slices/CategorySlice";
 import UnitSlice from "../slices/UnitSlice";
 import ModelSlice from "../slices/ModelSlice";
+import ProductSlice from "../slices/ProductSlice";
 
 const store = configureStore({
   reducer: {
@@ -29,6 +30,7 @@ const store = configureStore({
     Category: CategorySlice,
     Unit: UnitSlice,
     Model: ModelSlice,
+    Product: ProductSlice,
   },
 });
 

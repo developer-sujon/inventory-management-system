@@ -22,6 +22,20 @@ const UpdateService = require("../../services/Common/UpdateService");
 
 const SupplierCreate = async (req, res, next) => {
   try {
+    const associal = await CheckAssociateService(
+      {
+        $or: [
+          { SupplierEmail: req.body.SupplierEmail },
+          { SupplierPhone: req.body.SupplierPhone },
+        ],
+      },
+      SuppliersModel,
+    );
+
+    if (associal) {
+      throw CreateError("Supplier Email or Mobile Must be Unique");
+    }
+
     const result = await CreateService(req, SuppliersModel);
     res.status(201).json(result);
   } catch (error) {

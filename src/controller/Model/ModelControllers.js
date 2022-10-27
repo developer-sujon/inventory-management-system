@@ -23,6 +23,15 @@ const DetailsService = require("../../services/Common/DetailsService");
 
 const ModelCreate = async (req, res, next) => {
   try {
+    const associal = await CheckAssociateService(
+      { ModelName: req.body.ModelName },
+      ModelModel,
+    );
+
+    if (associal) {
+      throw CreateError("This Model Already Created");
+    }
+
     const result = await CreateService(req, ModelModel);
     res.status(201).json(result);
   } catch (error) {
@@ -39,7 +48,17 @@ const ModelCreate = async (req, res, next) => {
 
 const ModelDropDown = async (req, res, next) => {
   try {
-    const result = await DropDownService(req, ModelModel, { _id: 1, Name: 1 });
+    const result = await DropDownService(
+      req,
+      ModelModel,
+      {
+        ModelStatus: true,
+      },
+      {
+        label: "$ModelName",
+        value: "$_id",
+      },
+    );
     res.json(result);
   } catch (error) {
     next(error);

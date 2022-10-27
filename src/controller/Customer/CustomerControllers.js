@@ -24,6 +24,20 @@ const DetailsService = require("../../services/Common/DetailsService");
 
 const CustomerCreate = async (req, res, next) => {
   try {
+    const associal = await CheckAssociateService(
+      {
+        $or: [
+          { CustomerEmail: req.body.CustomerEmail },
+          { CustomerPhone: req.body.CustomerPhone },
+        ],
+      },
+      CustomersModel,
+    );
+
+    if (associal) {
+      throw CreateError("Customer Email or Mobile Must be Unique");
+    }
+
     const result = await CreateService(req, CustomersModel);
     res.status(201).json(result);
   } catch (error) {

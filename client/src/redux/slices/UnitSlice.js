@@ -9,7 +9,7 @@ const UnitSlice = createSlice({
     TotalUnit: 0,
     UnitDetails: {
       UnitName: "",
-      UnitDescription: "",
+      UnitDetails: "",
       UnitStatus: true,
     },
   },

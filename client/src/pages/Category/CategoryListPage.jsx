@@ -25,7 +25,9 @@ const CategoryListPage = () => {
     CategoryRequest.CategoryList(pageNumber, perPage, searchKey);
   }, [pageNumber, perPage, searchKey]);
 
-  const { CategoryLists, TotalCategory } = useSelector((state) => state.Category);
+  const { CategoryLists, TotalCategory } = useSelector(
+    (state) => state.Category,
+  );
 
   const PerPageOnChange = (e) => {
     if (e.target.value === "All") {
@@ -49,7 +51,6 @@ const CategoryListPage = () => {
   };
 
   const DeleteCategory = (id) => {
-    console.log(id);
     AleartMessage.Delete(id, CategoryRequest.CategoryDelete).then((result) => {
       if (result) {
         CategoryRequest.CategoryList(pageNumber, perPage, searchKey);
@@ -68,7 +69,7 @@ const CategoryListPage = () => {
             active: true,
           },
         ]}
-        title={"Category List"}
+        title={"Category List " + TotalCategory}
       />
       <Row>
         <Col xs={12}>
@@ -90,14 +91,14 @@ const CategoryListPage = () => {
                       <i className="mdi mdi-cog-outline"></i>
                     </Button>
 
-                    <Button variant="light" className="mb-2 me-1">
-                      Import
-                    </Button>
+
 
                     <Button
                       variant="light"
                       className="mb-2 me-1"
-                      onClick={() => ExportDataJSON(CategoryLists, "Category", "xls")}
+                      onClick={() =>
+                        ExportDataJSON(CategoryLists, "Category", "xls")
+                      }
                     >
                       <SiMicrosoftexcel /> Export
                     </Button>
@@ -105,7 +106,9 @@ const CategoryListPage = () => {
                     <Button
                       variant="light"
                       className="mb-2"
-                      onClick={() => ExportDataJSON(CategoryLists, "Category", "csv")}
+                      onClick={() =>
+                        ExportDataJSON(CategoryLists, "Category", "csv")
+                      }
                     >
                       <GrDocumentCsv /> Export
                     </Button>
@@ -136,7 +139,7 @@ const CategoryListPage = () => {
                     >
                       <tr>
                         <th>Category Name</th>
-                        <th>Category Description</th>
+                        <th>Categorie Details</th>
                         <th>Created On</th>
                         <th>Category Status</th>
                         <th>Action</th>
@@ -148,10 +151,11 @@ const CategoryListPage = () => {
                           <tr key={index}>
                             <td>{record?.CategoryName}</td>
                             <td>
-                              {record?.CategoryDescription &&
+                              {(record?.CategoryDetails &&
                                 HtmlParser(
-                                  record?.CategoryDescription.slice(0, 100),
-                                )}
+                                  record?.CategoryDetails.slice(0, 100),
+                                )) ||
+                                "NA"}
                             </td>
                             <td>{DateFormatter(record?.createdAt)}</td>
                             <td>
@@ -161,7 +165,9 @@ const CategoryListPage = () => {
                                   "bg-danger": !record?.CategoryStatus,
                                 })}
                               >
-                                {record?.CategoryStatus ? "Active" : "Deactivated"}
+                                {record?.CategoryStatus
+                                  ? "Active"
+                                  : "Deactivated"}
                               </span>
                             </td>
                             <td>

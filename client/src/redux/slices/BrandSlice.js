@@ -9,7 +9,7 @@ const BrandSlice = createSlice({
     TotalBrand: 0,
     BrandDetails: {
       BrandName: "",
-      BrandDescription: "",
+      BrandDetails: "",
       BrandStatus: true,
     },
   },

@@ -105,7 +105,6 @@ const VerticalLayout = () => {
               <Outlet />
             </Container>
           </div>
-
           <Footer />
         </div>
       </div>

@@ -13,7 +13,7 @@ const ModelsSchema = new Schema(
       required: true,
       unique: true,
     },
-    ModelDescription: {
+    ModelDetails: {
       type: String,
     },
     ModelStatus: {

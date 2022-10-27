@@ -1,7 +1,8 @@
-import MENU_ITEMS from "../constants/menu";
+//External Lib Import
+import MenuItems from "../constants/menu";
 
 const getMenuItems = () => {
-  return MENU_ITEMS;
+  return MenuItems();
 };
 
 const findAllParent = (menuItems, menuItem) => {

@@ -9,7 +9,7 @@ const CategorySlice = createSlice({
     TotalCategory: 0,
     CategoryDetails: {
       CategoryName: "",
-      CategoryDescription: "",
+      CategoryDetails: "",
       CategoryStatus: true,
     },
   },

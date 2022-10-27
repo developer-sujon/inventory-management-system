@@ -13,7 +13,7 @@ const UnitsSchema = new Schema(
       required: true,
       unique: true,
     },
-    UnitDescription: {
+    UnitDetails: {
       type: String,
     },
     UnitStatus: {

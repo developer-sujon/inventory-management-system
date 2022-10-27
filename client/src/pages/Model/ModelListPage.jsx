@@ -49,7 +49,6 @@ const ModelListPage = () => {
   };
 
   const DeleteModel = (id) => {
-    console.log(id);
     AleartMessage.Delete(id, ModelRequest.ModelDelete).then((result) => {
       if (result) {
         ModelRequest.ModelList(pageNumber, perPage, searchKey);
@@ -68,7 +67,7 @@ const ModelListPage = () => {
             active: true,
           },
         ]}
-        title={"Model List"}
+        title={"Model List " + TotalModel}
       />
       <Row>
         <Col xs={12}>
@@ -90,9 +89,7 @@ const ModelListPage = () => {
                       <i className="mdi mdi-cog-outline"></i>
                     </Button>
 
-                    <Button variant="light" className="mb-2 me-1">
-                      Import
-                    </Button>
+
 
                     <Button
                       variant="light"
@@ -136,7 +133,7 @@ const ModelListPage = () => {
                     >
                       <tr>
                         <th>Model Name</th>
-                        <th>Model Description</th>
+                        <th>Model Details</th>
                         <th>Created On</th>
                         <th>Model Status</th>
                         <th>Action</th>
@@ -148,10 +145,11 @@ const ModelListPage = () => {
                           <tr key={index}>
                             <td>{record?.ModelName}</td>
                             <td>
-                              {record?.ModelDescription &&
+                              {(record?.ModelDetails &&
                                 HtmlParser(
-                                  record?.ModelDescription.slice(0, 100),
-                                )}
+                                  record?.ModelDetails.slice(0, 100),
+                                )) ||
+                                "NA"}
                             </td>
                             <td>{DateFormatter(record?.createdAt)}</td>
                             <td>

@@ -9,7 +9,7 @@ const ModelSlice = createSlice({
     TotalModel: 0,
     ModelDetails: {
       ModelName: "",
-      ModelDescription: "",
+      ModelDetails: "",
       ModelStatus: true,
     },
   },

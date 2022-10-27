@@ -9,7 +9,7 @@ const SalesModel = require("../../model/Sales/SalesModel");
 const CheckAssociateService = require("../../services/Common/CheckAssociateService");
 const CreateService = require("../../services/Common/CreateService");
 const DeleteService = require("../../services/Common/DeleteService");
-const ListTwoJoinService = require("../../services/Common/ListTwoJoinService");
+const ListFourJoinService = require("../../services/Common/ListFourJoinService");
 const UpdateService = require("../../services/Common/UpdateService");
 const DetailsService = require("../../services/Common/DetailsService");
 
@@ -64,23 +64,47 @@ const ProductList = async (req, res, next) => {
     },
   };
 
+  const JoinStageThree = {
+    $lookup: {
+      from: "units",
+      localField: "UnitId",
+      foreignField: "_id",
+      as: "ProductUnit",
+    },
+  };
+
+  const JoinStageFour = {
+    $lookup: {
+      from: "models",
+      localField: "ModelId",
+      foreignField: "_id",
+      as: "ProductModel",
+    },
+  };
+
   const projection = {
     $project: {
       ProductName: 1,
-      ProductBrand: { $first: "$ProductBrand.Name" },
-      ProductCategory: { $first: "$ProductCategory.Name" },
-      ProductUnit: 1,
+      ProductBrand: { $first: "$ProductBrand.BrandName" },
+      ProductCategory: { $first: "$ProductCategory.CategoryName" },
+      ProductUnit: { $first: "$ProductUnit.UnitName" },
+      ProductModel: { $first: "$ProductModel.ModelName" },
+      ProductStatus: 1,
       ProductDetails: 1,
+      createdAt: 1,
+      updatedAt: 1,
     },
   };
 
   try {
-    const result = await ListTwoJoinService(
+    const result = await ListFourJoinService(
       req,
       ProductModel,
       SearchArray,
       JoinStageOne,
       JoinStageTwo,
+      JoinStageThree,
+      JoinStageFour,
       projection,
     );
     res.json(result);

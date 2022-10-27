@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import { Navigate, useRoutes } from "react-router-dom";
 import { useSelector } from "react-redux";
 import * as layoutConstants from "../redux/slices/SettingSlice";
@@ -13,7 +13,6 @@ import FullLayout from "../layouts/Full";
 //External Lib Import
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
-import LazyLoader from "../components/Common/LazyLoader";
 
 // Auth
 const Login = React.lazy(() => import("../pages/Account/Login"));
@@ -72,11 +71,20 @@ const ModelCreateUpdatePage = React.lazy(() =>
 );
 const ModelListPage = React.lazy(() => import("../pages/Model/ModelListPage"));
 
-const LoadComponent = ({ component: Component }) => (
-  <Suspense fallback={<LazyLoader />}>
-    <Component />
-  </Suspense>
+const ProductCreateUpdatePage = React.lazy(() =>
+  import("../pages/Product/ProductCreateUpdatePage"),
 );
+const ProductListPage = React.lazy(() =>
+  import("../pages/Product/ProductListPage"),
+);
+
+const LoadComponent = ({ component: Component }) => {
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
+
+  return <Component />;
+};
 
 const AllRoutes = () => {
   const { LayoutType } = useSelector((state) => state.Setting);
@@ -239,11 +247,11 @@ const AllRoutes = () => {
           children: [
             {
               path: "product-create-update",
-              element: <ModelCreateUpdatePage />,
+              element: <ProductCreateUpdatePage />,
             },
             {
               path: "product-list",
-              element: <ModelListPage />,
+              element: <ProductListPage />,
             },
           ],
         },

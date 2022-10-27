@@ -2,7 +2,7 @@
 const ObjectId = require("mongoose").Types.ObjectId;
 
 //External Lib Import
-const UnitUnit = require("../../model/Units/UnitsModel");
+const UnitModel = require("../../model/Units/UnitsModel");
 const ProductsUnit = require("../../model/Products/ProductsModel");
 const { CreateError } = require("../../helper/ErrorHandler");
 
@@ -23,7 +23,7 @@ const DetailsService = require("../../services/Common/DetailsService");
 
 const UnitCreate = async (req, res, next) => {
   try {
-    const result = await CreateService(req, UnitUnit);
+    const result = await CreateService(req, UnitModel);
     res.status(201).json(result);
   } catch (error) {
     next(error);
@@ -39,7 +39,17 @@ const UnitCreate = async (req, res, next) => {
 
 const UnitDropDown = async (req, res, next) => {
   try {
-    const result = await DropDownService(req, UnitUnit, { _id: 1, Name: 1 });
+    const result = await DropDownService(
+      req,
+      UnitModel,
+      {
+        UnitStatus: true,
+      },
+      {
+        label: "$UnitName",
+        value: "$_id",
+      },
+    );
     res.json(result);
   } catch (error) {
     next(error);
@@ -59,7 +69,7 @@ const UnitList = async (req, res, next) => {
   let SearchArray = [{ Name: SearchRgx }];
 
   try {
-    const result = await ListService(req, UnitUnit, SearchArray);
+    const result = await ListService(req, UnitModel, SearchArray);
     res.json(result);
   } catch (error) {
     next(error);
@@ -75,7 +85,7 @@ const UnitList = async (req, res, next) => {
 
 const UnitDetails = async (req, res, next) => {
   try {
-    const result = await DetailsService(req, UnitUnit);
+    const result = await DetailsService(req, UnitModel);
     res.json(result);
   } catch (error) {
     next(error);
@@ -91,7 +101,7 @@ const UnitDetails = async (req, res, next) => {
 
 const UnitUpdate = async (req, res, next) => {
   try {
-    const result = await UpdateService(req, UnitUnit);
+    const result = await UpdateService(req, UnitModel);
     res.json(result);
   } catch (error) {
     next(error);
@@ -116,7 +126,7 @@ const UnitDelete = async (req, res, next) => {
       throw CreateError("This Unit Associate Product");
     }
 
-    const result = await DeleteService(req, UnitUnit);
+    const result = await DeleteService(req, UnitModel);
     res.json(result);
   } catch (error) {
     next(error);

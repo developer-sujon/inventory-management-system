@@ -51,7 +51,6 @@ const ExpenseTypeListPage = () => {
   };
 
   const DeleteExpenseType = (id) => {
-    console.log(id);
     AleartMessage.Delete(id, ExpenseTypeRequest.ExpenseTypeDelete).then(
       (result) => {
         if (result) {
@@ -72,7 +71,7 @@ const ExpenseTypeListPage = () => {
             active: true,
           },
         ]}
-        title={"Expense Type List"}
+        title={"Expense Type List " + TotalExpenseType}
       />
       <Row>
         <Col xs={12}>
@@ -95,9 +94,7 @@ const ExpenseTypeListPage = () => {
                       <i className="mdi mdi-cog-outline"></i>
                     </Button>
 
-                    <Button variant="light" className="mb-2 me-1">
-                      Import
-                    </Button>
+
 
                     <Button
                       variant="light"
@@ -157,10 +154,11 @@ const ExpenseTypeListPage = () => {
                           <tr key={index}>
                             <td>{record?.ExpenseTypeName}</td>
                             <td>
-                              {record?.ExpenseTypeNote &&
+                              {(record?.ExpenseTypeNote &&
                                 HtmlParser(
                                   record?.ExpenseTypeNote.slice(0, 100),
-                                )}
+                                )) ||
+                                "NA"}
                             </td>
                             <td>{DateFormatter(record?.createdAt)}</td>
                             <td>

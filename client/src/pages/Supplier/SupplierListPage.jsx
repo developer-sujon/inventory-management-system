@@ -50,7 +50,6 @@ const SupplierListPage = () => {
   };
 
   const DeleteSupplier = (id) => {
-    console.log(id);
     AleartMessage.Delete(id, SupplierRequest.SupplierDelete).then((result) => {
       if (result) {
         SupplierRequest.SupplierList(pageNumber, perPage, searchKey);
@@ -89,10 +88,6 @@ const SupplierListPage = () => {
                   <div className="text-sm-end">
                     <Button variant="success" className="mb-2 me-1">
                       <i className="mdi mdi-cog-outline"></i>
-                    </Button>
-
-                    <Button variant="light" className="mb-2 me-1">
-                      Import
                     </Button>
 
                     <Button

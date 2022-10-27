@@ -1,9 +1,10 @@
-// @flow
+// Internal Lib Import
 import React, { useState } from "react";
-import { Button, Dropdown } from "react-bootstrap";
+import { Dropdown } from "react-bootstrap";
 import i18next from "i18next";
 
 import enFlag from "./flags/us.jpg";
+import bnFlag from "./flags/bangladesh.png";
 import germanyFlag from "./flags/germany.jpg";
 import italyFlag from "./flags/italy.jpg";
 import spainFlag from "./flags/spain.jpg";
@@ -13,6 +14,11 @@ import { SetLanguage } from "../../redux/slices/SettingSlice";
 
 // Get the languages
 const Languages = [
+  {
+    display: "Bangla",
+    name: "bn",
+    flag: bnFlag,
+  },
   {
     display: "English",
     name: "en",
@@ -44,7 +50,13 @@ const LanguageDropdown = (): React$Element<any> => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const state = useSelector((state) => state.Setting);
 
-  const Language = Languages.find((item) => item.name === state.Language);
+  let Language = Languages.find((item) => item.name === state.Language);
+
+  Language = Language || {
+    display: "English",
+    name: "en",
+    flag: enFlag,
+  };
 
   const dispatch = useDispatch();
 

@@ -50,7 +50,7 @@ const CustomerListPage = () => {
   };
 
   const DeleteCustomer = (id) => {
-    console.log(id);
+
     AleartMessage.Delete(id, CustomerRequest.CustomerDelete).then((result) => {
       if (result) {
         CustomerRequest.CustomerList(pageNumber, perPage, searchKey);
@@ -69,7 +69,7 @@ const CustomerListPage = () => {
             active: true,
           },
         ]}
-        title={"Customer List"}
+        title={"Customer List " + TotalCustomer}
       />
       <Row>
         <Col xs={12}>
@@ -91,9 +91,7 @@ const CustomerListPage = () => {
                       <i className="mdi mdi-cog-outline"></i>
                     </Button>
 
-                    <Button variant="light" className="mb-2 me-1">
-                      Import
-                    </Button>
+
 
                     <Button
                       variant="light"

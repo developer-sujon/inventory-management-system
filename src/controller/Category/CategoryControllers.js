@@ -23,6 +23,15 @@ const DetailsService = require("../../services/Common/DetailsService");
 
 const CategoryCreate = async (req, res, next) => {
   try {
+    const associal = await CheckAssociateService(
+      { CategoryName: req.body.CategoryName },
+      CategoriesModel,
+    );
+
+    if (associal) {
+      throw CreateError("This Category Already Created");
+    }
+
     const result = await CreateService(req, CategoriesModel);
     res.status(201).json(result);
   } catch (error) {
@@ -39,10 +48,17 @@ const CategoryCreate = async (req, res, next) => {
 
 const CategoryDropDown = async (req, res, next) => {
   try {
-    const result = await DropDownService(req, CategoriesModel, {
-      _id: 1,
-      Name: 1,
-    });
+    const result = await DropDownService(
+      req,
+      CategoriesModel,
+      {
+        CategoryStatus: true,
+      },
+      {
+        label: "$CategoryName",
+        value: "$_id",
+      },
+    );
     res.json(result);
   } catch (error) {
     next(error);

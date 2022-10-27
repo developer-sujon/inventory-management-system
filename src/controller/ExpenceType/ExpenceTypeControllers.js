@@ -22,6 +22,15 @@ const DetailsService = require("../../services/Common/DetailsService");
 
 const ExpenseTypeCreate = async (req, res, next) => {
   try {
+    const associal = await CheckAssociateService(
+      { ExpenseTypeName: req.body.ExpenseTypeName },
+      ExpenseTypesModel,
+    );
+
+    if (associal) {
+      throw CreateError("This Expense Type Already Created");
+    }
+
     const result = await CreateService(req, ExpenseTypesModel);
     res.status(201).json(result);
   } catch (error) {
@@ -117,7 +126,7 @@ const ExpenseTypeUpdate = async (req, res, next) => {
 const ExpenseTypeDelete = async (req, res, next) => {
   try {
     const associal = await CheckAssociateService(
-      { ExpenceType: ObjectId(req.params.id) },
+      { ExpenseType: ObjectId(req.params.id) },
       ExpensesModel,
     );
 

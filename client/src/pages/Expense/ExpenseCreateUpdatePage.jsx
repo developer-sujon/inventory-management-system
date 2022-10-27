@@ -35,7 +35,7 @@ const ExpenseCreateUpdatePage = () => {
    * form validation schema
    */
   const validationSchema = yup.object().shape({
-    ExpenseType: yup.string().required("Please Enter Expense Type"),
+    ExpenseType: yup.string().required("Please Select Expense Type"),
     ExpenseName: yup.string().required("Please Enter Expense Name"),
     ExpenseAmount: yup.string().required("Please Enter Expense Amount"),
   });

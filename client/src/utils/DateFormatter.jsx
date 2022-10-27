@@ -2,11 +2,16 @@
 import React from "react";
 import Moment from "react-moment";
 
-const DateFormatter = ({ date }) => {
+const DateFormatter = (date) => {
   return (
-    <Moment format="D MMM YYYY" withTitle>
-      {date}
-    </Moment>
+    <>
+      <Moment format="D MMM YYYY" withTitle>
+        {date}
+      </Moment> <br />
+      <small>
+        <Moment format="hh:mm A">{date}</Moment>
+      </small>
+    </>
   );
 };
 

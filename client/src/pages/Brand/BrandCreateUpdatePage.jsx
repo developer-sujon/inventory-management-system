@@ -46,7 +46,7 @@ const BrandCreateUpdatePage = () => {
     if (!ObjectID) {
       BrandRequest.BrandCreate({
         BrandName: values.BrandName,
-        BrandDescription: values.BrandDescription,
+        BrandDetails: values.BrandDetails,
         BrandStatus: values.BrandStatus,
       }).then((result) => {
         console.log(result);
@@ -57,7 +57,7 @@ const BrandCreateUpdatePage = () => {
     } else {
       BrandRequest.BrandUpdate(ObjectID, {
         BrandName: values.BrandName,
-        BrandDescription: values.BrandDescription,
+        BrandDetails: values.BrandDetails,
         BrandStatus: values.BrandStatus,
       }).then((result) => {
         if (result) {
@@ -102,9 +102,9 @@ const BrandCreateUpdatePage = () => {
                         />
 
                         <FormInput
-                          name="BrandDescription"
-                          label={t("Brand Description")}
-                          placeholder={t("Enter Brand Description")}
+                          name="BrandDetails"
+                          label={t("Brand Details")}
+                          placeholder={t("Enter Brand Details")}
                           containerClass={"mb-3"}
                           type="simple-rich-edior"
                         />

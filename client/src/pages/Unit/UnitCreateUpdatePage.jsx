@@ -46,7 +46,7 @@ const UnitCreateUpdatePage = () => {
     if (!ObjectID) {
       UnitRequest.UnitCreate({
         UnitName: values.UnitName,
-        UnitDescription: values.UnitDescription,
+        UnitDetails: values.UnitDetails,
         UnitStatus: values.UnitStatus,
       }).then((result) => {
         console.log(result);
@@ -57,7 +57,7 @@ const UnitCreateUpdatePage = () => {
     } else {
       UnitRequest.UnitUpdate(ObjectID, {
         UnitName: values.UnitName,
-        UnitDescription: values.UnitDescription,
+        UnitDetails: values.UnitDetails,
         UnitStatus: values.UnitStatus,
       }).then((result) => {
         if (result) {
@@ -102,9 +102,9 @@ const UnitCreateUpdatePage = () => {
                         />
 
                         <FormInput
-                          name="UnitDescription"
-                          label={t("Unit Description")}
-                          placeholder={t("Enter Unit Description")}
+                          name="UnitDetails"
+                          label={t("Unit Details")}
+                          placeholder={t("Enter Unit Details")}
                           containerClass={"mb-3"}
                           type="simple-rich-edior"
                         />

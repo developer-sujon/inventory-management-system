@@ -46,7 +46,7 @@ const ModelCreateUpdatePage = () => {
     if (!ObjectID) {
       ModelRequest.ModelCreate({
         ModelName: values.ModelName,
-        ModelDescription: values.ModelDescription,
+        ModelDetails: values.ModelDetails,
         ModelStatus: values.ModelStatus,
       }).then((result) => {
         console.log(result);
@@ -57,7 +57,7 @@ const ModelCreateUpdatePage = () => {
     } else {
       ModelRequest.ModelUpdate(ObjectID, {
         ModelName: values.ModelName,
-        ModelDescription: values.ModelDescription,
+        ModelDetails: values.ModelDetails,
         ModelStatus: values.ModelStatus,
       }).then((result) => {
         if (result) {
@@ -102,9 +102,9 @@ const ModelCreateUpdatePage = () => {
                         />
 
                         <FormInput
-                          name="ModelDescription"
-                          label={t("Model Description")}
-                          placeholder={t("Enter Model Description")}
+                          name="ModelDetails"
+                          label={t("Model Details")}
+                          placeholder={t("Enter Model Details")}
                           containerClass={"mb-3"}
                           type="simple-rich-edior"
                         />

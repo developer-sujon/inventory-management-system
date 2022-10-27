@@ -46,7 +46,7 @@ const CategoryCreateUpdatePage = () => {
     if (!ObjectID) {
       CategoryRequest.CategoryCreate({
         CategoryName: values.CategoryName,
-        CategoryDescription: values.CategoryDescription,
+        CategoryDetails: values.CategoryDetails,
         CategoryStatus: values.CategoryStatus,
       }).then((result) => {
         console.log(result);
@@ -57,7 +57,7 @@ const CategoryCreateUpdatePage = () => {
     } else {
       CategoryRequest.CategoryUpdate(ObjectID, {
         CategoryName: values.CategoryName,
-        CategoryDescription: values.CategoryDescription,
+        CategoryDetails: values.CategoryDetails,
         CategoryStatus: values.CategoryStatus,
       }).then((result) => {
         if (result) {
@@ -102,9 +102,9 @@ const CategoryCreateUpdatePage = () => {
                         />
 
                         <FormInput
-                          name="CategoryDescription"
-                          label={t("Category Description")}
-                          placeholder={t("Enter Category Description")}
+                          name="CategoryDetails"
+                          label={t("Categorie Details")}
+                          placeholder={t("Enter Categorie Details")}
                           containerClass={"mb-3"}
                           type="simple-rich-edior"
                         />

@@ -49,7 +49,6 @@ const BrandListPage = () => {
   };
 
   const DeleteBrand = (id) => {
-    console.log(id);
     AleartMessage.Delete(id, BrandRequest.BrandDelete).then((result) => {
       if (result) {
         BrandRequest.BrandList(pageNumber, perPage, searchKey);
@@ -68,7 +67,7 @@ const BrandListPage = () => {
             active: true,
           },
         ]}
-        title={"Brand List"}
+        title={"Brand List " + TotalBrand}
       />
       <Row>
         <Col xs={12}>
@@ -90,9 +89,7 @@ const BrandListPage = () => {
                       <i className="mdi mdi-cog-outline"></i>
                     </Button>
 
-                    <Button variant="light" className="mb-2 me-1">
-                      Import
-                    </Button>
+
 
                     <Button
                       variant="light"
@@ -136,7 +133,7 @@ const BrandListPage = () => {
                     >
                       <tr>
                         <th>Brand Name</th>
-                        <th>Brand Description</th>
+                        <th>Brand Details</th>
                         <th>Created On</th>
                         <th>Brand Status</th>
                         <th>Action</th>
@@ -148,10 +145,11 @@ const BrandListPage = () => {
                           <tr key={index}>
                             <td>{record?.BrandName}</td>
                             <td>
-                              {record?.BrandDescription &&
+                              {(record?.BrandDetails &&
                                 HtmlParser(
-                                  record?.BrandDescription.slice(0, 100),
-                                )}
+                                  record?.BrandDetails.slice(0, 100),
+                                )) ||
+                                "NA"}
                             </td>
                             <td>{DateFormatter(record?.createdAt)}</td>
                             <td>
