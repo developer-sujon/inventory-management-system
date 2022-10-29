@@ -1,7 +1,5 @@
 const ExpensesSummaryService = async (Request, DataModel) => {
   const UserEmail = Request.Email;
-  const FormDate = Request.body.FormDate;
-  const ToDate = Request.body.ToDate;
 
   const data = await DataModel.aggregate([
     {
@@ -15,7 +13,7 @@ const ExpensesSummaryService = async (Request, DataModel) => {
           {
             $group: {
               _id: 0,
-              TotalExpenceAmount: { $sum: "$ExpenceAmount" },
+              TotalExpenseAmount: { $sum: "$ExpenseAmount" },
             },
           },
         ],
@@ -25,7 +23,7 @@ const ExpensesSummaryService = async (Request, DataModel) => {
               _id: {
                 $dateToString: { format: "%Y-%m-%d", date: "$createdAt" },
               },
-              TotalExpenceAmount: { $sum: "$ExpenceAmount" },
+              TotalExpenseAmount: { $sum: "$ExpenseAmount" },
             },
           },
           { $sort: { _id: -1 } },

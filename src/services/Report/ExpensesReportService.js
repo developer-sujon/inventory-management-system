@@ -16,7 +16,7 @@ const ExpensesReportService = async (Request, DataModel) => {
           {
             $group: {
               _id: 0,
-              TotalExpenceAmount: { $sum: "$ExpenceAmount" },
+              TotalExpenseAmount: { $sum: "$ExpenseAmount" },
             },
           },
         ],
@@ -24,18 +24,18 @@ const ExpensesReportService = async (Request, DataModel) => {
           {
             $lookup: {
               from: "expensetypes",
-              localField: "ExpenceType",
+              localField: "ExpenseType",
               foreignField: "_id",
-              as: "ExpenceType",
+              as: "ExpenseType",
             },
           },
           {
             $project: {
-              ExpenceType: 1,
-              ExpenceType: { $first: "$ExpenceType.Name" },
-              ExpenceName: 1,
-              ExpenceAmount: 1,
-              ExpenceNote: 1,
+              ExpenseType: 1,
+              ExpenseType: { $first: "$ExpenseType.Name" },
+              ExpenseName: 1,
+              ExpenseAmount: 1,
+              ExpenseNote: 1,
               createdAt: 1,
             },
           },
