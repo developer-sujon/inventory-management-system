@@ -6,3 +6,6 @@
 
 // Glossy Icons
 @import "./icons.scss";
+body[data-layout-color="dark"] {
+  background: #343a40;
+}

@@ -8,7 +8,7 @@ const SettingSlice = createSlice({
     LayoutColor: SessionHelper.GetTheme() || "light",
     LayoutType: "vertical",
     LayoutWidth: "fluid",
-    LeftSideBarTheme: "light",
+    LeftSideBarTheme:  SessionHelper.GetTheme() || "light",
     LeftSideBarType: "fixed",
     Language: SessionHelper.GetLanguage(),
   },
